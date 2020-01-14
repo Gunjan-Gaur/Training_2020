@@ -64,6 +64,60 @@ POSTGRES COMMANDS
 (6 rows)
 
 
+12. SELECT (23+2) AS ADDITION
+	 addition 
+	----------
+	       25
+	(1 row)
+
+13. SELECT COUNT(*) AS COUNT FROM COMPANY--count the values in the table.
+	 count 
+	-------
+	     6
+	(1 row)	
+
+14. SELECT * FROM COMPANY WHERE AGE>23 AND SALARY<66000;
+	id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  3 | Rajhav |  25 | Faridabad                                          |  45000
+  5 | Ritu   |  28 | Mumbai                                             |  65000
+  6 | Ritu   |  34 | Noida                                              |  40000
+(3 rows)
+
+15. SELECT AGE FROM COMPANY WHERE AGE IS NOT NULL;
+	age 
+	-----
+	  23
+	  22
+	  25
+	  28
+	  26
+	  34
+	(6 rows)
+
+17. SELECT * FROM COMPANY WHERE NAME LIKE 'S%' - displays name starting with s.	
+
+ id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  1 | Sherya |  23 | Delhi                                              |  25000
+  4 | Simran |  26 | Pune                                               |  75000
+(2 rows)
+
+20. SELECT * FROM COMPANY WHERE AGE IN (25,28) - shows tuples with age 25 and 28.
+	 id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  3 | Rajhav |  25 | Faridabad                                          |  45000
+  5 | Ritu   |  28 | Mumbai                                             |  65000
+(2 rows)
+
+21.SELECT * FROM COMPANY WHERE AGE NOT IN (25,28)
+	 id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  1 | Sherya |  23 | Delhi                                              |  25000
+  2 | Palak  |  22 | Noida                                              |  35000
+  4 | Simran |  26 | Pune                                               |  75000
+  6 | Ritu   |  34 | Noida                                              |  40000
+(4 rows)
 
 
 

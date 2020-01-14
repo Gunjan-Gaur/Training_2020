@@ -119,5 +119,34 @@ POSTGRES COMMANDS
   6 | Ritu   |  34 | Noida                                              |  40000
 (4 rows)
 
+22. SELECT * FROM COMPANY LIMIT 3 OFFSET 3 - displays 3 rows from offset 3.
+	id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  5 | Ritu   |  28 | Mumbai                                             |  65000
+  4 | Simran |  26 | Pune                                               |  75000
+  6 | Ritu   |  34 | Noida                                              |  40000
+(3 rows)
+
+23. SELECT * FROM COMPANY ORDER BY NAME,SALARY ASC;
+	 id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  2 | Palak  |  22 | Noida                                              |  35000
+  3 | Rajhav |  25 | Faridabad                                          |  45000
+  6 | Ritu   |  34 | Noida                                              |  40000
+  5 | Ritu   |  28 | Mumbai                                             |  65000
+  1 | Sherya |  23 | Delhi                                              |  25000
+  4 | Simran |  26 | Pune                                               |  75000
+(6 rows)
+
+24. SELECT NAME , SUM(SALARY) FROM COMPANY GROUP BY NAME ORDER BY NAME;
+	  name  |  sum   
+	--------+--------
+	 Palak  |  35000
+	 Rajhav |  45000
+	 Ritu   | 105000
+	 Sherya |  25000
+	 Simran |  75000
+	(5 rows)
+25. 
 
 

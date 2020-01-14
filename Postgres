@@ -1,9 +1,30 @@
 POSTGRES COMMANDS
 ----------------------------
 1. CREATE DATABASE test;
+	test                            | postgres | UTF8     | en_IN   | en_IN | 
+
 2. \l - Displays all the database.
+	                                        List of databases
+              Name               |  Owner   | Encoding | Collate | Ctype |   Access privileges   
+---------------------------------+----------+----------+---------+-------+-----------------------
+ AjaxTest-Management_development | postgres | UTF8     | en_IN   | en_IN | 
+ extension                       | postgres | UTF8     | en_IN   | en_IN | 
+ mydb                            | myuser   | UTF8     | en_IN   | en_IN | 
+ postgres                        | postgres | UTF8     | en_IN   | en_IN | 
+ template0                       | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+                                 |          |          |         |       | postgres=CTc/postgres
+ template1                       | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+                                 |          |          |         |       | postgres=CTc/postgres
+ test                            | postgres | UTF8     | en_IN   | en_IN | 
+ tripbeam_crm                    | postgres | UTF8     | en_IN   | en_IN | 
+(8 rows)
+
 3. \c test- selects the db.
+	psql (12.1 (Ubuntu 12.1-1.pgdg18.04+1), server 11.5 (Ubuntu 11.5-1.pgdg18.04+1))
+	You are now connected to database "test" as user "postgres".\
+
 4. \q - exit the database.
+
 5. CREATE TABLE COMPANY(
 	ID INT PRIMARY KEY NOT NULL,
 	NAME TEXT NOT NULL,
@@ -11,23 +32,13 @@ POSTGRES COMMANDS
 	ADDRESS CHAR(50),
 	SALARY REAL
 	);
+
 6.\d and \d company- displays table
+	  List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | company    | table | postgres
+
 7. DROP DATABASE test;
 8. DROP TABLE company,department;
-9. CREATE USER myuser WITH PASSWORD '123' -- User in database
-10. INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (01,'Sherya',23,'Delhi','25000');
-11. SELECT (23+2) AS ADDITION
-12. SELECT COUNT(*) AS COUNT FROM COMPANY--count the values in the table.
-13. SELECT * FROM COMPANY WHERE AGE>23 AND SALARY<66000
-14. SELECT AGE FROM COMPANY WHERE AGE IS NOT NULL
-15. ELECT * FROM COMPANY WHERE NAME LIKE "S%" - displays name starting with s.
-16. SELECT * FROM COMPANY WHERE AGE IN (25,28) - shows tuples with age 25 and 28.
-17. SELECT * FROM COMPANY WHERE AGE NOT IN (25,28)
-18. SELECT * FROM COMPANY LIMIT 3 OFFSET 3 - displays 3 rows from offset 3.
-19. SELECT * FROM COMPANY ORDER BY NAME,SALARY ASC 
-20. SELECT NAME , SUM(SALARY) FROM COMPANY GROUP BY NAME ORDER BY NAME
-21. CREATE USER myuser WITH PASSWORD '123' - user with myuser name
-22. CREATE DATABASE mydb WITH OWNER myuser- database with user(myuser).
-
-
 

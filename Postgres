@@ -147,6 +147,75 @@ POSTGRES COMMANDS
 	 Sherya |  25000
 	 Simran |  75000
 	(5 rows)
-25. 
+
+25. NOT NULL,PRIMARY KEY,FOREGIN KEY,UNIQUE,CHECK CONSTRAINT 
+--	CREATE TABLE COMPANY2(
+	ID INT PRIMARY KEY NOT NULL,
+	NAME TEXT NOT NULL,
+	AGE INT NOT NULL UNIQUE,
+	ADDRESS CHAR(50),
+	SALARY REAL CHECK(SALARY>0)
+	);
+
+	                Table "public.company2"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           | not null | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company2_pkey" PRIMARY KEY, btree (id)
+    "company2_age_key" UNIQUE CONSTRAINT, btree (age)
+Check constraints:
+    "company2_salary_check" CHECK (salary > 0::double precision)
+
+--  CREATE TABLE DEPARTMENT2(
+	ID INT PRIMARY KEY NOT NULL,
+ 	DEPT CHAR(50) NOT NULL,
+	EMP_ID INT REFERENCES COMPANY2(ID)
+	);
+
+	               Table "public.department2"
+ Column |     Type      | Collation | Nullable | Default 
+--------+---------------+-----------+----------+---------
+ id     | integer       |           | not null | 
+ dept   | character(50) |           | not null | 
+ emp_id | integer       |           |          | 
+Indexes:
+    "department2_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "department2_emp_id_fkey" FOREIGN KEY (emp_id) REFERENCES company2(id)
+
+26.CREATE EXTENSION btree_gist;
+
+	CREATE TABLE COMPANY2(
+	ID INT PRIMARY KEY NOT NULL,
+	NAME TEXT NOT NULL,
+	AGE INT NOT NULL,
+	ADDRESS CHAR(50),
+	SALARY REAL,
+	EXCULDE USING gist
+	(NAME WITH=,
+	AGE WITH <>)
+	);
+
+	                 Table "public.company2"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           | not null | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company2_pkey" PRIMARY KEY, btree (id)
+    "company2_name_age_excl" EXCLUDE USING gist (name WITH =, age WITH <>)
+
+27.
+
+
+
 
 

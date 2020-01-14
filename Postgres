@@ -260,9 +260,83 @@ Indexes:
 Indexes:
     "company_pkey" PRIMARY KEY, btree (id)
 
-30. 
+30. CROSS JOIN
+	 SELECT EMP_ID,NAME,DEPT FROM COMPANY2 CROSS JOIN DEPARTMENT2;
+ emp_id |  name   |                        dept                        
+--------+---------+----------------------------------------------------
+      4 | Sherya  | HR                                                
+      4 | Akansha | HR                                                
+      4 | Ritu    | HR                                                
+      4 | Priya   | HR                                                
+      4 | Reena   | HR                                                
+      3 | Sherya  | Developer                                         
+      3 | Akansha | Developer                                         
+      3 | Ritu    | Developer                                         
+      3 | Priya   | Developer                                         
+      3 | Reena   | Developer                                         
+      2 | Sherya  | Manager                                           
+      2 | Akansha | Manager                                           
+      2 | Ritu    | Manager                                           
+      2 | Priya   | Manager                                           
+      2 | Reena   | Manager                                           
+      5 | Sherya  | HR                                                
+      5 | Akansha | HR                                                
+      5 | Ritu    | HR                                                
+      5 | Priya   | HR                                                
+      5 | Reena   | HR                                                
+(20 rows)
 
+31. NATURAL JOIN(INNER JOIN)
 
+	SELECT NAME,AGE,ADDRESS FROM COMPANY2 AS EMP,DEPARTMENT2 AS DEPT WHERE EMP.ID=DEPT.EMP_ID;
 
+	  name   | age |                      address                       
+	---------+-----+----------------------------------------------------
+	 Priya   |  26 | Mumbai                                            
+	 Ritu    |  25 | Goa                                               
+	 Akansha |  24 | Noida                                             
+	 Reena   |  28 | Mumbai                                            
+	(4 rows)
+
+32. LEFT OUTER JOIN
+	
+	SELECT COM.ID,NAME,AGE,DEPT,EMP_ID FROM COMPANY2 AS COM LEFT OUTER JOIN DEPARTMENT2 AS DEP ON COM.ID=DEP.EMP_ID;
+
+	 id |  name   | age |                        dept                        | emp_id 
+	----+---------+-----+----------------------------------------------------+--------
+	  4 | Priya   |  26 | HR                                                 |      4
+	  3 | Ritu    |  25 | Developer                                          |      3
+	  2 | Akansha |  24 | Manager                                            |      2
+	  5 | Reena   |  28 | HR                                                 |      5
+	  1 | Sherya  |  23 |                                                    |       
+	(5 rows)
+
+33. RIGHT OUTER JOIN
+
+	SELECT NAME,AGE,DEPT,EMP_ID FROM COMPANY2 AS COM RIGHT OUTER JOIN DEPARTMENT2 AS DEP ON COM.ID=DEP.EMP_ID;
+
+	  name   | age |                        dept                        | emp_id 
+	---------+-----+----------------------------------------------------+--------
+	 Priya   |  26 | HR                                                 |      4
+	 Ritu    |  25 | Developer                                          |      3
+	 Akansha |  24 | Manager                                            |      2
+	 Reena   |  28 | HR                                                 |      5
+	(4 rows)
+
+34. FULL OUTER JOIN
+
+	SELECT COM.ID,NAME,AGE,DEPT,EMP_ID FROM COMPANY2 AS COM FULL OUTER JOIN DEPARTMENT2 AS DEP ON COM.ID=DEP.EMP_ID;
+
+	 id |  name   | age |                        dept                        | emp_id 
+	----+---------+-----+----------------------------------------------------+--------
+	  4 | Priya   |  26 | HR                                                 |      4
+	  3 | Ritu    |  25 | Developer                                          |      3
+	  2 | Akansha |  24 | Manager                                            |      2
+	  5 | Reena   |  28 | HR                                                 |      5
+	  6 | Gunjan  |  29 |                                                    |       
+	  1 | Sherya  |  23 |                                                    |       
+	(6 rows)
+
+35. 
 
 

@@ -213,7 +213,54 @@ Indexes:
     "company2_pkey" PRIMARY KEY, btree (id)
     "company2_name_age_excl" EXCLUDE USING gist (name WITH =, age WITH <>)
 
-27.
+--	INSERT INTO COMPANY VALUES(01,'Priya',22,'Goa',20000.00);
+
+	INSERT INTO COMPANY VALUES(03,'Priya',24,'Delhi',33800.00);
+	ERROR:  conflicting key value violates exclusion constraint "company_name_age_excl"
+	DETAIL:  Key (name, age)=(Priya, 24) conflicts with existing key (name, age)=(Priya, 22).
+
+27.  ALTER TABLE COMPANY ALTER COLUMN NAME DROP NOT NULL;
+	
+	                  Table "public.company"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           |          | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+    "company_name_age_excl" EXCLUDE USING gist (name WITH =, age WITH <>)
+
+28. alter table company alter column name set not null;
+
+	                  Table "public.company"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           | not null | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+    "company_name_age_excl" EXCLUDE USING gist (name WITH =, age WITH <>)
+
+29. alter table company drop constraint company_name_age_excl;
+	
+	                  Table "public.company"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           | not null | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+
+30. 
 
 
 

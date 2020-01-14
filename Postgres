@@ -42,3 +42,28 @@ POSTGRES COMMANDS
 7. DROP DATABASE test;
 8. DROP TABLE company,department;
 
+9. CREATE USER myuser WITH PASSWORD '123' -- Database User
+	CREATE ROLE
+
+10. CREATE DATABASE mydata WITH OWNER myuse;
+	CREATE DATABASE
+	 mydata                          | myuse    | UTF8     | en_IN   | en_IN | 
+
+11. INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (01,'Sherya',23,'Delhi','25000');
+
+	SELECT * FROM COMPANY;
+ 
+ id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+  1 | Sherya |  23 | Delhi                                              |  25000
+  2 | Palak  |  22 | Noida                                              |  35000
+  3 | Rajhav |  25 | Faridabad                                          |  45000
+  5 | Ritu   |  28 | Mumbai                                             |  65000
+  4 | Simran |  26 | Pune                                               |  75000
+  6 | Ritu   |  34 | Noida                                              |  40000
+(6 rows)
+
+
+
+
+

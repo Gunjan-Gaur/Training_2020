@@ -62,7 +62,8 @@ POSTGRES COMMANDS
   4 | Simran |  26 | Pune                                               |  75000
   6 | Ritu   |  34 | Noida                                              |  40000
 (6 rows)
-
+ 
+ --  UPDATE COMPANY SET ADDRESS = 'Pune' WHERE ID = 6;
 
 12. SELECT (23+2) AS ADDITION
 	 addition 
@@ -383,7 +384,104 @@ Indexes:
 	---------------------------------------
 	 {25000,35000,45000,55000,75000,85000}
 	(1 row)
-	
+
 --  SELECT DISTINCT name FROM COMPANY2;
+	
+	name   
+	---------
+	 Akansha
+	 Gunjan
+	 Sherya
+	 Reena
+	 Ritu
+	 Priya
+	(6 rows)
 
+38. AUTO INCREMENT(SERIAL)
+	
+	CREATE TABLE COMPANY3(
+    ID  SERIAL PRIMARY KEY,
+    NAME           TEXT      NOT NULL,
+    AGE            INT       NOT NULL,
+    ADDRESS        CHAR(50),
+    SALARY         REAL	
 
+    INSERT INTO COMPANY3 (NAME,AGE,ADDRESS,SALARY) VALUES ( 'Priya', 32, 'Goa', 20000.00 );
+    INSERT INTO COMPANY3 (NAME,AGE,ADDRESS,SALARY) VALUES ( 'Ritu', 25, 'Noida', 15000.00 );
+
+   	 id | name  | age | address    | salary
+	----+-------+-----+------------+--------
+	  1 | Priya |  32 | Goa        |  20000
+	  2 | Ritu |  25 | Noida      |  15000
+
+39. ALTER COLUMN RENAME,DROP COLUMN,ADD COLUMN
+
+--	ALTER TABLE COMPANY2 RENAME COLUMN ADDRESS TO LOCATION;
+
+	 id |  name   | age |                      location                      | salary 
+	----+---------+-----+----------------------------------------------------+--------
+	  1 | Sherya  |  23 | Delhi                                              |  25000
+	  2 | Akansha |  24 | Noida                                              |  35000
+	  3 | Ritu    |  25 | Goa                                                |  45000
+	
+--	ALTER TABLE COMPANY DROP COLUMN ADDRESS;
+	
+	             Table "public.company"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 id     | integer |           | not null | 
+	 name   | text    |           | not null | 
+	 age    | integer |           | not null | 
+	 salary | real    |           |          | 
+	Indexes:
+	    "company_pkey" PRIMARY KEY, btree (id)
+
+--  ALTER TABLE COMPANY ADD GENDER char(1);
+	
+	 id |  name  | age | salary | gender 
+	----+--------+-----+--------+--------
+	  1 | Sherya |  23 |  25000 | 
+	  2 | Palak  |  22 |  35000 | 
+	  3 | Rajhav |  25 |  45000 | 
+	  5 | Ritu   |  28 |  65000 | 
+	  4 | Simran |  26 |  75000 | 
+	  6 | Ritu   |  34 |  40000 | 
+	(6 rows)
+
+40. DUPLICATE A TABLE WITH DATA AND WITH NO DATA
+
+--	CREATE TABLE DUPLICATE AS(SELECT * FROM COMPANY2);
+
+	id |  name   | age |                      location                      | salary 
+----+---------+-----+----------------------------------------------------+--------
+  1 | Sherya  |  23 | Delhi                                              |  25000
+  2 | Akansha |  24 | Noida                                              |  35000
+  3 | Ritu    |  25 | Goa                                                |  45000
+  4 | Priya   |  26 | Mumbai                                             |  55000
+  5 | Reena   |  28 | Mumbai                                             |  75000
+  6 | Gunjan  |  29 | Banglore                                           |  85000
+(6 rows)
+
+--  CREATE TABLE DUPLICATE2 AS(SELECT * FROM COMPANY2)WITH NO DATA;
+	
+	 id | name | age | location | salary 
+	----+------+-----+----------+--------
+	(0 rows)
+
+41. TRUNCATE DUPLICATE;
+	DROP TABLE DUPLICATE;
+
+42. ALTER RENAME TABLE 
+
+--  ALTER TABLE DUPLICATE RENAME TO DUP;
+	
+	                  Table "public.dup"
+	  Column  |     Type      | Collation | Nullable | Default 
+	----------+---------------+-----------+----------+---------
+	 id       | integer       |           |          | 
+	 name     | text          |           |          | 
+	 age      | integer       |           |          | 
+	 location | character(50) |           |          | 
+	 salary   | real          |           |          | 
+
+--

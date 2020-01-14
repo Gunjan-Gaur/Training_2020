@@ -337,6 +337,53 @@ Indexes:
 	  1 | Sherya  |  23 |                                                    |       
 	(6 rows)
 
-35. 
+35. SELF JOIN 
+
+	 SELECT COM.ID,COM.NAME FROM COMPANY2 AS COM ,COMPANY2 AS COM2 WHERE COM.ID=COM2.ID;
+
+	 id |  name   
+	----+---------
+	  1 | Sherya
+	  2 | Akansha
+	  3 | Ritu
+	  4 | Priya
+	  5 | Reena
+	  6 | Gunjan
+	(6 rows)
+
+36. MIN,MAX,AVG
+
+--	SELECT MAX(salary) FROM COMPANY2;
+
+	  max  
+	-------
+	 85000
+	(1 row)
+
+--   SELECT MIN(salary), MAX(salary) max FROM company2;
+	 
+	  min  |  max  
+	-------+-------
+	 25000 | 85000
+	(1 row)
+
+--  SELECT AVG(SALARY) FROM COMPANY2;
+
+	   avg        
+	------------------
+	 53333.3333333333
+	(1 row)
+
+
+37. ARRAY,DISTINCT
+
+--  SELECT ARRAY_AGG(SALARY) FROM COMPANY2;
+
+	    array_agg               
+	---------------------------------------
+	 {25000,35000,45000,55000,75000,85000}
+	(1 row)
+	
+--  SELECT DISTINCT name FROM COMPANY2;
 
 

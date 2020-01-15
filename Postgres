@@ -493,3 +493,10 @@ Indexes:
 	  3 | amit Delhi                                             
 	(3 rows)
 
+44. Alter datatype-
+
+	alter table patient alter column mobile type bigint;
+
+45. Update record-
+
+	update medical_record set id=03 where id=0;

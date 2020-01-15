@@ -3,7 +3,7 @@ HOSPITAL MANAGEMENT
 1. CREATE DATABASE HOSPITAL_MANAGEMENT;
 
 2. CREATE TABLE HOSPITAL(
-	HOSP_ID INT PRIMARY KEY NOT NULL,
+	ID INT PRIMARY KEY NOT NULL,
 	NAME TEXT NOT NULL,
 	ADDRESS CHAR(50),
 	CITY CHAR(50) 
@@ -20,4 +20,121 @@ HOSPITAL MANAGEMENT
 	    "hospital_pkey" PRIMARY KEY, btree (id)
 
 
-3. 
+3. CREATE TABLE PATIENT(
+	ID INT PRIMARY KEY NOT NULL,
+	FIRST_NAME TEXT NOT NULL,
+	LAST_NAME TEXT NOT NULL,
+	DIAGNOSIS CHAR(50),
+	AGE INT,
+	ADDRESS CHAR(50),
+	MOBILE INT,
+	GENDER TEXT,
+	HOSP_ID INT REFERENCES HOSPITAL(ID)
+	);
+
+		                   Table "public.patient"
+	   Column   |     Type      | Collation | Nullable | Default 
+	------------+---------------+-----------+----------+---------
+	 id         | integer       |           | not null | 
+	 first_name | text          |           | not null | 
+	 last_name  | text          |           | not null | 
+	 diagnosis  | character(50) |           |          | 
+	 age        | integer       |           |          | 
+	 address    | character(50) |           |          | 
+	 mobile     | integer       |           |          | 
+	 gender     | text          |           |          | 
+	 hosp_id    | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+4.	CREATE TABLE MEDICAL_RECORD
+	(ID INT PRIMARY KEY NOT NULL,
+	PROBLEM CHAR(50),
+	DATE_OF_EXAMINATION DATE    
+	);
+
+5.	ALTER TABLE PATIENT ADD COLUMN RECORD_ID INT REFERENCES MEDICAL_RECORD(ID);
+
+	                   Table "public.patient"
+	   Column   |     Type      | Collation | Nullable | Default 
+	------------+---------------+-----------+----------+---------
+	 id         | integer       |           | not null | 
+	 first_name | text          |           | not null | 
+	 last_name  | text          |           | not null | 
+	 diagnosis  | character(50) |           |          | 
+	 age        | integer       |           |          | 
+	 address    | character(50) |           |          | 
+	 mobile     | integer       |           |          | 
+	 gender     | text          |           |          | 
+	 hosp_id    | integer       |           |          | 
+	 record_id  | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    "patient_record_id_fkey" FOREIGN KEY (record_id) REFERENCES medical_record(id)
+	Referenced by:
+	    TABLE "hospital" CONSTRAINT "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+
+
+6.  ALTER TABLE HOSPITAL ADD COLUMN PAT_ID INT REFERENCES PATIENT(ID);
+
+7.   CREATE TABLE DOCTOR(
+	ID INT PRIMARY KEY NOT NULL,
+	FIRST_NAME TEXT NOT NULL,
+	LAST_NAME TEXT NOT NULL,
+	QUALIFICATION CHAR(50),
+	GENDER TEXT,
+	SALARY REAL CHECK(SALARY>0),
+	EMAIL VARCHAR(50),
+	MOBILE INT NOT NULL,
+	AGE INT,
+	HOSP_ID INT REFERENCES HOSPITAL(ID)
+	);
+
+                         Table "public.doctor"
+	    Column     |         Type          | Collation | Nullable | Default 
+	---------------+-----------------------+-----------+----------+---------
+	 id            | integer               |           | not null | 
+	 first_name    | text                  |           | not null | 
+	 last_name     | text                  |           | not null | 
+	 qualification | character(50)         |           |          | 
+	 gender        | text                  |           |          | 
+	 salary        | real                  |           |          | 
+	 email         | character varying(50) |           |          | 
+	 mobile        | integer               |           | not null | 
+	 age           | integer               |           |          | 
+	 hosp_id       | integer               |           |          | 
+	Indexes:
+	    "doctor_pkey" PRIMARY KEY, btree (id)
+	Check constraints:
+	    "doctor_salary_check" CHECK (salary > 0::double precision)
+	Foreign-key constraints:
+	    "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+8.	 ALTER TABLE MEDICAL_RECORD ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
+
+9.   ALTER TABLE HOSPITAL ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
+
+	                 Table "public.hospital"
+	 Column  |     Type      | Collation | Nullable | Default 
+	---------+---------------+-----------+----------+---------
+	 id      | integer       |           | not null | 
+	 name    | text          |           | not null | 
+	 address | character(50) |           |          | 
+	 city    | character(50) |           |          | 
+	 pat_id  | integer       |           |          | 
+	 doc_id  | integer       |           |          | 
+	Indexes:
+	    "hospital_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "hospital_doc_id_fkey" FOREIGN KEY (doc_id) REFERENCES doctor(id)
+	    "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+	Referenced by:
+	    TABLE "doctor" CONSTRAINT "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    TABLE "patient" CONSTRAINT "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+10.  

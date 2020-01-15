@@ -207,4 +207,41 @@ HOSPITAL MANAGEMENT
 
 13. ALTER TABLE hospital RENAME city TO state;	
  
-14.  
+14. insert into patient(id,first_name,last_name,diagnosis,age,address,mobile,gender,insurance_id,hosp_id)values
+	(02,'Amish','singh','tuberculosis',56,'kolkata',9867453455,'male',89096,3);
+ 	
+ 	 id | first_name | last_name |                     diagnosis                      | age |                      address                       |   mobile   | gender | hosp_id | record_id | insurance_id 
+----+------------+-----------+----------------------------------------------------+-----+----------------------------------------------------+------------+--------+---------+-----------+--------------
+  1 | Meghna     | Aggarwal  | asthma                                             |  24 | Delhi                                              | 9867453456 | Female |       1 |         1 |        89090
+  2 | Amish      | singh     | tuberculosis                                       |  56 | kolkata                                            | 9867453455 | male   |       3 |         2 |        89096
+  3 | Misthi     | Singhla   | pneumonia                                          |  45 | Delhi                                              | 9869053455 | Female |       2 |         3 |        89678
+  4 | Tanmay     | Singh     | Malaria                                            |  32 | Mumbai                                             | 9869056345 | male   |       5 |         7 |        67678
+  5 | Ritu       | Chauhan   | Bone Biopsy                                        |  62 | Chandigarh                                         | 9869056321 | Female |       4 |         4 |        78987
+  6 | Lucky      | Shrama    | Oral Cancer                                        |  32 | Delhi                                              |  869056389 | male   |       7 |         5 |        23456
+  7 | Priya      | Shrama    | Mouth Sores                                        |  54 | Delhi                                              |  769056389 | Female |       6 |         6 |        78785
+  8 | Rohit      | singh     | acne                                               |  56 | Mumbai                                             |  769057386 | male   |       8 |         8 |        98723
+  9 | Reena      | singh     | High Blood Pressure                                |  45 | Delhi                                              |  769347367 | Female |       1 |         9 |        98724
+ 10 | Aman       | singh     | cardiac arrest                                     |  55 | Delhi                                              |  769346789 | male   |       2 |        10 |        90213
+(10 rows)
+
+15. insert into blood_packet(id,blood_group,Donor_name,hosp_id)values(01,'A','Vickey singh',1);
+
+	 id | blood_group |  donor_name   | hosp_id 
+	----+-------------+---------------+---------
+	  1 | A           | Vickey singh  |       1
+	  2 | B           | Apporva Mital |       2
+	  3 | AB          | Abishek Arora |       3
+	  4 | O           | Kriti Misra   |       4
+	  5 | AB          | Abishek Arora |       1
+	  6 | O           | Kriti singh   |       1
+	  7 | O           | Kriti singh   |       2
+	  8 | AB          | Neha Malik    |       4
+	  9 | AB          | Neha Malik    |       8
+	 10 | AB          | Neha Malik    |       7
+	 11 | O           | Kriti singh   |       6
+	 12 | O           | Rupal singh   |       5
+	(12 rows)
+
+14. insert into doctor(id,first_name,last_name,qualification,gender,salary,email,mobile,age,hosp_id)
+    values(1,'Dr.Parul','Kaushik','Dermatologist','female',2400000,'parul@gmail.com',9811390927,30,1);
+

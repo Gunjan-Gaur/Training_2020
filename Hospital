@@ -1,0 +1,23 @@
+HOSPITAL MANAGEMENT
+---------------------------
+1. CREATE DATABASE HOSPITAL_MANAGEMENT;
+
+2. CREATE TABLE HOSPITAL(
+	HOSP_ID INT PRIMARY KEY NOT NULL,
+	NAME TEXT NOT NULL,
+	ADDRESS CHAR(50),
+	CITY CHAR(50) 
+	);                       
+
+	                 Table "public.hospital"
+	 Column  |     Type      | Collation | Nullable | Default 
+	---------+---------------+-----------+----------+---------
+	 id      | integer       |           | not null | 
+	 name    | text          |           | not null | 
+	 address | character(50) |           |          | 
+	 city    | character(50) |           |          | 
+	Indexes:
+	    "hospital_pkey" PRIMARY KEY, btree (id)
+
+
+3. 

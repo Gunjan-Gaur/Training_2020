@@ -78,11 +78,7 @@ HOSPITAL MANAGEMENT
 	Referenced by:
 	    TABLE "hospital" CONSTRAINT "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
 
-
-
-6.  ALTER TABLE HOSPITAL ADD COLUMN PAT_ID INT REFERENCES PATIENT(ID);
-
-7.   CREATE TABLE DOCTOR(
+6.   CREATE TABLE DOCTOR(
 	ID INT PRIMARY KEY NOT NULL,
 	FIRST_NAME TEXT NOT NULL,
 	LAST_NAME TEXT NOT NULL,
@@ -115,9 +111,64 @@ HOSPITAL MANAGEMENT
 	Foreign-key constraints:
 	    "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
 
-8.	 ALTER TABLE MEDICAL_RECORD ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
+7.	 ALTER TABLE MEDICAL_RECORD ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
 
-9.   ALTER TABLE HOSPITAL ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
+8.  alter table patient add column insurance_id int;
+
+
+		                   Table "public.patient"
+	    Column    |     Type      | Collation | Nullable | Default 
+	--------------+---------------+-----------+----------+---------
+	 id           | integer       |           | not null | 
+	 first_name   | text          |           | not null | 
+	 last_name    | text          |           | not null | 
+	 diagnosis    | character(50) |           |          | 
+	 age          | integer       |           |          | 
+	 address      | character(50) |           |          | 
+	 mobile       | integer       |           |          | 
+	 gender       | text          |           |          | 
+	 hosp_id      | integer       |           |          | 
+	 record_id    | integer       |           |          | 
+	 insurance_id | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    "patient_record_id_fkey" FOREIGN KEY (record_id) REFERENCES medical_record(id)
+	Referenced by:
+	    TABLE "hospital" CONSTRAINT "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+9. CREATE TABLE APPOINTMENT(
+	 ID INT PRIMARY KEY NOT NULL,
+	 START_DATE DATE NOT NULL,
+	 END_DATE DATE NOT NULL,
+	 DOC_ID INT REFERENCES DOCTOR(ID),
+	 PAT_D INT REFERENCES PATIENT(ID)
+	 );
+
+	               Table "public.appointment"
+	   Column   |  Type   | Collation | Nullable | Default 
+	------------+---------+-----------+----------+---------
+	 id         | integer |           | not null | 
+	 start_date | date    |           | not null | 
+	 end_date   | date    |           | not null | 
+	 doc_id     | integer |           |          | 
+	 pat_id     | integer |           |          | 
+	Indexes:
+	    "appointment_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "appointment_doc_id_fkey" FOREIGN KEY (doc_id) REFERENCES doctor(id)
+	    "appointment_pat_d_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+
+10. CREATE TABLE BLOOD_PACKET(
+	ID INT PRIMARY KEY NOT NULL,
+	BLOOD_GROUP VARCHAR(30),
+	DONOR_NAME VARCHAR(30),
+	HOSP_ID INT REFERENCES HOSPITAL(ID) 
+	);
+
+11. alter table hospital add column BEDS INT;
 
 	                 Table "public.hospital"
 	 Column  |     Type      | Collation | Nullable | Default 
@@ -128,13 +179,32 @@ HOSPITAL MANAGEMENT
 	 city    | character(50) |           |          | 
 	 pat_id  | integer       |           |          | 
 	 doc_id  | integer       |           |          | 
+	 beds    | integer       |           |          | 
 	Indexes:
 	    "hospital_pkey" PRIMARY KEY, btree (id)
 	Foreign-key constraints:
 	    "hospital_doc_id_fkey" FOREIGN KEY (doc_id) REFERENCES doctor(id)
 	    "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
 	Referenced by:
+	    TABLE "blood_packet" CONSTRAINT "blood_packet_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
 	    TABLE "doctor" CONSTRAINT "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
 	    TABLE "patient" CONSTRAINT "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
 
-10.  
+12. insert into hospital(id,name,address,state,beds)values(04,'Lilavati Hospital','Lilavati Hospital, A-791 Bandra Reclamation 
+	rd','Mumbai',323);
+
+	id |                      name                      |                      address                       |                       state                        | beds 
+----+------------------------------------------------+----------------------------------------------------+----------------------------------------------------+------
+  1 | AIIMS,All India Institue of Medical Sciences   | Sri Aurobindo Marg                                 | New Delhi                                          | 1766
+  2 | Fortis Hospital                                | 730,Eastern Metropolitan bypass,Anandapur          | kolkata                                            |  400
+  4 | Lilavati Hospital                              | Lilavati Hospital, A-791 Bandra Reclamation rd     | Mumbai                                             |  323
+  5 | Christian Medical Hospital                     | IDA Scudder rd, Vellore                            | Tamil Nadu                                         | 2700
+  6 | Tata Memorial Hospital                         | Dr.E,Dr Ernest Borges Rd,Parel                     | Mumbai                                             |  600
+  7 | Postgraduate Institute of Medical and Research | Madhya Marg,sector-12                              | Chandigarh                                         |  282
+  8 | Sankara Netralaya                              | No. 41,old 18,College Rd                           | Tamil Nadu                                         | 1000
+  3 | Kokilaben Hospital                             | Rao Saheb,Achutrao Marg                            | Mumbai                                             |  750
+
+
+13. ALTER TABLE hospital RENAME city TO state;	
+ 
+14.  

@@ -484,4 +484,12 @@ Indexes:
 	 location | character(50) |           |          | 
 	 salary   | real          |           |          | 
 
---
+43. select id,concat(name,' ',address) as Details from company;
+
+	 id |                         details                          
+	----+----------------------------------------------------------
+	  1 | Priya Goa                                               
+	  2 | Priya Goa                                               
+	  3 | amit Delhi                                             
+	(3 rows)
+

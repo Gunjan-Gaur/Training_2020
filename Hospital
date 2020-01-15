@@ -315,4 +315,33 @@ HOSPITAL MANAGEMENT
 	  4 | Lilavati Hospital  |  323
 	(3 rows)
 
-19.
+19. select start_date,end_date from appointment where id in(select id from doctor where first_name = 'Dr. Parul');
+
+	 start_date |  end_date  
+	------------+------------
+	 2019-02-01 | 2019-04-28
+	(1 row)
+
+20.  select count(doc_id) as No_of_appointment from appointment where doc_id in(select d.id from doctor as d INNER JOIN 
+	 appointment as a on a.doc_id=d.id where d.id=7);
+		 No_of_appointment
+		-----------------
+		        4
+		(1 row)
+
+21. select max(salary)from doctor where salary not in(select max(salary) from doctor);
+
+	  max   
+	---------
+	 4.2e+06
+	(1 row)
+
+
+22. select * from appointment where doc_id in(select id from doctor where first_name='Dr. Parul');
+
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  8 | 2019-07-19 | 2019-07-28 |      1 |      8
+	(1 row)
+
+	

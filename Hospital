@@ -324,12 +324,17 @@ HOSPITAL MANAGEMENT
 
 20.  select count(doc_id) as No_of_appointment from appointment where doc_id in(select d.id from doctor as d INNER JOIN 
 	 appointment as a on a.doc_id=d.id where d.id=7);
+
+	 OR
+
+	 select count(doc_id) as no_of_appointment from appointment where doc_id in(select id from doctor where first_name='Dr. Lakshmi');
+
 		 No_of_appointment
 		-----------------
 		        4
 		(1 row)
 
-21. select max(salary)from doctor where salary not in(select max(salary) from doctor);
+21. select max(salary)from doctor where salary not in(select max(salary) from doctor);[2nd highest]
 
 	  max   
 	---------
@@ -344,4 +349,13 @@ HOSPITAL MANAGEMENT
 	  8 | 2019-07-19 | 2019-07-28 |      1 |      8
 	(1 row)
 
-	
+23. select id,salary from doctor d1 where n-1 =(select count(distinct salary)from doctor as d2 where d2.salary>d1.salary);
+	[Nth highest salary]
+
+24. select * from appointment where doc_id in(select id from doctor where salary in (select max(salary) from doctor));
+	 
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  9 | 2019-02-20 | 2019-03-28 |      6 |      9
+	(1 row)
+		

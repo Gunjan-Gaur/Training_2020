@@ -375,4 +375,21 @@ HOSPITAL MANAGEMENT
 	  8 | Dr. Sushma   | Gaur      | Dentist                                            | female | 1.2e+06 | sushma@gmail.com   | 8867380957 |  29 |       6
 	  9 | Dr. Vanshika | Gaur      | Cardiologist                                       | female | 2.2e+06 | vanshika@gmail.com | 8167382952 |  35 |       5
 	 10 | Dr. Varun    | Thakur    | Cardiologist                                       | male   | 2.4e+06 | varun@gmail.com    | 8167367295 |  35 |       3
+			
+27.  select salary from doctor order by salary desc limit 3;
+	 
+	 salary  
+	---------
+	 5.6e+06
+	 4.2e+06
+	 4.2e+06
+	(3 rows)
 				
+30. select id,first_name from doctor where id in(select doc_id from appointment where doc_id in (select id from doctor where age
+	in(select max(age)from doctor)));
+	 
+	 id | first_name 
+	----+------------
+	  5 | Dr. Lucky
+	(1 row)
+					

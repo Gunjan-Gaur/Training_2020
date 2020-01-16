@@ -359,3 +359,20 @@ HOSPITAL MANAGEMENT
 	  9 | 2019-02-20 | 2019-03-28 |      6 |      9
 	(1 row)
 		
+25. select * from appointment where pat_id in(select id from patient where age in(select max(age) from patient));
+	
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  5 | 2018-06-18 | 2019-02-02 |      5 |      5
+	(1 row)
+
+26. select * from (select * from doctor order by id desc limit 5)doctor order by id asc;
+	
+	id |  first_name  | last_name |                   qualification                    | gender | salary  |       email        |   mobile   | age | hosp_id 
+	----+--------------+-----------+----------------------------------------------------+--------+---------+--------------------+------------+-----+---------
+	  6 | Dr. Meena    | Sharma    | Cardiologist                                       | female | 5.6e+06 | Meena@gmail.com    | 7811390922 |  42 |       7
+	  7 | Dr. Lakshmi  | Sharma    | Pulmonologist                                      | female | 3.6e+06 | lakshmi@gmail.com  | 9867380954 |  39 |       8
+	  8 | Dr. Sushma   | Gaur      | Dentist                                            | female | 1.2e+06 | sushma@gmail.com   | 8867380957 |  29 |       6
+	  9 | Dr. Vanshika | Gaur      | Cardiologist                                       | female | 2.2e+06 | vanshika@gmail.com | 8167382952 |  35 |       5
+	 10 | Dr. Varun    | Thakur    | Cardiologist                                       | male   | 2.4e+06 | varun@gmail.com    | 8167367295 |  35 |       3
+				

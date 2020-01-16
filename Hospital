@@ -408,3 +408,30 @@ HOSPITAL MANAGEMENT
 	-------
 	     2
 	(1 row)
+
+33. select p.first_name as patient_name,d.first_name as doctor_name from patient as p inner join medical_record as m on
+    p.record_id=m.id inner join doctor as d on m.doc_id=d.id;
+	
+	 patient_name | doctor_name 
+	--------------+-------------
+	 Meghna       | Dr. Lakshmi
+	 Amish        | Dr. Lakshmi
+	 Misthi       | Dr. Lakshmi
+	 Ritu         | Dr. Lucky
+	 Lucky        | Dr. Sushma
+	 Priya        | Dr. Sushma
+	 Tanmay       | Dr. Lakshmi
+	 Rohit        | Dr. Parul
+	 Reena        | Dr. Meena
+	 Aman         | Dr. Varun
+	(10 rows)
+	
+34. select id,first_name from patient where record_id in(select id from medical_record where doc_id in (select id from doctor 
+	where salary in(select max(salary)from doctor)));
+	
+	 id | first_name 
+	----+------------
+	  9 | Reena
+	(1 row)
+	 
+35.	 

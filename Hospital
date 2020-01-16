@@ -434,4 +434,11 @@ HOSPITAL MANAGEMENT
 	  9 | Reena
 	(1 row)
 	 
-35.	 
+35. select id,first_name from doctor where id in (select doc_id from medical_record where id in(select record_id from patient
+	where age in(select min(age)from patient)));
+	
+	 id | first_name  
+	----+-------------
+	  7 | Dr. Lakshmi
+	(1 row)
+		 

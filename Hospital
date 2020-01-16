@@ -392,4 +392,19 @@ HOSPITAL MANAGEMENT
 	----+------------
 	  5 | Dr. Lucky
 	(1 row)
-					
+					 select count(doc_id) from appointment where doc_id in(select id from doctor where first_name="Dr. Lakshmi" AND start_date='');
+
+31. select count(doc_id) from appointment where doc_id in(select id from doctor where first_name='Dr. Lakshmi' AND
+	start_date='2019-02-01');
+	
+	 count 
+	-------
+	     1
+	(1 row)
+
+32. select count(doc_id) from appointment where doc_id in(select id from doctor where start_date='2018-06-18');
+	
+	 count 
+	-------
+	     2
+	(1 row)

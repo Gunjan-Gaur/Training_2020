@@ -82,5 +82,58 @@ Airline Flight Information
 	    "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
 	    "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
 
+6.  insert into flights(flno,ffrom,tto,distance,departs,arrives,price)values(1,'Los 
+	angeles','Honolulu',2558,'9:00AM','1:15PM',32432);
+
+	 flno |                       ffrom                        |                        tto                         | distance | departs  | arrives  | price  
+	------+----------------------------------------------------+----------------------------------------------------+----------+----------+----------+--------
+	    1 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  32432
+	    2 | Los angeles                                        | Chicago                                            |     3890 | 00:00:00 | 09:15:00 | 132432
+	    3 | Madison                                            | New York                                           |    38090 | 06:00:00 | 21:15:00 | 189002
+	    4 | New York                                           | Los angeles                                        |     2709 | 15:00:00 | 04:15:00 | 202002
+	    5 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  30202
+	(5 rows)
+
+7.	insert into aircraft(aid,aname,range)values(2,'Boeing 400',3500);
+
+	 aid |    aname     | range 
+	-----+--------------+-------
+	   1 | Boeing 300   |  1500
+	   2 | Boeing 400   |  3500
+	   3 | Boeing 747-8 |  1800
+	   4 | Airbus 300   |   800
+	   5 | Airbus 500   |  1200
+	   6 | Airbus 900   |  3200
+	(6 rows)
+
+8.	insert into employees(eid,ename,salary)values(1,'Mehak',100000);
+
+	 eid |  ename  | salary 
+	-----+---------+--------
+	   1 | Mehak   | 100000
+	   2 | Akshay  |  80000
+	   3 | Karan   | 180000
+	   4 | Shubham | 100000
+	   5 | Riya    | 150000
+	   6 | Richa   |  70000
+	(6 rows)	
+
+9.	insert into certified(eid,aid)values(1,1);
+
+	 eid | aid 
+	-----+-----
+	   1 |   1
+	   1 |   6
+	   1 |   5
+	   1 |   4
+	   3 |   4
+	   5 |   2
+	   5 |   5
+	   5 |   1
+	   6 |   1
+	(9 rows)
+
+
+
 
 

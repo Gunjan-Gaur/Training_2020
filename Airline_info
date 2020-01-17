@@ -133,7 +133,43 @@ Airline Flight Information
 	   6 |   1
 	(9 rows)
 
+10.	Find the names of aircraft such that all pilots certified to operate them earnmore than $80,000.
 
+	 select aname from aircraft where aid in(select aid from certified where eid in(select eid from employees where salary in(select salary from employees where salary>80000)));
+	   aname    
+	------------
+	 Boeing 300
+	 Boeing 400
+	 Airbus 300
+	 Airbus 500
+	 Airbus 900
+	(5 rows)
 
+11.	Print the name and salary of every nonpilot whose salary is more than theaverage salary for pilots.
 
+	 select ename,salary from employees where eid not in(select distinct eid from certified) AND salary >(select avg(salary)from employees where eid in(select distinct eid from certified));
+	 
+	 ename  | salary 
+	--------+--------
+	 Gunjan | 300000
+	(1 row)
+
+13. Compute the difference between the average salary of a pilot and the averagesalary of all employees (including pilots).
+
+	select(select avg(salary) from employees where eid in(select distinct eid from certified))- (select avg(salary) from employees)as Difference;
+	 
+	 difference 
+	------------
+	     -15000
+
+14. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles.
+
+	select eid,ename from employees where eid in(select eid from certified where aid in (select aid from aircraft where range>1000));
+	
+	 eid | ename 
+	-----+-------
+	   1 | Mehak
+	   5 | Riya
+	   6 | Richa
+	(3 rows)
 

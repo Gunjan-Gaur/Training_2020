@@ -173,3 +173,24 @@ Airline Flight Information
 	   6 | Richa
 	(3 rows)
 
+15.	Find the names of pilots certified for some Boeing aircraft.
+
+	select ename from employees where eid in(select eid from certified where aid in(select aid from aircraft where aname like 'Boeing%'));
+	
+	 ename 
+	-------
+	 Mehak
+	 Riya
+	 Richa
+	(3 rows)
+
+
+16. Print the enames of pilots who can operate planes with cruisingrange greaterthan 3000 miles but are not certified on any
+	Boeing aircraft.
+
+	 select ename from employees where eid in(select eid from certified where aid in(select aid from aircraft where range>3000 and aname not like 'Boeing%'));
+	
+	 ename 
+	-------
+	 Mehak
+	(1 row)

@@ -194,3 +194,36 @@ Airline Flight Information
 	-------
 	 Mehak
 	(1 row)
+
+17.	Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles and who are
+	certified on some Boeing aircraft.
+
+	Created a view:
+	create view detail as select a.aname,a.range,e.eid,e.salary,c.aid from aircraft as a inner join certified as c on a.aid=c.aid inner join employees as e on e.eid=c.eid;
+
+	airline_info=# select * from detail;
+	   aname    | range | eid | salary | aid 
+	------------+-------+-----+--------+-----
+	 Boeing 300 |  1500 |   1 | 100000 |   1
+	 Airbus 900 |  3200 |   1 | 100000 |   6
+	 Airbus 500 |  1200 |   1 | 100000 |   5
+	 Airbus 300 |   800 |   1 | 100000 |   4
+	 Airbus 300 |   800 |   3 | 180000 |   4
+	 Boeing 400 |  3500 |   5 | 150000 |   2
+	 Airbus 500 |  1200 |   5 | 150000 |   5
+	 Boeing 300 |  1500 |   5 | 150000 |   1
+	 Boeing 300 |  1500 |   6 |  70000 |   1
+	(9 rows)
+
+	select ename from employees where eid in(select eid from detail where range>1000 and aname like 'Boeing%');
+	 ename 
+	-------
+	 Richa
+	 Riya
+	 Mehak
+	(3 rows)
+
+18.	 For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots
+	 certified for this aircraft
+
+	 	

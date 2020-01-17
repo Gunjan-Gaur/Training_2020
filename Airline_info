@@ -1,0 +1,86 @@
+Airline Flight Information
+----------------------------------
+1. create database airline_info;
+	
+	CREATE DATABASE
+
+2. airline_info=# create table flights(
+	flno int primary key not null,
+	ffrom char(50),
+	tto char(50),
+	distance bigint,
+	departs time,
+	arrives time,
+	price bigint
+	);
+
+	                       Table "public.flights"
+	  Column  |          Type          | Collation | Nullable | Default 
+	----------+------------------------+-----------+----------+---------
+	 flno     | integer                |           | not null | 
+	 ffrom    | character(50)          |           |          | 
+	 tto      | character(50)          |           |          | 
+	 distance | bigint                 |           |          | 
+	 departs  | time without time zone |           |          | 
+	 arrives  | time without time zone |           |          | 
+	 price    | bigint                 |           |          | 
+	Indexes:
+	    "flights_pkey" PRIMARY KEY, btree (flno)
+
+
+	
+3.	create table aircraft(
+	aid int primary key not null,
+	aname text,
+	range bigint
+	);
+
+	     	Table "public.aircraft"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 aid    | integer |           | not null | 
+	 aname  | text    |           |          | 
+	 range  | bigint  |           |          | 
+	Indexes:
+	    "aircraft_pkey" PRIMARY KEY, btree (aid)
+	Referenced by:
+	    TABLE "certified" CONSTRAINT "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+
+
+4.  create table employees(
+	eid int primary key not null,
+	ename text,
+	salary real check(salary>0)
+	);
+
+	          	  Table "public.employees"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 eid    | integer |           | not null | 
+	 ename  | text    |           |          | 
+	 salary | real    |           |          | 
+	Indexes:
+	    "employees_pkey" PRIMARY KEY, btree (eid)
+	Check constraints:
+	    "employees_salary_check" CHECK (salary > 0::double precision)
+	Referenced by:
+	    TABLE "certified" CONSTRAINT "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+
+
+5.	create table certified(
+	eid int references employees(eid),
+	aid int references aircraft(aid)
+	);
+
+	             Table "public.certified"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 eid    | integer |           |          | 
+	 aid    | integer |           |          | 
+	Foreign-key constraints:
+	    "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+	    "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+
+

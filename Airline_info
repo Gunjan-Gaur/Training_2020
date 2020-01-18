@@ -145,7 +145,7 @@ Airline Flight Information
 	 Airbus 900
 	(5 rows)
 
-11.	Print the name and salary of every nonpilot whose salary is more than theaverage salary for pilots.
+11.	Print the name and salary of every nonpilot whose salary is more than the average salary for pilots.
 
 	 select ename,salary from employees where eid not in(select distinct eid from certified) AND salary >(select avg(salary)from employees where eid in(select distinct eid from certified));
 	 
@@ -226,4 +226,44 @@ Airline Flight Information
 18.	 For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots
 	 certified for this aircraft
 
-	 	
+	 select aname,avg(salary) from detail where range>1000 group by aname;
+	   aname    |       avg        
+	------------+------------------
+	 Boeing 300 | 106666.666666667
+	 Airbus 500 |           125000
+	 Boeing 400 |           150000
+	 Airbus 900 |           100000
+	(4 rows)
+
+19.	For each pilot who is certified for more than three aircraft, find the eid and themaximum cruisingrange of the aircraft for
+	which she or he is certified
+
+	select c.eid,max(range) from certified as c,aircraft as a where c.aid=a.aid group by c.eid having count(eid)>3; 
+	
+	 eid | max  
+	-----+------
+	   1 | 3200
+	(1 row)
+
+20. Find the names of pilots whose salary is less than the price of the cheapestroute from Los Angeles to Honolulu.
+
+	select e.ename from employees as e  where e.eid in(select eid from certified where eid in(select e.eid from employees as e where e.salary < (select min(price) from flights where ffrom='Los angeles' and tto='Honolulu')));
+	 
+	 ename 
+	-------
+	 Rekha
+	(1 row)
+
+21.	 For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots
+	 certified for this aircraft.
+
+	 select a.aname as name,avg(salary) as Avg_salary from aircraft as a,certified as c, employees as e where a.aid=c.aid and c.eid=e.eid and range >1000 group by a.aname;
+	  
+	    name    | avg_salary 
+	------------+------------
+	 Boeing 300 |      86250
+	 Airbus 500 |     125000
+	 Boeing 400 |     150000
+	 Airbus 900 |     100000
+	(4 rows)
+

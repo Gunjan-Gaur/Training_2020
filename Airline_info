@@ -276,4 +276,62 @@ Airline Flight Information
 	   7
 	(1 row)
 
-23.	
+23.	Identify the routes that can be piloted by every pilot who makes more than $100,000.
+
+	 aid |    aname     | range 						
+	-----+--------------+-------
+	   1 | Boeing 300   |  1500
+	   2 | Boeing 400   |  3500
+	   3 | Boeing 747-8 |  1800 			
+	   4 | Airbus 300   |   800
+	   5 | Airbus 500   |  1200
+	   6 | Airbus 900   |  3200
+	   7 | Airbus 700   |  8800
+	   8 | Airbus 300   |   300
+	   9 | Airbus       | 10000
+	 
+	(10 rows)
+
+		 eid | aid 
+		-----+-----
+		   1 |   1
+		   1 |   6
+		   1 |   5
+		   1 |   4
+		   3 |   4
+		   5 |   2
+		   5 |   5
+		   5 |   1
+		   6 |   1
+		   8 |   1
+		   5 |   7
+		   3 |   8
+		   5 |   9
+		(13 rows)
+
+
+	 flno |                       ffrom                        |                        tto                         | distance | departs  | arrives  | price  
+	------+----------------------------------------------------+----------------------------------------------------+----------+----------+----------+--------
+	    1 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  32432
+	    2 | Los angeles                                        | Chicago                                            |     3890 | 00:00:00 | 09:15:00 | 132432
+	    3 | Madison                                            | New York                                           |    38090 | 06:00:00 | 21:15:00 | 189002
+	    4 | New York                                           | Los angeles                                        |     2709 | 15:00:00 | 04:15:00 | 202002
+	    5 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  30202
+	    6 | Madisson                                           | xyz                                                |      300 | 09:00:00 | 13:15:00 |   1300
+	    7 | xyz                                                | New York                                           |      100 | 02:00:00 | 18:15:00 |   9300
+	(7 rows)
+
+
+	select ffrom,tto from flights where 2*distance<(select min(range) from aircraft where aid in(select aid from certified where eid in(select eid from employees where salary>100000)));
+	
+	                       ffrom                        |                        tto                         
+	----------------------------------------------------+----------------------------------------------------
+	 xyz                                                | New York                                          
+	(1 row)
+
+	
+
+
+
+
+		

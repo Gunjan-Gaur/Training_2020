@@ -329,6 +329,12 @@ Airline Flight Information
 	 xyz                                                | New York                                          
 	(1 row)
 
+24.	select flno,departs from flights where ffrom = 'Madison' and tto='New York' and arrives='18:15:00';
+	
+	 flno | departs  
+	------+----------
+	    8 | 09:15:00
+	(1 row)
 	
 
 

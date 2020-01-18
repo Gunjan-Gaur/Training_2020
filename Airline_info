@@ -267,3 +267,13 @@ Airline Flight Information
 	 Airbus 900 |     100000
 	(4 rows)
 
+22.	Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+
+	select aid from aircraft where range > 2*(select distance from flights where ffrom='Los angeles' and tto='Chicago');
+	
+	 aid 
+	-----
+	   7
+	(1 row)
+
+23.	

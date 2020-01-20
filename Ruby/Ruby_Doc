@@ -8,6 +8,10 @@ RVM INSTALLATION
 
 	\curl -sSL https://get.rvm.io | bash	
 
+		-s= silent to hide Progress bar
+		-S= show error
+		-L= Location details
+
 3.	Install RVM stable with ruby:
 
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby	
@@ -71,4 +75,15 @@ RVM INSTALLATION
 7.	$ rvm use 2.6.1
 
 	Using /home/beryl/.rvm/gems/ruby-2.6.1
+
+8.	Warning! New version of rvm available '1.29.9', you are using older version '1.29.9-next'.
+
+	$ rvm get stable
+
+9. $ rvm --version
+
+	rvm 1.29.9-next (master) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 		
+10.	$ ruby -v
+
+	ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux]

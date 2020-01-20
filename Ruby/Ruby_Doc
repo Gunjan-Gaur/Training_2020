@@ -50,3 +50,25 @@ RVM INSTALLATION
 	# =* - current && default
 	#  * - default
 	 
+6.	Set Default
+
+		$ rvm use 2.7.0 --default
+
+	Using /home/beryl/.rvm/gems/ruby-2.7.0
+
+		$ rvm list
+	   
+	   ruby-2.4.1 [ x86_64 ]
+	   ruby-2.6.0 [ x86_64 ]
+	   ruby-2.6.1 [ x86_64 ]
+	   ruby-2.6.3 [ x86_64 ]
+	=* ruby-2.7.0 [ x86_64 ]
+
+	# => - current
+	# =* - current && default
+	#  * - default
+
+7.	$ rvm use 2.6.1
+
+	Using /home/beryl/.rvm/gems/ruby-2.6.1
+		

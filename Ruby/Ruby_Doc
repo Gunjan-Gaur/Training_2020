@@ -91,3 +91,20 @@ RVM INSTALLATION
 11.	To uninstall Ruby version
 
 	rvm uninstall 2.6.3
+
+12. First program in irb
+	
+	2.6.1 :001 > class Hello
+	2.6.1 :002?>   def hello
+	2.6.1 :003?>     puts "Hello World!"
+	2.6.1 :004?>     end
+	2.6.1 :005?>   end
+	 => :hello 
+	2.6.1 :007 > o=Hello.new
+	 => #<Hello:0x00005606fffbaf48> 
+	2.6.1 :008 > o.hello
+	Hello World!
+	 => nil 
+
+
+

@@ -106,5 +106,30 @@ RVM INSTALLATION
 	Hello World!
 	 => nil 
 
+13.	$var_value=42
+	 => 42 
+	2.6.1 :004 > class Main
+	2.6.1 :005?>   def global
+	2.6.1 :006?>     puts"Global Variable is #$var_value"
+	2.6.1 :007?>     end
+	2.6.1 :008?>   end
+	 => :global 
+	2.6.1 :009 > class Smain
+	2.6.1 :010?>   def sglobal
+	2.6.1 :011?>     puts"Global Variable is #$var_value"
+	2.6.1 :012?>     end
+	2.6.1 :013?>   end
+	 => :sglobal 
+	2.6.1 :014 > o1=Main.new
+	 => #<Main:0x0000562715f056d0> 
+	2.6.1 :015 > o1.global
+	2.6.1 :016 >Global Variable is42
+ 	=> nil 
+ 	2.6.1 :017 > o2=Smain.new
+	 => #<Smain:0x0000562715f9f438> 
+	2.6.1 :018 > o2.sglobal
+	2.6.1 :019 > Global Variable is 42
+	 => nil 
+
 
 

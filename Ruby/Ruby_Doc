@@ -1,0 +1,52 @@
+RVM INSTALLATION
+----------------------------------
+1.	Install GPG Keys
+
+	gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+2.	Install RVM (development version):
+
+	\curl -sSL https://get.rvm.io | bash	
+
+3.	Install RVM stable with ruby:
+
+	\curl -sSL https://get.rvm.io | bash -s stable --ruby	
+
+4.  Installing Lastest version of ruby (2.7.0)
+
+			$ rvm install 2.7.0
+	
+	Searching for binary rubies, this might take some time.
+	Found remote file https://rubies.travis-ci.org/ubuntu/18.04/x86_64/ruby-2.7.0.tar.bz2
+	Checking requirements for ubuntu.
+	Requirements installation successful.
+	ruby-2.7.0 - #configure
+	ruby-2.7.0 - #download
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+	                                 Dload  Upload   Total   Spent    Left  Speed
+	  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+	100 19.5M  100 19.5M    0     0   375k      0  0:00:53  0:00:53 --:--:--  200k
+	No checksum for downloaded archive, recording checksum in user configuration.
+	ruby-2.7.0 - #validate archive
+	ruby-2.7.0 - #extract
+	ruby-2.7.0 - #validate binary
+	ruby-2.7.0 - #setup
+	ruby-2.7.0 - #gemset created /home/beryl/.rvm/gems/ruby-2.7.0@global
+	ruby-2.7.0 - #importing gemset /home/beryl/.rvm/gemsets/global.gems.............
+	ruby-2.7.0 - #generating global wrappers.......
+	ruby-2.7.0 - #gemset created /home/beryl/.rvm/gems/ruby-2.7.0
+	ruby-2.7.0 - #importing gemsetfile /home/beryl/.rvm/gemsets/default.gems evaluated to empty gem list
+	ruby-2.7.0 - #generating default wrappers.......
+
+5.	$ rvm list
+	
+	   ruby-2.4.1 [ x86_64 ]
+	   ruby-2.6.0 [ x86_64 ]
+	 * ruby-2.6.1 [ x86_64 ]
+	   ruby-2.6.3 [ x86_64 ]
+	=> ruby-2.7.0 [ x86_64 ]
+
+	# => - current
+	# =* - current && default
+	#  * - default
+	 

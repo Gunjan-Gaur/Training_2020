@@ -13,7 +13,7 @@ while x>=0
   x-=1
 end  
 puts "Complete"
-#-------------------
+#-----------------------
 x = gets.chomp.to_i
 
 until x < 0
@@ -22,3 +22,15 @@ until x < 0
 end
 
 puts "Complete"
+#------------------------
+x=0
+while x<=10
+  if x==3
+  	x+=1
+  	next
+  	puts "Gunjan"
+  elsif x.odd?
+    puts x
+  end
+  x+=1
+end    	

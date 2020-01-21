@@ -34,3 +34,7 @@ while x<=10
   end
   x+=1
 end    	
+#--------------------------
+names=['1','2','3']
+
+names.each{puts names}

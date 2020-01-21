@@ -23,3 +23,16 @@ puts year[0]
 puts year[1]
 puts year[2]
 puts year[3]
+#----------------------------------
+a=5
+3.times do |n|
+	a=3
+end
+puts a	
+#-----------------------------------
+arr=[1,2,3]
+for i in arr do
+	a=5
+end
+
+puts a	

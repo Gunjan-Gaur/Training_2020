@@ -325,3 +325,22 @@ flatten(level) → new_ary
 to_s → string
 	[ "a", "b", "c" ].to_s     
 	  => "[\"a\", \"b\", \"c\"]"	 	 
+
+max → objclick to toggle source
+max { |a, b| block } → obj
+max(n) → array
+max(n) { |a, b| block } → array
+	a = %w[albatross dog horse]
+	a.max(2)                                  
+	 => ["horse", "dog"]
+	a.max(2) {|a, b| a.length <=> b.length }  
+	 => ["albatross", "horse"]	  
+
+transpose → new_ary
+	a = [[1,2], [3,4], [5,6]]
+	a.transpose   
+	 => [[1, 3, 5], [2, 4, 6]]	 
+
+ary | other_ary → new_aryclick to toggle source
+	[ "a", "b", "c" ] | [ "c", "d", "a" ]    
+	 => [ "a", "b", "c", "d" ]

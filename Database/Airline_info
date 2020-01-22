@@ -1,0 +1,349 @@
+Airline Flight Information
+----------------------------------
+1. create database airline_info;
+	
+	CREATE DATABASE
+
+2. airline_info=# create table flights(
+	flno int primary key not null,
+	ffrom char(50),
+	tto char(50),
+	distance bigint,
+	departs time,
+	arrives time,
+	price bigint
+	);
+
+	                       Table "public.flights"
+	  Column  |          Type          | Collation | Nullable | Default 
+	----------+------------------------+-----------+----------+---------
+	 flno     | integer                |           | not null | 
+	 ffrom    | character(50)          |           |          | 
+	 tto      | character(50)          |           |          | 
+	 distance | bigint                 |           |          | 
+	 departs  | time without time zone |           |          | 
+	 arrives  | time without time zone |           |          | 
+	 price    | bigint                 |           |          | 
+	Indexes:
+	    "flights_pkey" PRIMARY KEY, btree (flno)
+
+
+	
+3.	create table aircraft(
+	aid int primary key not null,
+	aname text,
+	range bigint
+	);
+
+	     	Table "public.aircraft"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 aid    | integer |           | not null | 
+	 aname  | text    |           |          | 
+	 range  | bigint  |           |          | 
+	Indexes:
+	    "aircraft_pkey" PRIMARY KEY, btree (aid)
+	Referenced by:
+	    TABLE "certified" CONSTRAINT "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+
+
+4.  create table employees(
+	eid int primary key not null,
+	ename text,
+	salary real check(salary>0)
+	);
+
+	          	  Table "public.employees"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 eid    | integer |           | not null | 
+	 ename  | text    |           |          | 
+	 salary | real    |           |          | 
+	Indexes:
+	    "employees_pkey" PRIMARY KEY, btree (eid)
+	Check constraints:
+	    "employees_salary_check" CHECK (salary > 0::double precision)
+	Referenced by:
+	    TABLE "certified" CONSTRAINT "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+
+
+5.	create table certified(
+	eid int references employees(eid),
+	aid int references aircraft(aid)
+	);
+
+	             Table "public.certified"
+	 Column |  Type   | Collation | Nullable | Default 
+	--------+---------+-----------+----------+---------
+	 eid    | integer |           |          | 
+	 aid    | integer |           |          | 
+	Foreign-key constraints:
+	    "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+	    "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+6.  insert into flights(flno,ffrom,tto,distance,departs,arrives,price)values(1,'Los 
+	angeles','Honolulu',2558,'9:00AM','1:15PM',32432);
+
+	 flno |                       ffrom                        |                        tto                         | distance | departs  | arrives  | price  
+	------+----------------------------------------------------+----------------------------------------------------+----------+----------+----------+--------
+	    1 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  32432
+	    2 | Los angeles                                        | Chicago                                            |     3890 | 00:00:00 | 09:15:00 | 132432
+	    3 | Madison                                            | New York                                           |    38090 | 06:00:00 | 21:15:00 | 189002
+	    4 | New York                                           | Los angeles                                        |     2709 | 15:00:00 | 04:15:00 | 202002
+	    5 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  30202
+	(5 rows)
+
+7.	insert into aircraft(aid,aname,range)values(2,'Boeing 400',3500);
+
+	 aid |    aname     | range 
+	-----+--------------+-------
+	   1 | Boeing 300   |  1500
+	   2 | Boeing 400   |  3500
+	   3 | Boeing 747-8 |  1800
+	   4 | Airbus 300   |   800
+	   5 | Airbus 500   |  1200
+	   6 | Airbus 900   |  3200
+	(6 rows)
+
+8.	insert into employees(eid,ename,salary)values(1,'Mehak',100000);
+
+	 eid |  ename  | salary 
+	-----+---------+--------
+	   1 | Mehak   | 100000
+	   2 | Akshay  |  80000
+	   3 | Karan   | 180000
+	   4 | Shubham | 100000
+	   5 | Riya    | 150000
+	   6 | Richa   |  70000
+	(6 rows)	
+
+9.	insert into certified(eid,aid)values(1,1);
+
+	 eid | aid 
+	-----+-----
+	   1 |   1
+	   1 |   6
+	   1 |   5
+	   1 |   4
+	   3 |   4
+	   5 |   2
+	   5 |   5
+	   5 |   1
+	   6 |   1
+	(9 rows)
+
+10.	Find the names of aircraft such that all pilots certified to operate them earnmore than $80,000.
+
+	 select aname from aircraft where aid in(select aid from certified where eid in(select eid from employees where salary in(select salary from employees where salary>80000)));
+	   aname    
+	------------
+	 Boeing 300
+	 Boeing 400
+	 Airbus 300
+	 Airbus 500
+	 Airbus 900
+	(5 rows)
+
+11.	Print the name and salary of every nonpilot whose salary is more than the average salary for pilots.
+
+	 select ename,salary from employees where eid not in(select distinct eid from certified) AND salary >(select avg(salary)from employees where eid in(select distinct eid from certified));
+	 
+	 ename  | salary 
+	--------+--------
+	 Gunjan | 300000
+	(1 row)
+
+13. Compute the difference between the average salary of a pilot and the averagesalary of all employees (including pilots).
+
+	select(select avg(salary) from employees where eid in(select distinct eid from certified))- (select avg(salary) from employees)as Difference;
+	 
+	 difference 
+	------------
+	     -15000
+
+14. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles.
+
+	select eid,ename from employees where eid in(select eid from certified where aid in (select aid from aircraft where range>1000));
+	
+	 eid | ename 
+	-----+-------
+	   1 | Mehak
+	   5 | Riya
+	   6 | Richa
+	(3 rows)
+
+15.	Find the names of pilots certified for some Boeing aircraft.
+
+	select ename from employees where eid in(select eid from certified where aid in(select aid from aircraft where aname like 'Boeing%'));
+	
+	 ename 
+	-------
+	 Mehak
+	 Riya
+	 Richa
+	(3 rows)
+
+
+16. Print the enames of pilots who can operate planes with cruisingrange greaterthan 3000 miles but are not certified on any
+	Boeing aircraft.
+
+	 select ename from employees where eid in(select eid from certified where aid in(select aid from aircraft where range>3000 and aname not like 'Boeing%'));
+	
+	 ename 
+	-------
+	 Mehak
+	(1 row)
+
+17.	Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles and who are
+	certified on some Boeing aircraft.
+
+	Created a view:
+	create view detail as select a.aname,a.range,e.eid,e.salary,c.aid from aircraft as a inner join certified as c on a.aid=c.aid inner join employees as e on e.eid=c.eid;
+
+	airline_info=# select * from detail;
+	   aname    | range | eid | salary | aid 
+	------------+-------+-----+--------+-----
+	 Boeing 300 |  1500 |   1 | 100000 |   1
+	 Airbus 900 |  3200 |   1 | 100000 |   6
+	 Airbus 500 |  1200 |   1 | 100000 |   5
+	 Airbus 300 |   800 |   1 | 100000 |   4
+	 Airbus 300 |   800 |   3 | 180000 |   4
+	 Boeing 400 |  3500 |   5 | 150000 |   2
+	 Airbus 500 |  1200 |   5 | 150000 |   5
+	 Boeing 300 |  1500 |   5 | 150000 |   1
+	 Boeing 300 |  1500 |   6 |  70000 |   1
+	(9 rows)
+
+	With View:-
+	select ename from employees where eid in(select eid from detail where range>1000 and aname like 'Boeing%');
+
+	Or 
+	Without View:-
+	select ename from employees where eid in(select eid from certified where aid in(select aid from aircraft where range>1000 and aname like 'Boeing%'));
+
+	 ename 
+	-------
+	 Richa
+	 Riya
+	 Mehak
+	(3 rows)
+
+18.	 For all aircraft with cruisingrange over 1000 miles, find the name of the aircraft and the average salary of all pilots
+	 certified for this aircraft
+
+	 select aname,avg(salary) from detail where range>1000 group by aname;
+	   aname    |       avg        
+	------------+------------------
+	 Boeing 300 | 106666.666666667
+	 Airbus 500 |           125000
+	 Boeing 400 |           150000
+	 Airbus 900 |           100000
+	(4 rows)
+
+19.	For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for
+	which she or he is certified
+
+	select c.eid,max(range) from certified as c,aircraft as a where c.aid=a.aid group by c.eid having count(eid)>3; 
+	
+	 eid | max  
+	-----+------
+	   1 | 3200
+	(1 row)
+
+20. Find the names of pilots whose salary is less than the price of the cheapestroute from Los Angeles to Honolulu.
+
+	select e.ename from employees as e  where e.eid in(select eid from certified where eid in(select e.eid from employees as e where e.salary < (select min(price) from flights where ffrom='Los angeles' and tto='Honolulu')));
+	 
+	 ename 
+	-------
+	 Rekha
+	(1 row)
+
+21.	 For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots
+	 certified for this aircraft.
+
+	 select a.aname as name,avg(salary) as Avg_salary from aircraft as a,certified as c, employees as e where a.aid=c.aid and c.eid=e.eid and range >1000 group by a.aname;
+	  
+	    name    | avg_salary 
+	------------+------------
+	 Boeing 300 |      86250
+	 Airbus 500 |     125000
+	 Boeing 400 |     150000
+	 Airbus 900 |     100000
+	(4 rows)
+
+22.	Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+
+	select aid from aircraft where range > 2*(select distance from flights where ffrom='Los angeles' and tto='Chicago');
+	
+	 aid 
+	-----
+	   7
+	(1 row)
+
+23.	Identify the routes that can be piloted by every pilot who makes more than $100,000.
+
+	 aid |    aname     | range 						
+	-----+--------------+-------
+	   1 | Boeing 300   |  1500
+	   2 | Boeing 400   |  3500
+	   3 | Boeing 747-8 |  1800 			
+	   4 | Airbus 300   |   800
+	   5 | Airbus 500   |  1200
+	   6 | Airbus 900   |  3200
+	   7 | Airbus 700   |  8800
+	   8 | Airbus 300   |   300
+	   9 | Airbus       | 10000
+	 
+	(10 rows)
+
+		 eid | aid 
+		-----+-----
+		   1 |   1
+		   1 |   6
+		   1 |   5
+		   1 |   4
+		   3 |   4
+		   5 |   2
+		   5 |   5
+		   5 |   1
+		   6 |   1
+		   8 |   1
+		   5 |   7
+		   3 |   8
+		   5 |   9
+		(13 rows)
+
+
+	 flno |                       ffrom                        |                        tto                         | distance | departs  | arrives  | price  
+	------+----------------------------------------------------+----------------------------------------------------+----------+----------+----------+--------
+	    1 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  32432
+	    2 | Los angeles                                        | Chicago                                            |     3890 | 00:00:00 | 09:15:00 | 132432
+	    3 | Madison                                            | New York                                           |    38090 | 06:00:00 | 21:15:00 | 189002
+	    4 | New York                                           | Los angeles                                        |     2709 | 15:00:00 | 04:15:00 | 202002
+	    5 | Los angeles                                        | Honolulu                                           |     2558 | 09:00:00 | 13:15:00 |  30202
+	    6 | Madisson                                           | xyz                                                |      300 | 09:00:00 | 13:15:00 |   1300
+	    7 | xyz                                                | New York                                           |      100 | 02:00:00 | 18:15:00 |   9300
+	(7 rows)
+
+
+	select ffrom,tto from flights where 2*distance<(select min(range) from aircraft where aid in(select aid from certified where eid in(select eid from employees where salary>100000)));
+	
+	                       ffrom                        |                        tto                         
+	----------------------------------------------------+----------------------------------------------------
+	 xyz                                                | New York                                          
+	(1 row)
+
+24.	select flno,departs from flights where ffrom = 'Madison' and tto='New York' and arrives='18:15:00';
+	
+	 flno | departs  
+	------+----------
+	    8 | 09:15:00
+	(1 row)
+	
+
+
+
+
+		

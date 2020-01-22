@@ -142,4 +142,83 @@ Iterating over array
 
 2.7.0 :079 > arr.each{|a| print a -= 10, " " }
 -9 -8 -7 -6 -5 -4 -3 -2 -1  => [1, 2, 3, 4, 5, 6, 7, 8, 9] 
- 
+
+Selecting items from array 
+-----------------------------------------
+While the destructive operations will modify the array they were called on, the non-destructive methods usually 
+return a new array with the selected elements, but leave the original array unchanged.
+
+	1.non-destructive
+	2.7.0 :040 > arr=[1,2,3,4,5,6,7,8,9]
+
+	2.7.0 :041 > arr.select{|a| a > 3}
+ 	 => [4, 5, 6, 7, 8, 9] 
+	
+	2.7.0 :042 > arr.reject{|a| a < 3}
+	 => [3, 4, 5, 6, 7, 8, 9] 
+	
+	2.7.0 :043 > arr.drop_while{|a| a < 3}
+	 => [3, 4, 5, 6, 7, 8, 9] 
+	
+	2.7.0 :044 > arr
+	 => [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+
+	2.destructive
+	2.7.0 :035 > arr.delete_if{|a| a < 4}
+	 => [4, 5, 6, 7, 8, 9] 
+	
+	2.7.0 :036 > arr
+	 => [4, 5, 6, 7, 8, 9] 
+	
+	2.7.0 :038 > arr.keep_if{|a| a < 4}
+	 => [1, 2, 3] 
+	
+	2.7.0 :039 > arr
+	 => [1, 2, 3] 
+
+--------------------------------------------------
+2.7.0 :045 > a = Array.new(2,Hash.new)
+
+2.7.0 :046 > a[0]['pink'] = 'color'
+
+2.7.0 :047 > p a
+[{"pink"=>"color"}, {"pink"=>"color"}]
+ => [{"pink"=>"color"}, {"pink"=>"color"}] 
+
+As array stores same hash value,so to store multiple value then use:-
+
+2.7.0 :048 > a = Array.new(2){Hash.new}
+
+2.7.0 :049 > a[0]['color'] = 'pink'
+
+2.7.0 :051 > p a
+[{"color"=>"pink"}, {}]
+ => [{"color"=>"pink"}, {}] 
+
+---------------------------------------------------
+public instance methods
+
+ary & other_ary → new_aryclick
+	[ 1, 1, 3, 5 ] & [ 3, 2, 1 ]               
+	  => [ 1, 3 ]
+	[ 'a', 'b', 'b', 'z' ] & [ 'a', 'b', 'c' ]   
+	 => [ 'a', 'b' ]
+
+ary * int → new_aryclick to toggle source
+ary * str → new_string
+	[ 1, 2, 3 ] * 3    
+	  => [ 1, 2, 3, 1, 2, 3, 1, 2, 3 ]
+	[ 1, 2, 3 ] * ","  
+	 => "1,2,3"
+
+ary + other_ary → new_ary
+	[ 1, 2, 3 ] + [ 4, 5 ]    
+	 => [ 1, 2, 3, 4, 5 ]
+
+ary - other_ary → new_ary
+	[ 1, 1, 2, 2, 3, 3, 4, 5 ] - [ 1, 2, 4 ]  
+	 =>  [ 3, 3, 5 ]
+
+ary << obj → ary
+	[ 1, 2 ] << "c" << "d" << [ 3, 4 ]
+     =>  [ 1, 2, "c", "d", [ 3, 4 ] ]	 

@@ -222,3 +222,56 @@ ary - other_ary → new_ary
 ary << obj → ary
 	[ 1, 2 ] << "c" << "d" << [ 3, 4 ]
      =>  [ 1, 2, "c", "d", [ 3, 4 ] ]	 
+
+ary <=> other_ary → -1, 0, +1 or nil
+	[ 1, 2, 3, 4, 5, 6 ] <=> [ 1, 2 ]            
+	 => +1
+	[ 1, 2 ]             <=> [ 1, :two ]         
+	 => nil     
+
+ary == other_ary → bool
+	[ "a", "c" ]    == [ "a", "c", 7 ]     
+	 => false
+	[ "a", "c", 7 ] == [ "a", "c", 7 ]     
+	 => true
+	[ "a", "c", 7 ] == [ "a", "d", "f" ]   
+	 => false	  
+
+abbrev(pattern = nil)	 
+	2.7.0 :065 > require 'abbrev'
+	 => true 
+	
+	2.7.0 :066 > %w[gun jan].abbrev
+	 => {"gun"=>"gun", "gu"=>"gun", "g"=>"gun", "jan"=>"jan", "ja"=>"jan", "j"=>"jan"} 
+
+assoc(obj) → element_ary or nil
+	s1 = [ "colors", "red", "blue", "green" ]
+	s2 = [ "letters", "a", "b", "c" ]
+	s3 = "foo"
+	a  = [ s1, s2, s3 ]
+	a.assoc("letters")  
+	 => [ "letters", "a", "b", "c" ]
+	a.assoc("foo")      
+	 => nil
+
+collect { |item| block } → new_ary
+collect → Enumerator
+	a = [ "a", "b", "c", "d" ]
+	a.collect { |x| x + "!" }         
+	 => ["a!", "b!", "c!", "d!"]
+
+combination(n) { |c| block } → aryclick to toggle source
+combination(n) → Enumerator
+	a = [1, 2, 3, 4]
+	a.combination(1).to_a  
+	 => [[1],[2],[3],[4]]
+	a.combination(2).to_a  
+	 => [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+	a.combination(3).to_a  
+	 => [[1,2,3],[1,2,4],[1,3,4],[2,3,4]]
+	a.combination(4).to_a  
+	 => [[1,2,3,4]]
+	a.combination(0).to_a  
+	 => [[]] # one combination of length 0
+	a.combination(5).to_a  
+	 => []   # no combinations of length 5	 

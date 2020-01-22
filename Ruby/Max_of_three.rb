@@ -3,11 +3,11 @@ a=gets.chomp.to_i
 b=gets.chomp.to_i
 c=gets.chomp.to_i
 if a>b && a>c
-  puts 'a is greatest'
+  puts "#{a} is greatest"
 elsif b>a && b>c
-  puts 'b is greatest'
+  puts "#{b} is greatest"
 elsif c>a && c>b
-  puts 'c is greatest'  	
+  puts "#{c} is greatest"  	
 end  
 
 

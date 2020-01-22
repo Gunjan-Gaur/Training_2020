@@ -275,3 +275,53 @@ combination(n) → Enumerator
 	 => [[]] # one combination of length 0
 	a.combination(5).to_a  
 	 => []   # no combinations of length 5	 
+
+concat(other_ary1, other_ary2,...) → ary
+	[ "a", "b" ].concat( ["c", "d"] ) 
+	 => [ "a", "b", "c", "d" ]
+	[ "a" ].concat( ["b"], ["c", "d"] ) 
+	 => [ "a", "b", "c", "d" ]
+	[ "a" ].concat 
+	 => [ "a" ]
+
+count → int
+count(obj) → int
+count { |item| block } → int
+	ary = [1, 2, 4, 2]
+	ary.count                  
+	 => 4
+	ary.count(2)               
+	 => 2
+	ary.count { |x| x%2 == 0 } 
+	 => 3	 
+
+cycle(n=nil) { |obj| block } → nil
+cycle(n=nil) → Enumerator
+	a = ["a", "b", "c"]
+	a.cycle { |x| puts x }     # print, a, b, c, a, b, c,.. forever.
+	a.cycle(2) { |x| puts x }  # print, a, b, c, a, b, c.
+
+each_index { |index| block } → ary
+each_index → Enumerator
+	a = [ "a", "b", "c" ]
+	a.each_index {|x| print x, " -- " }
+
+	a.index("b")              
+	 => 1
+	a.index("z")              
+	 => nil	
+
+flatten → new_ary
+flatten(level) → new_ary
+	s = [ 1, 2, 3 ]           
+	 => [1, 2, 3]
+	t = [ 4, 5, 6, [7, 8] ]   
+	 => [4, 5, 6, [7, 8]]
+	a = [ s, t, 9, 10 ]       
+	 => [[1, 2, 3], [4, 5, 6, [7, 8]], 9, 10]
+	a.flatten                 
+	 => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]	 
+
+to_s → string
+	[ "a", "b", "c" ].to_s     
+	  => "[\"a\", \"b\", \"c\"]"	 	 

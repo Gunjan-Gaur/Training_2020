@@ -60,3 +60,60 @@ Prefix & suffix
  => "hey there" 
 
 -------------------------------------
+Convert array to string
+2.7.0 :081 > arr = ["hey","there"]
+2.7.0 :082 > arr.join
+ => "heythere" 
+
+2.7.0 :083 > arr = ["hey","there"]
+2.7.0 :084 > arr.join("-")
+ => "hey-there" 
+
+------------------------------------
+Check if string is number
+2.7.0 :085 > "123".match?(/\A-?\d+\Z/)
+ => true 
+
+2.7.0 :086 > "gyh".match?(/\A-?\d+\Z/)
+ => false 
+
+2.7.0 :088 > "2gyh2".match?(/\A-?\d+\Z/)
+ => false 
+
+2.7.0 :089 > "2782".match?(/\A-?\d+\Z/)
+ => true
+
+-------------------------------------- 
+Append string
+2.7.0 :093 > s = ""
+
+2.7.0 :094 > s << "hey"
+ => "hey" 
+
+2.7.0 :095 > s << "there"
+ => "heythere" 
+
+2.7.0 :096 > s << " gun"
+ => "heythere gun" 
+
+--------------------------------------
+Iterate of characters
+2.7.0 :097 > "gunjangaur".each_char{|ch| puts ch}
+g
+u
+n
+j
+a
+n
+g
+a
+u
+r
+ => "gunjangaur" 
+
+2.7.0 :098 > "gunjangaur".each_char{|ch| print ch}
+gunjangaur => "gunjangaur" 
+
+2.7.0 :099 > a="gunjangaur".chars
+2.7.0 :100 > print a
+["g", "u", "n", "j", "a", "n", "g", "a", "u", "r"] => nil 

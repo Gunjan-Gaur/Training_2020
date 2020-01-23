@@ -128,6 +128,30 @@ Upper and lower case
 2.7.0 :104 > s.downcase
  => "asdf" 
 
+---------------------------------------
+Bytes 
+2.7.0 :128 > str = "gunjan"
+2.7.0 :129 > str.each_byte.to_a
+ => [103, 117, 110, 106, 97, 110] 
+
+---------------------------------------
+ Byteslice
+"hello".byteslice(1)     
+ => "e"
+"hello".byteslice(-1)    
+ => "o"
+"hello".byteslice(1, 2)  
+ => "el"
+
+-------------------------------------
+Capatalize
+"hello".capitalize    
+ => "Hello"
+"HELLO".capitalize    
+ => "Hello"
+
+-------------------------------------
+
 ---------------------------------------	
 MultiLine String
 2.7.0 :105"> b =<<-String
@@ -167,8 +191,25 @@ Gunjan
 What's your name?
  => nil 
 
-2.7.0 :118 > name = gets.chomp
+2.7.0 :118 > name = gets.chomp (remove last character '\n')
 gunjan?
 
 2.7.0 :119 > "asdf?".chomp("?")
  => "asdf" 
+
+--------------------------------------
+Encoding
+abc.force_encoding("UTF-8")
+
+--------------------------------------
+Counting character
+2.7.0 :121 > str = "huhuuhuhuhuhuhuhh"
+
+2.7.0 :122 > str.count("h")
+ => 9 
+
+2.7.0 :123 > str.count("a")
+ => 0 
+
+2.7.0 :124 > str.count("u")
+

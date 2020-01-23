@@ -117,3 +117,58 @@ gunjangaur => "gunjangaur"
 2.7.0 :099 > a="gunjangaur".chars
 2.7.0 :100 > print a
 ["g", "u", "n", "j", "a", "n", "g", "a", "u", "r"] => nil 
+
+----------------------------------------
+Upper and lower case
+2.7.0 :101 > s = "abcd"
+2.7.0 :102 > s.upcase
+ => "ABCD" 
+
+2.7.0 :103 > s = "ASDF"
+2.7.0 :104 > s.downcase
+ => "asdf" 
+
+---------------------------------------	
+MultiLine String
+2.7.0 :105"> b =<<-String
+
+2.7.0 :106"> ds
+
+2.7.0 :108"> sxcsx
+
+2.7.0 :109"> ds
+
+2.7.0 :110"> x
+
+2.7.0 :111 > String
+
+2.7.0 :112 > p b
+"ds\nsa\nsxcsx\nds\nx\n"
+ => "ds\nsa\nsxcsx\nds\nx\n" 
+
+--------------------------------------
+Gsub method
+2.7.0 :113 > s = "m hu don"
+
+2.7.0 :114 > s.gsub("don","Giyan")
+ => "m hu Giyan" 
+
+--------------------------------------
+Remove last character from string
+
+2.7.0 :115 > puts "What's your name?"
+What's your name?
+ => nil 
+
+2.7.0 :116 > name = gets
+Gunjan
+
+2.7.0 :117 > puts "What's your name?"
+What's your name?
+ => nil 
+
+2.7.0 :118 > name = gets.chomp
+gunjan?
+
+2.7.0 :119 > "asdf?".chomp("?")
+ => "asdf" 

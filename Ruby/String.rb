@@ -151,7 +151,39 @@ Capatalize
  => "Hello"
 
 -------------------------------------
+casecmp
+2.7.0 :131 > "gUnjAn".casecmp("gunjan")
+ => 0 
 
+2.7.0 :132 > "gUnjAn".casecmp("gunjang")
+ => -1 
+
+2.7.0 :133 > "gUnjAnhu".casecmp("gunjang")
+ => 1 
+
+---------------------------------------
+casecmp?
+2.7.0 :134 > "abcdef".casecmp?("abcdef")
+ => true 
+
+2.7.0 :135 > "abcdef".casecmp?("abcdefh")
+ => false 
+
+2.7.0 :136 > "abcdehjuf".casecmp?("abcdefh")
+ => false 
+
+--------------------------------------
+chop
+2.7.0 :144 > "string\r\n".chop
+ => "string" 
+
+--------------------------------------
+chr
+a = "abcde"
+a.chr    
+ => "a"
+
+------------------------------------- 
 ---------------------------------------	
 MultiLine String
 2.7.0 :105"> b =<<-String

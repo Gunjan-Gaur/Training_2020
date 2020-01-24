@@ -171,7 +171,56 @@ h = { "a" => 100, "b" => 200 }
 h.each {|key, value| puts "#{key} is #{value}" }
  => a is 100
     b is 200
-    
+
+-------------------------------------
+each_value
+h.each_value {|value| puts value }    
+ =>100
+   200
+
+-------------------------------------
+fetch
+h.fetch("a")                            
+ => 100
+
+h.fetch("z", "go fish")                 
+ => "go fish"    
+
+------------------------------------
+fetch_values
+h = { "a" => "100", "b" => "200" }
+h.fetch_values("a", "b")                   
+ => ["100", "200"]
+
+h.fetch_values("cow", "bird")                  
+  KeyError
+
+-------------------------------------
+flatten
+a =  {1=> "one", 2 => [2,"two"], 3 => "three"}
+
+a.flatten    
+ => [1, "one", 2, [2, "two"], 3, "three"]
+
+a.flatten(2) 
+ => [1, "one", 2, 2, "two", 3, "three"]  
+
+-------------------------------------
+has_key?
+h = { "a" => 100, "b" => 200 }
+
+h.has_key?("a")   
+ => true
+
+h.has_key?("z")   
+ => false
+
+------------------------------------
+value?
+h.value?(100)   
+ => true
+h.value?(999)   
+ => false
 -------------------------------------
 Default
 h = Hash.new("cat")                     

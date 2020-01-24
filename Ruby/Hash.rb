@@ -98,3 +98,47 @@ h.key(200).equal? b
  => true
 
 ----------------------------------------
+any?
+[nil, true, 99].any?(Integer)                     
+ => true
+
+[nil, true, 99].any?                              
+ => true
+
+---------------------------------------- 
+assoc(obj) → an_array or nil
+h = {"letitbe"  => ["a", "b", "c"],
+     "main" => ["d", "e", "f" ]}
+
+h.assoc("main")  
+ => ["main", ["d", "e", "f"]]
+
+h.assoc("ruby")      
+ => nil
+
+---------------------------------------
+Compact
+h = { a: 1, b: false, c: nil }
+
+h.compact     
+ => { a: 1, b: false }
+
+h             
+ => { a: 1, b: false, c: nil }
+
+-------------------------------------
+compare_by_identity → hsh
+h1.compare_by_identity
+h1.compare_by_identity? 
+ => true
+
+-------------------------------------
+Default
+h = Hash.new("cat")                     
+ => {}
+
+h.default                               
+ => "cat"
+
+h.default(2)                            
+ => "cat

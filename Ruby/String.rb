@@ -1,3 +1,5 @@
+Strings
+----------------------------
 2.7.0 :048 > s = "gunjan"
 
 2.7.0 :049 > s[0,3]
@@ -18,6 +20,11 @@
 "jan"
  => "jan" 
 
+"hello".index('e')             
+  => 1
+
+"hello".include? "lo"   
+  => true  
 ------------------------------------
 Padding the string
 2.7.0 :055 > b_s="1101"
@@ -40,6 +47,44 @@ Trim string
 2.7.0 :062 > x = "  strip "
 2.7.0 :063 > x.strip
  => "strip"
+
+----------------------------------
+rstrip 
+2.7.0 :008 > "  hey  ".rstrip
+ => "  hey" 
+
+----------------------------------
+split
+2.7.0 :024 > "ddcjc cdjjcc yfjvj".split
+ => ["ddcjc", "cdjjcc", "yfjvj"] 
+
+2.7.0 :025 > "ddcjc cdjjcc yfjvj".split(/ /)
+ => ["ddcjc", "cdjjcc", "yfjvj"] 
+
+----------------------------------
+squeeze
+2.7.0 :028 > "Leaaarning Rubbby".squeeze
+ => "Learning Ruby" 
+
+2.7.0 :029 > "   hey  i am  here ".squeeze("
+ ")
+ => " hey i am here " 
+
+-----------------------------------
+tr and tr_s
+2.7.0 :033 > "jim morgan".tr("im","nu")
+ => "jnu uorgan" 
+
+2.7.0 :034 > "himmin".tr_s('m',"o")
+ => "hioin" 
+
+-----------------------------------
+to_c (complex)
+2.7.0 :031 > 9.to_c
+ => (9+0i) 
+
+2.7.0 :032 > 45i.to_c
+ => (0+45i) 
 
 ----------------------------------
 Prefix & suffix
@@ -182,8 +227,66 @@ chr
 a = "abcde"
 a.chr    
  => "a"
+--------------------------------------
+replace
+2.7.0 :150 > s = "hum"
+2.7.0 :151 > s.replace "world"
+ => "world" 
 
-------------------------------------- 
+-------------------------------------
+Partition
+"hello".partition("l")         
+ => ["he", "l", "lo"]
+"hello".partition("x")         
+ => ["hello", "", ""]
+
+-------------------------------------
+rpartition
+2.7.0 :005 > "gunjan".rpartition("n")
+ => ["gunja", "n", ""] 
+
+2.7.0 :006 > "number".rpartition("b")
+ => ["num", "b", "er"] 
+
+2.7.0 :007 > "number".rpartition("r")
+ => ["numbe", "r", ""] 
+
+--------------------------------------
+next
+"abcd".succ        
+  => "abce"
+"THX1138".succ     
+  => "THX1139"
+
+---------------------------------------
+each_char
+2.7.0 :145 > "study".each_char{|c|print c , '@'}
+s@t@u@d@y@ => "study" 
+
+---------------------------------------
+Hex
+2.7.0 :147 > "0".hex
+ => 0 
+
+2.7.0 :148 > "67676".hex
+ => 423542 
+
+2.7.0 :149 > "01101010".hex
+ => 17829904 
+
+--------------------------------------
+oct
+2.7.0 :001 > "string".oct
+ => 0 
+
+2.7.0 :002 > "stringjijij".oct
+ => 0 
+
+2.7.0 :003 > "678990".oct
+ => 55 
+
+--------------------------------------
+
 ---------------------------------------	
 MultiLine String
 2.7.0 :105"> b =<<-String

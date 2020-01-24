@@ -44,3 +44,38 @@ Time
 2.7.0 :045 > puts time2
 2020-02-23 05:31:05 +0530
  => nil 
+
+----------------------------------------
+Date and DateTime
+require 'date'
+2.7.0 :053 > d = Date.new(2020,1,24)
+
+2.7.0 :054 > puts d
+2020-01-24
+ => nil 
+
+2.7.0 :055 > d = Date.parse("2019-02-03")
+
+2.7.0 :056 > puts d
+2019-02-03
+ => nil 
+
+2.7.0 :057 > d = Time.new(2003,2,3,4,5,6).to_date
+2003
+ => nil 
+
+2.7.0 :059 > puts d.day
+3
+ => nil 
+
+2.7.0 :061 > puts d.month
+2
+ => nil 
+
+2.7.0 :062 > puts d.day
+3
+ => nil 
+
+2.7.0 :064 > puts d.ctime
+Mon Feb  3 00:00:00 2003
+ => nil 

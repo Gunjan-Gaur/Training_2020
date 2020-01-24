@@ -133,6 +133,46 @@ h1.compare_by_identity?
  => true
 
 -------------------------------------
+Delete
+h = { "a" => 100, "b" => 200 }
+
+h.delete("a")                              
+ => 100
+
+h.delete("z") { |el| "#{el} not found" }   
+ => "z not found"
+
+------------------------------------
+delete_if
+h.delete_if {|key, value| key >= "b" }   
+=> {"a"=>100}
+
+-----------------------------------
+dig
+h = { a: {ab: {abc: 1}}}
+
+h.dig(:a, :ab, :abc)     
+ => 1
+
+h.dig(:a, :bs, :lk)     
+ => nil
+
+-------------------------------------
+each_key
+
+h = { "a" => 100, "b" => 200 }
+h.each_key {|key| puts key }
+ =>a
+   b
+
+------------------------------------
+each
+h = { "a" => 100, "b" => 200 }
+h.each {|key, value| puts "#{key} is #{value}" }
+ => a is 100
+    b is 200
+    
+-------------------------------------
 Default
 h = Hash.new("cat")                     
  => {}
@@ -142,3 +182,5 @@ h.default
 
 h.default(2)                            
  => "cat
+
+ 

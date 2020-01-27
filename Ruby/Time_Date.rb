@@ -45,6 +45,33 @@ Time
 2020-02-23 05:31:05 +0530
  => nil 
 
+2.7.0 :015 > puts time.to_s
+2020-01-27 10:54:54 UTC
+
+2.7.0 :017 > puts time.localtime
+2020-01-27 16:24:54 +0530
+
+2.7.0 :018 > puts time.strftime("%Y-%m-%d %H:%M:%S")
+2020-01-27 16:24:54
+
+2.7.0 :019 > puts time.strftime("%Y-%m-%d-%a %H:%M:%S")
+2020-01-27-Mon 16:24:54
+
+2.7.0 :020 > puts time.strftime("%Y-%m-%d-%a-%A %H:%M:%S")
+2020-01-27-Mon-Monday 16:24:54
+
+2.7.0 :021 > puts time.strftime("%Y-%m-%d-%a-%A-%c %H:%M:%S")
+2020-01-27-Mon-Monday-Mon Jan 27 16:24:54 2020 16:24:54
+ => nil 
+
+2.7.0 :022 > puts time.strftime("%Y-%m-%d-%a-%A-%p %H:%M:%S")
+2020-01-27-Mon-Monday-PM 16:24:54
+ => nil 
+
+2.7.0 :023 > puts time.strftime("%Y-%m-%d-%a-%A-%p-%y %H:%M:%S")
+2020-01-27-Mon-Monday-PM-20 16:24:54
+ => nil 
+
 ----------------------------------------
 Date and DateTime
 require 'date'

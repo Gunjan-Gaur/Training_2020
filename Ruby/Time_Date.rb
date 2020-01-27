@@ -106,3 +106,14 @@ require 'date'
 2.7.0 :064 > puts d.ctime
 Mon Feb  3 00:00:00 2003
  => nil 
+
+2.7.0 :004 > time = DateTime.new(2004,4,5)
+
+2.7.0 :005 > print time.to_date
+2004-04-05 => nil 
+
+2.7.0 :006 > print time.to_datetime
+2004-04-05T00:00:00+00:00 => nil 
+
+2.7.0 :007 > print time.to_s
+2004-04-05T00:00:00+00:00 => nil 

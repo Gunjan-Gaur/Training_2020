@@ -133,3 +133,19 @@ def mat(str,stv)
   return str
 end
 print mat("Javascript","script"),"\n"
+
+#Count the occurences of character in an string
+puts "Count the occurences of character in an string:-"
+def check_string(str, chr)
+   return str.count(chr) 
+end
+print check_string("JavaScript", "J"),"\n"
+print check_string("JavaScript", "a"),"\n"
+
+#Sort string alphabetically
+puts "Sort string alphabetically"
+def check_string(str)
+   return str.chars.sort.join
+end
+print check_string("javascript"),"\n"
+

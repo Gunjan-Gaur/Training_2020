@@ -87,3 +87,22 @@ puts arr = "ufh ,jidjc, kdsc"
 puts s = "1,2,3,4,5"
 puts arr.split(",").inspect
 puts s.split(",").map{|a| a.to_i}.inspect
+
+#Rotate and reverse elements left
+puts "Rotate elements left:-"
+print arr = [1,2,5],"\n"
+print arr.rotate(1),"\n"
+print arr.reverse,"\n"
+
+#find max element and replace that element with
+puts "find max element and replace that element with:-" 
+def max_array(arr)
+  maxval = []
+  for i in 0...arr.length
+    maxval[i]=arr.max
+  end
+  return maxval
+end
+print max_array([1,5,2]),"\n"
+
+

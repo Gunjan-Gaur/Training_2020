@@ -105,4 +105,31 @@ def max_array(arr)
 end
 print max_array([1,5,2]),"\n"
 
+#sum of First 2 elemnts and if length is 0 then return 0
+puts "sum of First 2 elements and if length is 0 then return 0:-"
+def check_a(arr)
+  if arr.length >= 2
+    return arr[0] + arr[1]
+  elsif arr.length==0
+    return 0  
+  end  
+end
+puts check_a([1,2,3])
+puts check_a([])
+puts check_a([9,9,9])
 
+# split a delimited string and convert it to an array
+puts "split a delimited string and convert it to an array"
+def mat(str,d)
+  return str.split(d)
+  return str
+end
+print mat("a,b,c,d,f",","),"\n"
+
+#remove substring from string
+puts "remove substring from string"
+def mat(str,stv)
+  str.slice!stv
+  return str
+end
+print mat("Javascript","script"),"\n"

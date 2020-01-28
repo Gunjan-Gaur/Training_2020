@@ -323,7 +323,7 @@ What's your name?
 Gunjan
 
 2.7.0 :117 > puts "What's your name?"
-What's your name?
+Whats your name?
  => nil 
 
 2.7.0 :118 > name = gets.chomp (remove last character '\n')

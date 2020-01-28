@@ -58,3 +58,32 @@ puts arr2.reduce(:+)                    #method 3 inject and reduce are enums
 puts "Remove Duplicate elem. from array"
 arr = [1,3,2,3,4,54,5,64,5,7,4,2,2,1]
 puts arr.uniq.inspect
+
+#Check any of the first and last element is same
+puts "Check any of the first and last element is same:-"
+def meth(a1,a2)
+  return ((a1.first == a2.first) || (a1.last == a2.last)) 
+end  
+puts meth([1,2,3],[2,4,3])
+puts meth([1,2,3],[2,4,3,4,5])
+puts meth([1,2,3],[1,4,9])
+
+#Remove blank element from the array
+puts "Remove blank element from the array:-"
+arr = ["hus","djosc","","hdue"]
+puts arr.reject{|a| a.empty?}.inspect
+
+#Compute sum of elements where length > 2
+def check_array(nums)
+   return (nums[0] + nums[1] + nums[2])
+end
+
+print check_array([1, 2, 5]),"\n" 
+print check_array([1, 2, 3]),"\n" 
+
+#Split delimited string
+puts "Split delimited string:-"
+puts arr = "ufh ,jidjc, kdsc"
+puts s = "1,2,3,4,5"
+puts arr.split(",").inspect
+puts s.split(",").map{|a| a.to_i}.inspect

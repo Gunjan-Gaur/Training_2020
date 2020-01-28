@@ -46,3 +46,15 @@ puts "2 random Number from array"
 puts arr1.sample(2)
 puts "3 random Number from array"
 puts arr1.sample(3)
+
+#Sum of array
+puts "Sum of array"
+arr2 = [10,20,30,40,50]
+puts arr2.sum                           #Method 1
+puts arr2.inject(0){|sum,x| sum + x}    #method 2 
+puts arr2.reduce(:+)                    #method 3 inject and reduce are enums
+
+#Remove Duplicate elem. from array
+puts "Remove Duplicate elem. from array"
+arr = [1,3,2,3,4,54,5,64,5,7,4,2,2,1]
+puts arr.uniq.inspect

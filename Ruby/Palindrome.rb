@@ -1,5 +1,4 @@
-
-  num=123454321
+num=123454321
   rev=0
   rem=0
   original = num

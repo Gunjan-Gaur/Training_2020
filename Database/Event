@@ -246,3 +246,58 @@ events=# select * from events;
   6 | varun Wedding         | 2020-12-12 |    7 |    1
   4 | vikas family function | 2020-03-21 |    3 |    5
 (6 rows)
+
+events=# insert into events(id,ename,date,u_id,e_id)values(7,'gun birthday','2020-06-4',6,2);
+INSERT 0 1
+events=# insert into events(id,ename,date,u_id,e_id)values(8,'nitin party','2020-01-30',3,4);
+INSERT 0 1
+
+events=# select * from events;
+ id |         ename         |    date    | u_id | e_id 
+----+-----------------------+------------+------+------
+  1 | kush Birthday         | 2020-03-01 |    1 |    1
+  2 | vir Bachelor Party    | 2019-11-09 |    2 |    3
+  3 | vikas Bachelor Party  | 2020-11-09 |    3 |    3
+  5 | geeta Wedding         | 2020-04-12 |    4 |    1
+  6 | varun Wedding         | 2020-12-12 |    7 |    1
+  4 | vikas family function | 2020-03-21 |    3 |    5
+  7 | gun birthday          | 2020-06-04 |    6 |    2
+  8 | nitin party           | 2020-01-30 |    3 |    4
+(8 rows)
+
+1. Concat
+
+events=# select concat(f_name,' ',l_name) from users;
+    concat     
+---------------
+ kush singh
+ vir singh
+ nitin malik
+ geeta rao
+ aish gaur
+ gun gaur
+ Varun soni
+ vikas Kaushik
+(8 rows)
+
+
+events=# insert into events(id,ename,date,u_id,e_id)values(9,'gun party','2020-01-29',6,4);
+INSERT 0 1
+
+2. Find ename who have any event today.
+
+events=# select ename from events where date=current_date;
+   ename   
+-----------
+ gun party
+(1 row)
+
+3. Find first name, ename ,cost ,ename who have any event today. 
+
+events=# select u.f_name,e.ename,type,cost from events e join users u on e.u_id=u.id join event_type et on e.e_id=et.id where date=current_date;
+ f_name |   ename   | type  | cost  
+--------+-----------+-------+-------
+ gun    | gun party | Party | 10000
+(1 row)
+
+4. 

@@ -390,5 +390,31 @@ events=# select f_name,ename,type from users u join role r on r.id=u.r_id join e
  kush   | kush Birthday | Wedding
  gun    | gun birthday  | Birthday
  gun    | gun party     | Party
-(3 rows)
+(3 rows) 
 
+Self Join
+-------------------------------------------
+events=# select * from role as r1,role as r2;
+ id |  rname   | id |  rname   
+----+----------+----+----------
+  1 | Admin    |  1 | Admin
+  1 | Admin    |  2 | Manager
+  1 | Admin    |  3 | Employee
+  2 | Manager  |  1 | Admin
+  2 | Manager  |  2 | Manager
+  2 | Manager  |  3 | Employee
+  3 | Employee |  1 | Admin
+  3 | Employee |  2 | Manager
+  3 | Employee |  3 | Employee
+(9 rows)
+
+12. Find name of employees of admin kush. 
+
+select u2.f_name as employee,u2.r_id from users u1 join users u2 on u1.r_id<>u2.r_id where u1.r_id in(select r.id from role r where rname ilike 'admin') and u2.r_id in(select r.id from role r where rname ilike 'employee') and u1.f_name ilike 'kush';
+ employee | r_id 
+----------+------
+ nitin    |    3
+ aish     |    3
+ Varun    |    3
+ vikas    |    3
+(4 rows)

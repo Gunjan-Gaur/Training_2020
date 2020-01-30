@@ -1,0 +1,23 @@
+Event Database
+--------------------------------------------
+postgres=# create database events;
+CREATE DATABASE
+
+postgres=# \c events;
+psql (12.1 (Ubuntu 12.1-1.pgdg18.04+1), server 11.5 (Ubuntu 11.5-1.pgdg18.04+1))
+You are now connected to database "events" as user "postgres".
+
+events=# create table role(
+id int primary key not null,
+rname text);
+CREATE TABLE
+
+events=# create table users(
+events(# id int primary key not null,
+events(# f_name text,
+events(# l_name text,
+events(# r_id int references role(id),
+events(# address varchar,
+events(# phone bigint,
+events(# gender char);
+CREATE TABLE

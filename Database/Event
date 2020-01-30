@@ -300,4 +300,10 @@ events=# select u.f_name,e.ename,type,cost from events e join users u on e.u_id=
  gun    | gun party | Party | 10000
 (1 row)
 
-4. 
+4. Find first name of users who have event today and are admin.
+
+events=# select f_name from users u join role r on u.r_id=r.id join events e on u.id=e.u_id where date=current_date and rname like 'Admin';
+ f_name 
+--------
+ gun
+(1 row)

@@ -21,3 +21,228 @@ events(# address varchar,
 events(# phone bigint,
 events(# gender char);
 CREATE TABLE
+
+events=# create table event_type(
+events(# id int primary key not null,
+events(# type text,
+events(# cost bigint);
+CREATE TABLE
+
+events=# create table events(
+events(# id int primary key not null,
+events(# ename text,
+events(# date date,
+events(# u_id int references users(id),
+events(# e_id int references event_type(id));
+CREATE TABLE
+
+events=# \d 
+           List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | event_type | table | postgres
+ public | events     | table | postgres
+ public | role       | table | postgres
+ public | users      | table | postgres
+(4 rows)
+
+events=# insert into role(id,rname)values(1,'Admin');
+INSERT 0 1
+events=# insert into role(id,rname)values(2,'Manager');
+INSERT 0 1
+events=# insert into role(id,rname)values(3,'Employee');
+INSERT 0 1
+
+events=# select * from role;
+ id |  rname   
+----+----------
+  1 | Admin
+  2 | Manager
+  3 | Employee
+(3 rows)
+
+events=# insert into users(id,f_name,l_name,r_id)values(1,'kush','singh',1);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(2,'vir','singh',2);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(3,'nitin','malik',3);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(4,'geeta','rao',2);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(5,'aish','gaur',3);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(6,'gun','gaur',1);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(7,'Varun','soni',3);
+INSERT 0 1
+events=# insert into users(id,f_name,l_name,r_id)values(8,'vikas','Kaushik',3);
+INSERT 0 1
+
+events=# alter table users add column salary real check(salary>0);
+ALTER TABLE
+
+events=# \d users;
+                     Table "public.users"
+ Column  |       Type        | Collation | Nullable | Default 
+---------+-------------------+-----------+----------+---------
+ id      | integer           |           | not null | 
+ f_name  | text              |           |          | 
+ l_name  | text              |           |          | 
+ r_id    | integer           |           |          | 
+ address | character varying |           |          | 
+ phone   | bigint            |           |          | 
+ gender  | character(1)      |           |          | 
+ salary  | real              |           |          | 
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+Check constraints:
+    "users_salary_check" CHECK (salary > 0::double precision)
+Foreign-key constraints:
+    "users_r_id_fkey" FOREIGN KEY (r_id) REFERENCES role(id)
+Referenced by:
+    TABLE "events" CONSTRAINT "events_u_id_fkey" FOREIGN KEY (u_id) REFERENCES users(id)
+
+events=# update users set salary = 80000 where id =2;
+UPDATE 1
+events=# update users set salary = 45000 where id =3;
+UPDATE 1
+events=# update users set salary = 60000 where id =4;
+UPDATE 1
+events=# update users set salary = 50000 where id =5;
+UPDATE 1
+events=# update users set salary = 100000 where id =6;
+UPDATE 1
+events=# update users set salary = 40000 where id =7;
+UPDATE 1
+events=# update users set salary = 42000 where id =8;
+UPDATE 1
+events=# select * from users;
+ id | f_name | l_name  | r_id | address | phone | gender | salary 
+----+--------+---------+------+---------+-------+--------+--------
+  1 | kush   | singh   |    1 |         |       |        |  70000
+  2 | vir    | singh   |    2 |         |       |        |  80000
+  3 | nitin  | malik   |    3 |         |       |        |  45000
+  4 | geeta  | rao     |    2 |         |       |        |  60000
+  5 | aish   | gaur    |    3 |         |       |        |  50000
+  6 | gun    | gaur    |    1 |         |       |        | 100000
+  7 | Varun  | soni    |    3 |         |       |        |  40000
+  8 | vikas  | Kaushik |    3 |         |       |        |  42000
+(8 rows)
+
+events=# update users set address = 'Delhi' , phone='9990567890', gender='m' where id =1;
+UPDATE 1
+events=# update users set address = 'goa' , phone='7880567890', gender='m' where id =2;
+UPDATE 1
+events=# update users set address = 'pune' , phone='7680567889', gender='m' where id =3;
+UPDATE 1
+events=# update users set address = 'Delhi' , phone='7680567343', gender='f' where id =4;
+UPDATE 1
+events=# update users set address = 'Jammu' , phone='9880565423', gender='f' where id =5;
+UPDATE 1
+events=# update users set address = 'Gujarat' , phone='9887895423', gender='f' where id =6;
+UPDATE 1
+events=# update users set address = 'Goa' , phone='9567895499', gender='m' where id =7;
+UPDATE 1
+events=# update users set address = 'Delhi' , phone='9567895489', gender='m' where id =8;
+UPDATE 1
+
+events=# select * from users;
+ id | f_name | l_name  | r_id | address |   phone    | gender | salary 
+----+--------+---------+------+---------+------------+--------+--------
+  1 | kush   | singh   |    1 | Delhi   | 9990567890 | m      |  70000
+  2 | vir    | singh   |    2 | goa     | 7880567890 | m      |  80000
+  3 | nitin  | malik   |    3 | pune    | 7680567889 | m      |  45000
+  4 | geeta  | rao     |    2 | Delhi   | 7680567343 | f      |  60000
+  5 | aish   | gaur    |    3 | Jammu   | 9880565423 | f      |  50000
+  6 | gun    | gaur    |    1 | Gujarat | 9887895423 | f      | 100000
+  7 | Varun  | soni    |    3 | Goa     | 9567895499 | m      |  40000
+  8 | vikas  | Kaushik |    3 | Delhi   | 9567895489 | m      |  42000
+(8 rows)
+
+events=# \d event_type;
+             Table "public.event_type"
+ Column |  Type   | Collation | Nullable | Default 
+--------+---------+-----------+----------+---------
+ id     | integer |           | not null | 
+ type   | text    |           |          | 
+ cost   | bigint  |           |          | 
+Indexes:
+    "event_type_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "events" CONSTRAINT "events_e_id_fkey" FOREIGN KEY (e_id) REFERENCES event_type(id)
+
+events=# insert into event_type(id,type,cost)values(1,'Wedding','500000');
+INSERT 0 1
+events=# insert into event_type(id,type,cost)values(2,'Birthday','50000');
+INSERT 0 1
+events=# insert into event_type(id,type,cost)values(3,'Bachelor','80000');
+INSERT 0 1
+events=# insert into event_type(id,type,cost)values(4,'Party','10000');
+INSERT 0 1
+events=# insert into event_type(id,type,cost)values(5,'Family Function','100000');
+INSERT 0 1
+events=# select * from event_type;
+ id |      type       |  cost  
+----+-----------------+--------
+  1 | Wedding         | 500000
+  2 | Birthday        |  50000
+  3 | Bachelor        |  80000
+  4 | Party           |  10000
+  5 | Family Function | 100000
+(5 rows)
+
+events=# \d events;
+               Table "public.events"
+ Column |  Type   | Collation | Nullable | Default 
+--------+---------+-----------+----------+---------
+ id     | integer |           | not null | 
+ ename  | text    |           |          | 
+ date   | date    |           |          | 
+ u_id   | integer |           |          | 
+ e_id   | integer |           |          | 
+Indexes:
+    "events_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "events_e_id_fkey" FOREIGN KEY (e_id) REFERENCES event_type(id)
+    "events_u_id_fkey" FOREIGN KEY (u_id) REFERENCES users(id)
+
+events=# insert into events(id,ename,date,u_id,e_id)values(1,'kush Birthday','2020-03-01',1,1);
+INSERT 0 1
+events=# select * from users;
+ id | f_name | l_name  | r_id | address |   phone    | gender | salary 
+----+--------+---------+------+---------+------------+--------+--------
+  1 | kush   | singh   |    1 | Delhi   | 9990567890 | m      |  70000
+  2 | vir    | singh   |    2 | goa     | 7880567890 | m      |  80000
+  3 | nitin  | malik   |    3 | pune    | 7680567889 | m      |  45000
+  4 | geeta  | rao     |    2 | Delhi   | 7680567343 | f      |  60000
+  5 | aish   | gaur    |    3 | Jammu   | 9880565423 | f      |  50000
+  6 | gun    | gaur    |    1 | Gujarat | 9887895423 | f      | 100000
+  7 | Varun  | soni    |    3 | Goa     | 9567895499 | m      |  40000
+  8 | vikas  | Kaushik |    3 | Delhi   | 9567895489 | m      |  42000
+(8 rows)
+
+events=# insert into events(id,ename,date,u_id,e_id)values(2,'vir Bachelor Party','2019-11-09',2,3);
+INSERT 0 1
+events=# insert into events(id,ename,date,u_id,e_id)values(3,'vikas Bachelor Party','2020-11-09',3,3);
+INSERT 0 1
+events=# insert into events(id,ename,date,u_id,e_id)values(4,'vikas Birthday Party','2020-03-21',3,3);
+INSERT 0 1
+events=# update events set ename = 'vikas family function' where id=4;
+UPDATE 1
+events=# insert into events(id,ename,date,u_id,e_id)values(5,'geeta Wedding','2020-04-12',4,1);
+INSERT 0 1
+events=# insert into events(id,ename,date,u_id,e_id)values(6,'varun Wedding','2020-12-12',7,1);
+INSERT 0 1
+events=# update events set ename = 'vikas family function',e_id =5  where id=4;
+UPDATE 1
+
+events=# select * from events;
+ id |         ename         |    date    | u_id | e_id 
+----+-----------------------+------------+------+------
+  1 | kush Birthday         | 2020-03-01 |    1 |    1
+  2 | vir Bachelor Party    | 2019-11-09 |    2 |    3
+  3 | vikas Bachelor Party  | 2020-11-09 |    3 |    3
+  5 | geeta Wedding         | 2020-04-12 |    4 |    1
+  6 | varun Wedding         | 2020-12-12 |    7 |    1
+  4 | vikas family function | 2020-03-21 |    3 |    5
+(6 rows)

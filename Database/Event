@@ -418,3 +418,27 @@ select u2.f_name as employee,u2.r_id from users u1 join users u2 on u1.r_id<>u2.
  Varun    |    3
  vikas    |    3
 (4 rows)
+
+13. Find first name of user who is admin and celebrating birthday. 
+
+events=# select * from events;
+ id |         ename         |    date    | user_id | event_type_id 
+----+-----------------------+------------+---------+---------------
+  2 | vir Bachelor Party    | 2019-11-09 |       2 |             3
+  5 | geeta Wedding         | 2020-04-12 |       4 |             1
+  6 | varun Wedding         | 2020-12-12 |       7 |             1
+  7 | gun birthday          | 2020-06-04 |       6 |             2
+  8 | nitin party           | 2020-01-30 |       3 |             4
+  9 | gun party             | 2020-01-29 |       6 |             4
+  4 | vikas family function | 2020-03-21 |       8 |             5
+  3 | vikas Bachelor Party  | 2020-11-09 |       8 |             3
+  1 | kush Birthday         | 2020-03-01 |       1 |             2
+(9 rows)
+
+events=# select f_name,rname from role r join users u on r.id=u.r_id join events e on e.user_id=u.id join event_type et on et.id=e.event_type_id where et.type ilike 'birthday';
+ f_name | rname 
+--------+-------
+ gun    | Admin
+ kush   | Admin
+(2 rows)
+

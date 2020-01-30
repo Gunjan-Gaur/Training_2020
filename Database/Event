@@ -307,3 +307,51 @@ events=# select f_name from users u join role r on u.r_id=r.id join events e on 
 --------
  gun
 (1 row)
+
+5. Find name of users who are admin 
+
+events=# select f_name from users u join role r on u.r_id=r.id join events e on u.id=e.u_id where rname like 'Admin' group by f_name;
+ f_name 
+--------
+ kush
+ gun
+(3 rows)
+
+
+6. Find first name and type of users who are admin.
+events=# select f_name,type from users u join role r on u.r_id=r.id join events e on u.id=e.u_id join event_type et on e.e_id=et.id where rname like 'Admin';
+ f_name |   type   
+--------+----------
+ kush   | Wedding
+ gun    | Birthday
+ gun    | Party
+(3 rows)
+
+7. Find first name and thier total events.  
+
+events=# select * from events;
+ id |         ename         |    date    | u_id | e_id 
+----+-----------------------+------------+------+------
+  1 | kush Birthday         | 2020-03-01 |    1 |    1
+  2 | vir Bachelor Party    | 2019-11-09 |    2 |    3
+  5 | geeta Wedding         | 2020-04-12 |    4 |    1
+  6 | varun Wedding         | 2020-12-12 |    7 |    1
+  7 | gun birthday          | 2020-06-04 |    6 |    2
+  8 | nitin party           | 2020-01-30 |    3 |    4
+  9 | gun party             | 2020-01-29 |    6 |    4
+  4 | vikas family function | 2020-03-21 |    8 |    5
+  3 | vikas Bachelor Party  | 2020-11-09 |    8 |    3
+(9 rows)
+
+events=# select f_name,count(e.e_id) as Num_of_events from users u join events e on u.id=e.u_id group by f_name;
+ f_name | num_of_events 
+--------+---------------
+ kush   |             1
+ vir    |             1
+ vikas  |             2
+ geeta  |             1
+ Varun  |             1
+ nitin  |             1
+ gun    |             2
+(7 rows)
+

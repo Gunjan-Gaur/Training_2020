@@ -483,5 +483,30 @@ events=# select f_name,id from users where id in(select max(id) from users where
 (1 row)
 
 
+19. Calculate monthly salary of users.
+
+events=# select round(salary/12) as monthly_salary from users;
+ monthly_salary 
+----------------
+           5833
+           6667
+           3750
+           5000
+           4167
+           8333
+           3333
+           3500
+(8 rows)
+
+20. Find names of employees who have 'a' in their name.
+
+events=# select f_name from users where f_name ilike '%a%';
+ f_name 
+--------
+ geeta
+ aish
+ Varun
+ vikas
+(4 rows)
 
 

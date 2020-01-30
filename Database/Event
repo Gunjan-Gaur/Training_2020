@@ -442,3 +442,20 @@ events=# select f_name,rname from role r join users u on r.id=u.r_id join events
  kush   | Admin
 (2 rows)
 
+14. Find first name of user who is admin and celebrating birthday and salary greate than 80000.  
+
+events=# select f_name,rname from role r join users u on r.id=u.r_id join events e on e.user_id=u.id join event_type et on et.id=e.event_type_id where et.type ilike 'birthday' and salary>80000;
+ f_name | rname 
+--------+-------
+ gun    | Admin
+(1 row)
+
+15. Find first name of user who is admin and celebrating birthday and salary greate than 50000 and lives in delhi.  
+
+events=# select f_name,rname from role r join users u on r.id=u.r_id join events e on e.user_id=u.id join event_type et on et.id=e.event_type_id where et.type ilike 'birthday' and salary>50000 and address ilike 'delhi';
+ f_name | rname 
+--------+-------
+ kush   | Admin
+(1 row)
+
+

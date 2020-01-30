@@ -458,4 +458,13 @@ events=# select f_name,rname from role r join users u on r.id=u.r_id join events
  kush   | Admin
 (1 row)
 
+16. Find second highest salary of users.
+
+events=# select max(salary) from users where salary < (select max(salary) from users);
+  max  
+-------
+ 80000
+(1 row)
+
+
 

@@ -355,3 +355,10 @@ events=# select f_name,count(e.e_id) as Num_of_events from users u join events e
  gun    |             2
 (7 rows)
 
+8. Find name of users who are celebrating birthday and are admin. 
+
+events=# select rname,type,f_name from event_type et join events e on et.id=e.e_id join users u on e.u_id=u.id join role r on r.id=u.r_id where et.type = 'Birthday'; 
+ rname |   type   | f_name 
+-------+----------+--------
+ Admin | Birthday | gun
+(1 row)

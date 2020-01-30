@@ -362,3 +362,33 @@ events=# select rname,type,f_name from event_type et join events e on et.id=e.e_
 -------+----------+--------
  Admin | Birthday | gun
 (1 row)
+
+9. Find name of users who are admin(ilike), 
+
+events=# select f_name from users u join role r on r.id=u.r_id where rname ilike 'admin';
+ f_name 
+--------
+ kush
+ gun
+(2 rows)
+
+10. Find first name and ename who are admin.
+
+events=# select f_name,ename from users u join role r on r.id=u.r_id join events e on u.id=e.u_id where rname ilike 'admin';
+ f_name |     ename     
+--------+---------------
+ kush   | kush Birthday
+ gun    | gun birthday
+ gun    | gun party
+(3 rows)
+
+11. Find first name,ename and events type of admin.  
+
+events=# select f_name,ename,type from users u join role r on r.id=u.r_id join events e on u.id=e.u_id join event_type et on et.id=e.e_id where rname ilike 'admin';
+ f_name |     ename     |   type   
+--------+---------------+----------
+ kush   | kush Birthday | Wedding
+ gun    | gun birthday  | Birthday
+ gun    | gun party     | Party
+(3 rows)
+

@@ -466,5 +466,22 @@ events=# select max(salary) from users where salary < (select max(salary) from u
  80000
 (1 row)
 
+17. Find next row from the current row.
+
+events=# select f_name,id from users where id in(select min(id) from users where id >(select id from users where f_name ilike 'geeta'));
+ f_name | id 
+--------+----
+ aish   |  5
+(1 row)
+
+18. Find previous row from the current row.
+
+events=# select f_name,id from users where id in(select max(id) from users where id <(select id from users where f_name ilike 'geeta'));
+ f_name | id 
+--------+----
+ nitin  |  3
+(1 row)
+
+
 
 

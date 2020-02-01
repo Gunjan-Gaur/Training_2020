@@ -1,0 +1,444 @@
+HOSPITAL MANAGEMENT
+---------------------------
+1. CREATE DATABASE HOSPITAL_MANAGEMENT;
+
+2. CREATE TABLE HOSPITAL(
+	ID INT PRIMARY KEY NOT NULL,
+	NAME TEXT NOT NULL,
+	ADDRESS CHAR(50),
+	CITY CHAR(50) 
+	);                       
+
+	                 Table "public.hospital"
+	 Column  |     Type      | Collation | Nullable | Default 
+	---------+---------------+-----------+----------+---------
+	 id      | integer       |           | not null | 
+	 name    | text          |           | not null | 
+	 address | character(50) |           |          | 
+	 city    | character(50) |           |          | 
+	Indexes:
+	    "hospital_pkey" PRIMARY KEY, btree (id)
+
+
+3. CREATE TABLE PATIENT(
+	ID INT PRIMARY KEY NOT NULL,
+	FIRST_NAME TEXT NOT NULL,
+	LAST_NAME TEXT NOT NULL,
+	DIAGNOSIS CHAR(50),
+	AGE INT,
+	ADDRESS CHAR(50),
+	MOBILE INT,
+	GENDER TEXT,
+	HOSP_ID INT REFERENCES HOSPITAL(ID)
+	);
+
+		                   Table "public.patient"
+	   Column   |     Type      | Collation | Nullable | Default 
+	------------+---------------+-----------+----------+---------
+	 id         | integer       |           | not null | 
+	 first_name | text          |           | not null | 
+	 last_name  | text          |           | not null | 
+	 diagnosis  | character(50) |           |          | 
+	 age        | integer       |           |          | 
+	 address    | character(50) |           |          | 
+	 mobile     | integer       |           |          | 
+	 gender     | text          |           |          | 
+	 hosp_id    | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+4.	CREATE TABLE MEDICAL_RECORD
+	(ID INT PRIMARY KEY NOT NULL,
+	PROBLEM CHAR(50),
+	DATE_OF_EXAMINATION DATE    
+	);
+
+5.	ALTER TABLE PATIENT ADD COLUMN RECORD_ID INT REFERENCES MEDICAL_RECORD(ID);
+
+	                   Table "public.patient"
+	   Column   |     Type      | Collation | Nullable | Default 
+	------------+---------------+-----------+----------+---------
+	 id         | integer       |           | not null | 
+	 first_name | text          |           | not null | 
+	 last_name  | text          |           | not null | 
+	 diagnosis  | character(50) |           |          | 
+	 age        | integer       |           |          | 
+	 address    | character(50) |           |          | 
+	 mobile     | integer       |           |          | 
+	 gender     | text          |           |          | 
+	 hosp_id    | integer       |           |          | 
+	 record_id  | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    "patient_record_id_fkey" FOREIGN KEY (record_id) REFERENCES medical_record(id)
+	Referenced by:
+	    TABLE "hospital" CONSTRAINT "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+6.   CREATE TABLE DOCTOR(
+	ID INT PRIMARY KEY NOT NULL,
+	FIRST_NAME TEXT NOT NULL,
+	LAST_NAME TEXT NOT NULL,
+	QUALIFICATION CHAR(50),
+	GENDER TEXT,
+	SALARY REAL CHECK(SALARY>0),
+	EMAIL VARCHAR(50),
+	MOBILE INT NOT NULL,
+	AGE INT,
+	HOSP_ID INT REFERENCES HOSPITAL(ID)
+	);
+
+                         Table "public.doctor"
+	    Column     |         Type          | Collation | Nullable | Default 
+	---------------+-----------------------+-----------+----------+---------
+	 id            | integer               |           | not null | 
+	 first_name    | text                  |           | not null | 
+	 last_name     | text                  |           | not null | 
+	 qualification | character(50)         |           |          | 
+	 gender        | text                  |           |          | 
+	 salary        | real                  |           |          | 
+	 email         | character varying(50) |           |          | 
+	 mobile        | integer               |           | not null | 
+	 age           | integer               |           |          | 
+	 hosp_id       | integer               |           |          | 
+	Indexes:
+	    "doctor_pkey" PRIMARY KEY, btree (id)
+	Check constraints:
+	    "doctor_salary_check" CHECK (salary > 0::double precision)
+	Foreign-key constraints:
+	    "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+7.	 ALTER TABLE MEDICAL_RECORD ADD COLUMN DOC_ID INT REFERENCES DOCTOR(ID);
+
+8.  alter table patient add column insurance_id int;
+
+
+		                   Table "public.patient"
+	    Column    |     Type      | Collation | Nullable | Default 
+	--------------+---------------+-----------+----------+---------
+	 id           | integer       |           | not null | 
+	 first_name   | text          |           | not null | 
+	 last_name    | text          |           | not null | 
+	 diagnosis    | character(50) |           |          | 
+	 age          | integer       |           |          | 
+	 address      | character(50) |           |          | 
+	 mobile       | integer       |           |          | 
+	 gender       | text          |           |          | 
+	 hosp_id      | integer       |           |          | 
+	 record_id    | integer       |           |          | 
+	 insurance_id | integer       |           |          | 
+	Indexes:
+	    "patient_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    "patient_record_id_fkey" FOREIGN KEY (record_id) REFERENCES medical_record(id)
+	Referenced by:
+	    TABLE "hospital" CONSTRAINT "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+9. CREATE TABLE APPOINTMENT(
+	 ID INT PRIMARY KEY NOT NULL,
+	 START_DATE DATE NOT NULL,
+	 END_DATE DATE NOT NULL,
+	 DOC_ID INT REFERENCES DOCTOR(ID),
+	 PAT_D INT REFERENCES PATIENT(ID)
+	 );
+
+	               Table "public.appointment"
+	   Column   |  Type   | Collation | Nullable | Default 
+	------------+---------+-----------+----------+---------
+	 id         | integer |           | not null | 
+	 start_date | date    |           | not null | 
+	 end_date   | date    |           | not null | 
+	 doc_id     | integer |           |          | 
+	 pat_id     | integer |           |          | 
+	Indexes:
+	    "appointment_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "appointment_doc_id_fkey" FOREIGN KEY (doc_id) REFERENCES doctor(id)
+	    "appointment_pat_d_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+
+
+10. CREATE TABLE BLOOD_PACKET(
+	ID INT PRIMARY KEY NOT NULL,
+	BLOOD_GROUP VARCHAR(30),
+	DONOR_NAME VARCHAR(30),
+	HOSP_ID INT REFERENCES HOSPITAL(ID) 
+	);
+
+11. alter table hospital add column BEDS INT;
+
+	                 Table "public.hospital"
+	 Column  |     Type      | Collation | Nullable | Default 
+	---------+---------------+-----------+----------+---------
+	 id      | integer       |           | not null | 
+	 name    | text          |           | not null | 
+	 address | character(50) |           |          | 
+	 city    | character(50) |           |          | 
+	 pat_id  | integer       |           |          | 
+	 doc_id  | integer       |           |          | 
+	 beds    | integer       |           |          | 
+	Indexes:
+	    "hospital_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "hospital_doc_id_fkey" FOREIGN KEY (doc_id) REFERENCES doctor(id)
+	    "hospital_pat_id_fkey" FOREIGN KEY (pat_id) REFERENCES patient(id)
+	Referenced by:
+	    TABLE "blood_packet" CONSTRAINT "blood_packet_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    TABLE "doctor" CONSTRAINT "doctor_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+	    TABLE "patient" CONSTRAINT "patient_hosp_id_fkey" FOREIGN KEY (hosp_id) REFERENCES hospital(id)
+
+12. insert into hospital(id,name,address,state,beds)values(04,'Lilavati Hospital','Lilavati Hospital, A-791 Bandra Reclamation 
+	rd','Mumbai',323);
+
+	id |                      name                      |                      address                       |                       state                        | beds 
+----+------------------------------------------------+----------------------------------------------------+----------------------------------------------------+------
+  1 | AIIMS,All India Institue of Medical Sciences   | Sri Aurobindo Marg                                 | New Delhi                                          | 1766
+  2 | Fortis Hospital                                | 730,Eastern Metropolitan bypass,Anandapur          | kolkata                                            |  400
+  4 | Lilavati Hospital                              | Lilavati Hospital, A-791 Bandra Reclamation rd     | Mumbai                                             |  323
+  5 | Christian Medical Hospital                     | IDA Scudder rd, Vellore                            | Tamil Nadu                                         | 2700
+  6 | Tata Memorial Hospital                         | Dr.E,Dr Ernest Borges Rd,Parel                     | Mumbai                                             |  600
+  7 | Postgraduate Institute of Medical and Research | Madhya Marg,sector-12                              | Chandigarh                                         |  282
+  8 | Sankara Netralaya                              | No. 41,old 18,College Rd                           | Tamil Nadu                                         | 1000
+  3 | Kokilaben Hospital                             | Rao Saheb,Achutrao Marg                            | Mumbai                                             |  750
+
+
+13. ALTER TABLE hospital RENAME city TO state;	
+ 
+14. insert into patient(id,first_name,last_name,diagnosis,age,address,mobile,gender,insurance_id,hosp_id)values
+	(02,'Amish','singh','tuberculosis',56,'kolkata',9867453455,'male',89096,3);
+ 	
+ 	 id | first_name | last_name |                     diagnosis                      | age |                      address                       |   mobile   | gender | hosp_id | record_id | insurance_id 
+----+------------+-----------+----------------------------------------------------+-----+----------------------------------------------------+------------+--------+---------+-----------+--------------
+  1 | Meghna     | Aggarwal  | asthma                                             |  24 | Delhi                                              | 9867453456 | Female |       1 |         1 |        89090
+  2 | Amish      | singh     | tuberculosis                                       |  56 | kolkata                                            | 9867453455 | male   |       3 |         2 |        89096
+  3 | Misthi     | Singhla   | pneumonia                                          |  45 | Delhi                                              | 9869053455 | Female |       2 |         3 |        89678
+  4 | Tanmay     | Singh     | Malaria                                            |  32 | Mumbai                                             | 9869056345 | male   |       5 |         7 |        67678
+  5 | Ritu       | Chauhan   | Bone Biopsy                                        |  62 | Chandigarh                                         | 9869056321 | Female |       4 |         4 |        78987
+  6 | Lucky      | Shrama    | Oral Cancer                                        |  32 | Delhi                                              |  869056389 | male   |       7 |         5 |        23456
+  7 | Priya      | Shrama    | Mouth Sores                                        |  54 | Delhi                                              |  769056389 | Female |       6 |         6 |        78785
+  8 | Rohit      | singh     | acne                                               |  56 | Mumbai                                             |  769057386 | male   |       8 |         8 |        98723
+  9 | Reena      | singh     | High Blood Pressure                                |  45 | Delhi                                              |  769347367 | Female |       1 |         9 |        98724
+ 10 | Aman       | singh     | cardiac arrest                                     |  55 | Delhi                                              |  769346789 | male   |       2 |        10 |        90213
+(10 rows)
+
+15. insert into blood_packet(id,blood_group,Donor_name,hosp_id)values(01,'A','Vickey singh',1);
+
+	 id | blood_group |  donor_name   | hosp_id 
+	----+-------------+---------------+---------
+	  1 | A           | Vickey singh  |       1
+	  2 | B           | Apporva Mital |       2
+	  3 | AB          | Abishek Arora |       3
+	  4 | O           | Kriti Misra   |       4
+	  5 | AB          | Abishek Arora |       1
+	  6 | O           | Kriti singh   |       1
+	  7 | O           | Kriti singh   |       2
+	  8 | AB          | Neha Malik    |       4
+	  9 | AB          | Neha Malik    |       8
+	 10 | AB          | Neha Malik    |       7
+	 11 | O           | Kriti singh   |       6
+	 12 | O           | Rupal singh   |       5
+	(12 rows)
+
+14. insert into doctor(id,first_name,last_name,qualification,gender,salary,email,mobile,age,hosp_id)
+    values(1,'Dr.Parul','Kaushik','Dermatologist','female',2400000,'parul@gmail.com',9811390927,30,1);
+
+    id |  first_name  | last_name |                   qualification                    | gender | salary  |       email        |   mobile   | age | hosp_id 
+	----+--------------+-----------+----------------------------------------------------+--------+---------+--------------------+------------+-----+---------
+	  1 | Dr. Parul    | Kaushik   | Dermatologist                                      | female | 2.4e+06 | parul@gmail.com    | 9811390927 |  30 |       1
+	  2 | Dr. Palak    | Mishra    | Dermatologist                                      | female | 2.1e+06 | palak@gmail.com    | 9811390929 |  33 |       2
+	  3 | Dr. ritesh   | Mishra    | Dermatologist                                      | male   | 2.9e+06 | ritesh@gmail.com   | 9811390921 |  32 |       3
+	  4 | Dr. Ravi     | Mehra     | Dermatologist                                      | male   | 4.2e+06 | ravi@gmail.com     | 8811390925 |  53 |       4
+	  5 | Dr. Lucky    | Mehra     | Orthopedic Surgeon                                 | male   | 4.2e+06 | lucky@gmail.com    | 7811390925 |  53 |       1
+	  6 | Dr. Meena    | Sharma    | Cardiologist                                       | female | 5.6e+06 | Meena@gmail.com    | 7811390922 |  42 |       7
+	  7 | Dr. Lakshmi  | Sharma    | Pulmonologist                                      | female | 3.6e+06 | lakshmi@gmail.com  | 9867380954 |  39 |       8
+	  8 | Dr. Sushma   | Gaur      | Dentist                                            | female | 1.2e+06 | sushma@gmail.com   | 8867380957 |  29 |       6
+	  9 | Dr. Vanshika | Gaur      | Cardiologist                                       | female | 2.2e+06 | vanshika@gmail.com | 8167382952 |  35 |       5
+	 10 | Dr. Varun    | Thakur    | Cardiologist                                       | male   | 2.4e+06 | varun@gmail.com    | 8167367295 |  35 |       3
+
+15. insert into medical_record(id,problem,date_of_examination,doc_id)values(10,'Cardiac Arrest','2018-03-02',10);
+
+	 id |                      problem                       | date_of_examination | doc_id 
+	----+----------------------------------------------------+---------------------+--------
+	  1 | asthma                                             | 2018-01-01          |      7
+	  2 | tuberculosis                                       | 2017-12-01          |      7
+	  3 | pneumonia                                          | 2017-12-04          |      7
+	  4 | Bone Biospy                                        | 2019-11-21          |      5
+	  5 | Oral Cancer                                        | 2019-06-17          |      8
+	  6 | Mouth Sores                                        | 2018-02-15          |      8
+	  7 | Malaria                                            | 2019-09-15          |      7
+	  8 | Acne                                               | 2019-08-14          |      1
+	  9 | High Blood Pressure                                | 2019-04-19          |      6
+	 10 | Cardiac Arrest                                     | 2018-03-02          |     10
+	(10 rows)
+
+
+16. insert into appointment(id,start_date,end_date,doc_id,pat_id)values(01,'2019-02-01','2019-04-28',7,1);
+
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  1 | 2019-02-01 | 2019-04-28 |      7 |      1
+	  2 | 2019-03-02 | 2019-04-01 |      7 |      2
+	  3 | 2019-05-02 | 2019-06-02 |      7 |      3
+	  4 | 2018-06-18 | 2018-07-02 |      7 |      4
+	  5 | 2018-06-18 | 2019-02-02 |      5 |      5
+	  6 | 2017-06-18 | 2019-02-02 |      8 |      6
+	  7 | 2019-06-18 | 2019-07-02 |      8 |      7
+	  8 | 2019-07-19 | 2019-07-28 |      1 |      8
+	  9 | 2019-02-20 | 2019-03-28 |      6 |      9
+	 10 | 2018-12-23 | 2019-04-17 |     10 |     10
+	(10 rows)
+
+17. select id,name from hospital order by name fetch first row only;
+		 id |                     name                     
+		----+----------------------------------------------
+		  1 | AIIMS,All India Institue of Medical Sciences
+		(1 row)
+
+	Or
+	
+	select id,name from hospital order by name desc fetch first 1 row only;
+
+		 id |          name          
+		----+------------------------
+		  6 | Tata Memorial Hospital
+		(1 row)
+
+18. select id,name,beds from hospital order by name offset 2 rows fetch first 3 rows only;
+	 
+	 id |        name        | beds 
+	----+--------------------+------
+	  2 | Fortis Hospital    |  400
+	  3 | Kokilaben Hospital |  750
+	  4 | Lilavati Hospital  |  323
+	(3 rows)
+
+19. select start_date,end_date from appointment where id in(select id from doctor where first_name = 'Dr. Parul');
+
+	 start_date |  end_date  
+	------------+------------
+	 2019-02-01 | 2019-04-28
+	(1 row)
+
+20.  select count(doc_id) as No_of_appointment from appointment where doc_id in(select d.id from doctor as d INNER JOIN 
+	 appointment as a on a.doc_id=d.id where d.id=7);
+
+	 OR
+
+	 select count(doc_id) as no_of_appointment from appointment where doc_id in(select id from doctor where first_name='Dr. Lakshmi');
+
+		 No_of_appointment
+		-----------------
+		        4
+		(1 row)
+
+21. select max(salary)from doctor where salary not in(select max(salary) from doctor);[2nd highest]
+
+	  max   
+	---------
+	 4.2e+06
+	(1 row)
+
+
+22. select * from appointment where doc_id in(select id from doctor where first_name='Dr. Parul');
+
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  8 | 2019-07-19 | 2019-07-28 |      1 |      8
+	(1 row)
+
+23. select id,salary from doctor d1 where n-1 =(select count(distinct salary)from doctor as d2 where d2.salary>d1.salary);
+	[Nth highest salary]
+
+24. select * from appointment where doc_id in(select id from doctor where salary in (select max(salary) from doctor));
+	 
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  9 | 2019-02-20 | 2019-03-28 |      6 |      9
+	(1 row)
+		
+25. select * from appointment where pat_id in(select id from patient where age in(select max(age) from patient));
+	
+	 id | start_date |  end_date  | doc_id | pat_id 
+	----+------------+------------+--------+--------
+	  5 | 2018-06-18 | 2019-02-02 |      5 |      5
+	(1 row)
+
+26. select * from (select * from doctor order by id desc limit 5)doctor order by id asc;
+	
+	id |  first_name  | last_name |                   qualification                    | gender | salary  |       email        |   mobile   | age | hosp_id 
+	----+--------------+-----------+----------------------------------------------------+--------+---------+--------------------+------------+-----+---------
+	  6 | Dr. Meena    | Sharma    | Cardiologist                                       | female | 5.6e+06 | Meena@gmail.com    | 7811390922 |  42 |       7
+	  7 | Dr. Lakshmi  | Sharma    | Pulmonologist                                      | female | 3.6e+06 | lakshmi@gmail.com  | 9867380954 |  39 |       8
+	  8 | Dr. Sushma   | Gaur      | Dentist                                            | female | 1.2e+06 | sushma@gmail.com   | 8867380957 |  29 |       6
+	  9 | Dr. Vanshika | Gaur      | Cardiologist                                       | female | 2.2e+06 | vanshika@gmail.com | 8167382952 |  35 |       5
+	 10 | Dr. Varun    | Thakur    | Cardiologist                                       | male   | 2.4e+06 | varun@gmail.com    | 8167367295 |  35 |       3
+			
+27.  select salary from doctor order by salary desc limit 3;
+	 
+	 salary  
+	---------
+	 5.6e+06
+	 4.2e+06
+	 4.2e+06
+	(3 rows)
+				
+30. select id,first_name from doctor where id in(select doc_id from appointment where doc_id in (select id from doctor where age
+	in(select max(age)from doctor)));
+	 
+	 id | first_name 
+	----+------------
+	  5 | Dr. Lucky
+	(1 row)
+					 select count(doc_id) from appointment where doc_id in(select id from doctor where first_name="Dr. Lakshmi" AND start_date='');
+
+31. select count(doc_id) from appointment where doc_id in(select id from doctor where first_name='Dr. Lakshmi' AND
+	start_date='2019-02-01');
+	
+	 count 
+	-------
+	     1
+	(1 row)
+
+32. select count(doc_id) from appointment where doc_id in(select id from doctor where start_date='2018-06-18');
+	
+	 count 
+	-------
+	     2
+	(1 row)
+
+33. select p.first_name as patient_name,d.first_name as doctor_name from patient as p inner join medical_record as m on
+    p.record_id=m.id inner join doctor as d on m.doc_id=d.id;
+	
+	 patient_name | doctor_name 
+	--------------+-------------
+	 Meghna       | Dr. Lakshmi
+	 Amish        | Dr. Lakshmi
+	 Misthi       | Dr. Lakshmi
+	 Ritu         | Dr. Lucky
+	 Lucky        | Dr. Sushma
+	 Priya        | Dr. Sushma
+	 Tanmay       | Dr. Lakshmi
+	 Rohit        | Dr. Parul
+	 Reena        | Dr. Meena
+	 Aman         | Dr. Varun
+	(10 rows)
+	
+34. select id,first_name from patient where record_id in(select id from medical_record where doc_id in (select id from doctor 
+	where salary in(select max(salary)from doctor)));
+	
+	 id | first_name 
+	----+------------
+	  9 | Reena
+	(1 row)
+	 
+35. select id,first_name from doctor where id in (select doc_id from medical_record where id in(select record_id from patient
+	where age in(select min(age)from patient)));
+	
+	 id | first_name  
+	----+-------------
+	  7 | Dr. Lakshmi
+	(1 row)
+		 

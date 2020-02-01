@@ -1,0 +1,413 @@
+LINUX COMMANDS
+--------------
+1. BASIC COMMANDS
+
+	1. cal- shows Calendar
+	2. date- print and set the system date and time.
+	3. tty(teletype or terminal)- Displays information related to terminal.
+		- --s,--silent,--quiet - Prints nothing ,returns only an exit status.
+		- --help -help message and exit.
+		- --version - version information and exit.
+	4. man - shows online unix manual.
+	5. man pwd - manual for pwd command.
+	6. info or info mkdir - Gives more detailed information of the command.
+	7. history- shows all the commands used on terminal.
+	8. clear- clears all the commands on terminal.	
+	9. du - Disk usage.
+	10.ps(process status) -  Is used to list the currently running processes and their PIDs along with some other information depends on different options.
+		PID – the unique process ID
+		TTY – terminal type that the user is logged into
+		TIME – amount of CPU in minutes and seconds that the process has been running
+		CMD – name of the command that launched the process.
+
+		If the time is 00:00:00 it means total accumulated CPU utilization time and if its 0 then no cpu time is given by the kernel.
+
+		ps -A - View all running processes.
+
+--------------
+2. CREATING A FILE
+
+	1. cat > filename - Creating a new file
+	2. cat filename - display file contents
+	3. ctrl+d -return to command prompt
+	4. cat file1 file2 > Main_file - Combining 2 files and storing content in Main_file
+	5. echo 'text here'>>filename - when we want to append content in the file.
+	   echo 'thankyou' > filename - Delets all the content of the file abd add this content.
+	6. touch filename - Creates a file with no content in it. [touch fileN1 fileN2 fileN2]
+		-touch -a filename- To change last access time of a file -a command is used.
+		-touch -c filename- Do not create any file.
+		-stat filename- Used to view System Status.
+		-touch -c -d '8 Jan' Main_File- Used to update access and Modification time.
+		-touch -m filename - Used to update Modification Time only.
+		-touch -t 201612301230 filename- Used to modify and create a file access and modification 								   time.	
+--------------------------
+
+3.DELETE ANY FILE FROM DIRECTORY
+
+	1. rm filename
+	2. rm [-f | --force] -Delete without any prompt.
+	3. rm -i- Prompts message before deleting any file. 
+	4. rm -I- Prompts message before deleting more than 3 file.
+	5. --itnteractive=once , =always, =never
+	6. rm [-d|--dir] dirname - removes the directory with prompt.
+	7. rm [-r|-R|--recursive] - removes the directory and content recursively.
+	8. --no-preserve-root- do not treat '/' in any special way.
+	9. --preserve-root- do not delete '/' directory.
+	10. rm [-v | --verbose] filename- Explain all the times what is being done.
+
+---------------------------
+4. LIST FILES
+
+	1. ls - List all file and Directories on linux
+	2. ls -R - list all sub-directories on linux [We can not write ls - r as it is Case sensitive]
+	3. ls -al - Give detailed information of files.Such as size,permission,owner,date etc
+				(including hidden files).
+	4. ls -a - Diplays the hidden files that starts from (.)[ls la].
+	5. ls -l - list all files with file permission(excluding hidden files).
+	6. more -4 Main_File
+
+----------------------------
+5. CHANGING THE DIRECTORY
+
+	1. pwd - Used to know in which directory we are.
+	2. cd DirectoryName - Change the directory
+	3. cd ~ - Returns back to main directory
+	4. cd /home/beryl/Extra_File - Directly move to directory to another one.
+	5. cd .. - Moves one directory up.
+	
+------------------------------
+6. MAKING,REMOVING AND RENAMING THE DIRECTORY
+
+	1. mkdir dirname -Makes a new directory.
+	2. rmdir dirname -Removes the directoy.(Equivalent to rm -d dirname).
+	3. mv dirname newdirname- rename dirname to newdirname.
+
+--------------------------------
+7. IF WE SEE SUCH A LONG LIST TAHT THEY SCROLL OFF THE TERMINAL SCREEN THEN THESE COMMAND ARE USED.
+
+	1. ls -al|more - Displays one screen of a file at a time.
+	2. less data1 - Dumps the content of a file to our screen with pause at each line ,so no
+	                content will get miss while scrolling.
+	3. whereis data1- Shows the loaction of file.
+
+---------------------------------
+8. MOVING AND RENAMING FILES
+
+	1. mv item2 home/beryl/work_Dir-move item1 to home/ / directory. It will not work cz it will ask for permission so we use sudo command like:
+	2. sudo item2 home/beryl/work_Dir- This we ask you password and grants you permission.
+	3. mv item2 item1- Rename file item2 to item1.
+
+---------------------------------
+9. FORMATTING COMMAND FOR PRINTING ON THE TERMINAL('Pr')
+
+	1. -x = pr -x filename-Divides data into x columns.(pr -3 doc).
+	2. -h = pr -h "ImportantInfo" doc- Assigns header value to the top.
+	3. -n = pr -n filename - Denote all lines with number.
+	4. -t = pr -t filename - Does not give header and bottom margins.
+	5. -d = pr -d filename - Double spaces the output file.
+	6. lp filename - After fomatting is done we print the file.For Multiple copies of file we specify it like:
+		lp n10 textfile - Print 10 copies of a file.
+		lpr n10 textfile - same
+	7. lp PHPoffjet filename - In case multiple printers you can specify the name of the printer.
+	
+-----------------------------------
+10. INSTALLING MAIL PACKAGE AND SENDING MAIL
+	
+	1. sudo apt-get install packagename- Installs the package 'mailutils'.
+	2. mail -s 'subject' -c 'cc-address' -b 'bcc-address' 'to-address'.
+		Example:- 
+			mail -s "First mail via linux" abc@yahoo.com
+				Hi,
+				....
+				...
+
+-------------------------------------
+11. OWNERSHIP TO THE LINUX FILES
+	
+	1. User(u) - Owner of the file.
+	2. Group(g) - Group have multiple users and all have same file permissions.
+	3. Other(o) - other world people.
+	4. All(a)
+
+--------------------------------------	
+12. PERMISSIONS OF THE FILES
+	1. Read(r) - open and read files only.
+	2. Write(w) - Edit content of the file i.e add,remove.rename etc.
+	3. Execute(x) - Execute the file having .exe extension.Without execute you cannot execute the file.
+	4. No Permission(-)
+
+	Example--  - rw- rw- r--
+	user can read and write, group can read and write and world can only read.
+
+-------------------------------------
+13. CHANING FILE/DIRECTORY PERMISSION WITH CHMOD COMMAND
+	1. chmod(change mode) - set permissions 
+	2. Absolute mode
+		0	No Permission	        ---
+		1	Execute	                --x
+		2	Write	                -w-
+		3	Execute + Write	        -wx
+		4	Read	                r--
+		5	Read + Execute	        r-x
+		6	Read +Write	            rw-
+		7	Read + Write +Execute	rwx
+
+		chmod 764 filename
+	
+	3. Symbolic mode
+		1. +	Adds a permission to a file or directory
+		2. -	Removes the permission
+		3. =	Sets the permission and overrides the permissions set earlier.
+
+			chmod o=rwx filename
+			chmod g+x filename
+			chmod u-r filename
+	
+	4. File Mode
+		1. -  Regular mode
+		2. b  Block Special mode
+		3. c  Character special mode
+		4. d  Directory 
+		5. l  Symbolic Link
+		6. p  FIFO
+		7. s  Socket
+		8. w  Whiteout
+
+			drwxr-xr-x 2 gunjan gunjan  4096 jan 8 10:30 dirname			
+
+			drwxr-xr-x - Directory File mode
+			2          - Number of Links
+			gunjan     - The owner name
+			gunjan     - The group name
+			4096       - Number of Bytes in a file
+			Jan 7 10:30- Date and time when file is last modified
+			dirname    - Name of the directory
+
+-------------------------------------------------			
+14. SSH(SECURE SHELL) COMMANDS
+	SSH (Secure Shell) is a network protocol that enables secure remote connections between two systems. System admins use SSH utilities to manage machines, copy, or move files between systems. Because SSH transmits data over encrypted channels, security is at a high level.
+
+		** How to find public IPaddress
+			The public IP address is what websites and services see when you access them from your computer. If you want to try to connect to your computer via a remote connection that isn't on the same network, you'll need the public IP address.
+				$ curl ifconfig.me
+		** How to find private IPaddress
+			If we are trying to find the IP address of our computer within our Wi-Fi network we 
+			will need to know the IP address.		
+				$ ifconfig
+			Then we will get the Private IPaddress	
+				172.17.0.1
+			Now we can copy our any file into a directory using scp command
+				scp new.txt gunjan@172.17.0.1:~/work_Dir	
+
+		**Sending copy of a file to another IPaddress within same network connection
+				scp new.txt beryl@192.168.1.28:~/training/	
+		
+		1.How to access Remote server?
+			We can connect to remote machine usung IPAddress or name
+			IPaddress   -   ssh 192.168.56.101
+			Name        -   ssh test.server.com
+
+		2.Specify username for SSh Connection
+			SSH uses current user when accessing remote server
+			Syntax - ssh username@hostname_or_ip
+			Ex     - ssh testuser@10.0.0.35
+
+		3.Use different portnumber for ssh connection	
+			By default port number is 22. If the portnumber setting in ssh config is changed then it give an error so we use -p commannd:-
+						EX - ssh test.server.com -p 3322 
+
+		4.Generate ssh keys using ssh keygen
+			To improve the security of SSH connections, generate a key pair with the keygen utility. The pair consists of a public and private key. The public key can be shared, while the private key needs to stay secure.
+
+			SSH key pairs are used to authenticate clients to servers automatically. When you create an SSH key pair, there is no longer a need to enter a password to access a server.				
+			Use these commands on host machine terminal to generate key pairs:-
+			 	ssh -keygen -t rsa
+
+		5.Copy public ssh key
+			To use key pair for ssh authetication,you need to copy the public key to server. The key is the file id_rsa.pub in previously defined with ssh keygen utility.
+
+			To copy key to the server, run the command from the client:-
+				ssh-copy-id hostname_or_ip
+
+			Enter the password to authenticate when asked. After this, you will no longer need to use the password to connect to the same server.	
+
+-------------------------------------
+15.SCP(SECURE COPY) COMMANDS
+	SCP (Secure Copy) is command line tool in Linux and Unix like systems which is used to transfer files and directories across the systems securely over the network. When we use scp command to copy files and directories from our local system to remote system then in the backend it makes ssh connection to remote system. In other words, we can say scp uses the same SSH security mechanism in the backend, it needs either password or keys for authentication.	
+
+		1. scp < options > < files or directories > user@target_host:/< folder >
+		2. scp < options > user@target_host:/files < folder_local_system >
+
+		First command tells how files or directoris are copied from local system to target host under a specific folder.
+		Second command tells how files from target host is copied into local system.
+
+		Various options that are used are:-
+		-C - Enable Compression
+		-i - Idetify file or private key
+		-l - limit the bandwidth while copying
+		-P - ssh port number of target host
+		-p - preserves permissions,modes and access time of files while coping
+		-q - suppress warning message of ssh
+		-r - copy files and directories recursively
+		-v - verbose output
+
+		1. Copy a file from local system to remote system using scp
+			we want to copy jdk rpm package from our local Linux system to remote system (172.20.10.8) using scp command
+
+			scp jdk-linux-x64_bin.rpm root@172.20.10.8:/opt
+			root@172.20.10.8's password:
+			jdk-linux-x64_bin.rpm                          100%   10MB  27.1MB/s   00:00
+
+			This command will copy jdk rpm package file to remote system under /opt folder.
+
+		2. Copy a file from remote system to local system using scp
+			we want to copy a file from remote system to our local system under the /tmp folder
+
+			scp root@172.20.10.8:/root/name_of_the_file.odt /tmp
+			
+			ls -l /tmp/Technical-Doc-RHS.odt
+			-rwx------. 1 pkumar pkumar 1135521 Oct 19 11:12 /tmp/Technical-Doc-RHS.odt
+
+		3. Verbose output while transferring files using scp(-v)
+			In scp command, we can enable the verbose output using -v option, using verbose output we can easily find what exactly is happening in the background. This becomes very useful in debugging connection, authentication and configuration problems.
+
+			scp -v jdk_linux_-x64_bin.rmp root@172.20.10.8:/opt
+
+			Executing: program /usr/bin/ssh host 172.20.10.8, user root, command scp -v -t /opt
+			OpenSSH_7.8p1, OpenSSL 1.1.1 FIPS  11 Sep 2018
+			debug1: Reading configuration data /etc/ssh/ssh_config
+			debug1: Reading configuration data /etc/ssh/ssh_config.d/05-redhat.conf
+			debug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config
+			debug1: /etc/ssh/ssh_config.d/05-redhat.conf line 8: Applying options for *
+			debug1: Connecting to 172.20.10.8 [172.20.10.8] port 22.
+			debug1: Connection established.
+			…………
+			debug1: Next authentication method: password
+			root@172.20.10.8's password:
+
+		4. Transfer multiple files to remote host
+
+			scp index.html install.txt keyvalue.txt root@172.20.10.8:/opt
+
+			root@172.20.10.8's password:
+			install.txt                                      100%    0     0.0KB/s   00:00
+			index.html                                       100%   85KB   7.2MB/s   00:00
+			jdk-linux-x64_bin.rpm                            100%   10MB  25.3MB/s   00:00	
+
+		5. Transfer files across two remote hosts
+			Using scp command we can copy files and directories between two remote hosts, let’s suppose we have a local Linux system which can connect to two remote Linux systems, so from my local linux system I can use scp command to copy files across these two systems.
+			
+			Syntax: scp user@remote_host1:/< file_to_transfer> user@remote_host2:/< folder >
+			Ex: scp gunjan@172.20.10.9:/index.zip root@172.20.10.8:/tmp
+				ssh root@172.20.10.8 "ls -l /tmp/index.zip"
+				-rwx------. 1 root root 747438080 Oct 19 12:02 /tmp/backup-Oct.zip
+
+		6. Copy files and directories recursively(-r)
+			Use -r option in scp command to recursively copy the entire directory from one system to another.
+
+			scp -r Downloads root@172.20.10.8:/opt 		
+
+			To check whether folder is copied to remote system or not,
+
+			ssh root@172.20.10.8 "ls -ld /opt/Downloads"
+			drwxr-xr-x. 2 root root 75 Oct 19 12:10 /opt/Downloads
+
+		7. Incresing transfer speed by enabling compression (-C)
+			In scp command, we can increase the transfer speed by enabling the compression using -C option, it will automatically enable compression at source and decompression at destination host.
+
+			scp -r -C Downloads root@172.20.10.8:/opt 	
+
+		8. Limit bandwidth while copying(-l)
+			Use ‘-l’ option in scp command to put limit on bandwidth usage while copying. Bandwidth is specified in Kbit/s.
+
+			scp -l 500 index.html root@172.20.10.8:/opt
+    
+		9. Specify different ssh port while scp(-P)
+		    In case when ssh port is changed , so while using scp command we can specify port number using -P command.
+
+			scp -P 3322 index.html root@172.20.10.8:/tmp
+
+		10. Preserves permissions,modes,access time of files while copying(-p)
+			 Use “-p” option in scp command to preserve permissions, access time and modes while copying from source to destination.
+
+			 scp -p userfile.txt root@172.20.10.8:/opt
+
+		11. Transferring files in quiet mode(-q) in scp
+			 Use ‘-q’ option in scp command to suppress transfer progress, warning and diagnostic messages of ssh.
+
+			 $ scp -q -r downloads root@172.20.10.8:/var/temp
+
+		12. Use identify key while tranferring(-i)
+			In most of the linux environments,keys-based authetication is preferred.In scp we use '-i' option to specify private key file and identify file.
+
+			 $ Scp -i my_key.pem downloads root@172.20.10.8:/temp
+
+		13. Use different 'ssh-config' file in scp(-F)
+			In many cases we use differnet network to connect to linux systems,may be some networks are behind proxy servers,so in that case we must have different ssh_config file.
+
+			$ scp -F /home/gunjan/new_ssh_config -r downloads root@172.0.0.8:/root
+
+		14. Use different cipher in scp command(-c)
+			 By default, scp uses ‘AES-128’ cipher to encrypt the files. If you want to use another cipher in scp command then use ‘-c’ option followed by cipher name.
+             Let’s suppose we want to use ‘3des-cbc’ cipher in scp command while transferring the files	 	  	  
+			  	 	
+			  $ scp -c 3des-cbc -r Downloads root@172.20.10.8:/root	 	
+
+-------------------------------------			  
+16. COPY FILE AND DIRECTORIES COMMANDS
+
+		1. cp project/mail.txt projectbackup/new_mail.txt - Copies mail.txt file contents to new_mail.txt file.
+		2. cp project/mail.txt projectbackup/ - copies mail.txt file to directory projectbackup with same name.
+		3. cp index1.txt index2.txt index.txt projectbackup/ - copies multiple file 
+		4. cp *.txt projectbackup/ - copies all files with .txt extension
+		5. cp bin /home/beryl/projectbackup/ - copies bin directories with its files and sub
+		   directories in projectbackup directory with same name.
+		6. cp -RT bin /home/beryl/projectbackup/ - If destination dir. already exits then it copies only subdirectories and files without coping target directory.
+		7. cp --backup readme.txt /home/beryl/projectbackup/ - This will backup all the data of readme.txt file in projectbackup directory with readme.txt~ filename.
+		8. cp -i index.html /home/beryl/projectbackup/ - Prompts before overwriting 
+		9. cp --attributes-only --preserve file2 file1 - preserves attributes like date month time etc.
+		10. cp -n readme.txt cp ~/projectbackup/ - Forcefully stops overwriting.
+
+----------------------------------------		
+17. GREP COMMANDS (GLOBALLY SEARCH FOR REGULAR EXPRESSION AND PATTERNS)
+	The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern. 
+		
+		1.Case insensitive search- $ grep -i "UNix" New.txt
+		2.Displaying the count of number of matches- $ grep -c "unix" new.txt
+		3.Display the file names that matches the pattern- 
+			$grep -l "unix" *
+		4.Checking for the whole words in a file - By default, grep matches the given string/pattern even if it found as a substring in a file.
+		    $ grep -w "unix" new.txt
+		5.Displaying only the matched pattern - $ grep -o "unix" new.txt
+		6.Show line number while displaying the output using grep -n -
+		    $ grep -n "unix" new.txt
+		7.Inverting the pattern match : we can display the lines that are not matched     
+			$ grep -v "unix" new.txt
+		8. Matching the lines that start with a string - $ grep "^unix" new.txt	
+		9. Matching the lines that end with a string - $ grep "os$" new.txt
+
+-------------------------------------------
+18. VI EDITOR
+		-The vi editor is the most popular and commonly used Linux text editor
+		-It is usually available in all Linux Distributions.
+		-It works in two modes, Command and Insert
+		-Command mode takes the user commands, and the Insert mode is for editing text
+
+		-vi simplefile
+		-i - insert data
+		-:wq - to save and exit
+		-cat simplefile - shows the content
+		-vi -R simplefile - opens only in read only mode
+		-dd - delete line.
+		-u - undo last change
+		-dw - delete word
+		-cw - change word
+		-cw - Change word
+		-x - Delete character at the cursor
+		-r - Replace character
+		-R - Overwrite characters from cursor onward
+		-s - Substitute one character under cursor continue to insert
+		-S - Substitute entire line and begin to insert at the beginning of the line
+		-~ - Change case of individual character
+
+-------------------------------------------		

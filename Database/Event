@@ -489,7 +489,7 @@ events=# select round(salary/12) as monthly_salary from users;
  monthly_salary 
 ----------------
            5833
-           6667
+            6667
            3750
            5000
            4167

@@ -509,4 +509,48 @@ events=# select f_name from users where f_name ilike '%a%';
  vikas
 (4 rows)
 
+21. Find that salary of employee are divisible by 5000.
+
+events=# 
+
+create function mod_funtio() returns integer as $$
+ declare
+  i int; m int :=0; count int :=0; 
+ begin
+   Raise notice 'checking remainder..';
+    
+    for i in select salary from users order by id loop
+      m = mod(i,5000);
+        if m = 0 then
+          count=count+1;
+          raise notice '  Divisible by 5000';
+        else 
+          raise notice '  Not divisible by 5000'; 
+        end if;
+    end loop;
+
+  raise notice 'Done..'; 
+return count;
+end;
+$$ language plpgsql;
+
+CREATE FUNCTION
+
+
+events=# select mod_funtio();
+NOTICE:  checking remainder..
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Divisible by 5000
+NOTICE:    Not divisible by 5000
+NOTICE:  Done..
+ mod_funtio 
+------------
+          7
+(1 row)
+
 

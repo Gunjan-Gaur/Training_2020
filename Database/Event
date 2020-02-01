@@ -553,4 +553,65 @@ NOTICE:  Done..
           7
 (1 row)
 
+OR
+
+create function Mod_f() returns integer as $$
+declare
+ i int; m int :=0; count int :=0; 
+begin
+ Raise notice 'checking remainder..';
+
+for i in select salary from users order by id loop
+ m = mod(i,5000);
+ if m = 0 then
+   count=count+1;
+   raise notice '  Divisible by 5000,Remainder is %',m;
+ else 
+   raise notice '  Not divisible by 5000,Remainder is %',m; 
+end if;
+end loop;
+
+raise notice 'Done..'; 
+return count;
+end;
+$$ language plpgsql;
+CREATE FUNCTION
+
+
+events=# select Mod_f();
+NOTICE:  checking remainder..
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Divisible by 5000,Remainder is 0
+NOTICE:    Not divisible by 5000,Remainder is 2000
+NOTICE:  Done..
+ mod_f 
+-------
+     7
+(1 row)
+
+
+events=# select * from users;
+ id | f_name | l_name  | r_id | address |   phone    | gender | salary 
+----+--------+---------+------+---------+------------+--------+--------
+  1 | kush   | singh   |    1 | Delhi   | 9990567890 | m      |  70000
+  2 | vir    | singh   |    2 | goa     | 7880567890 | m      |  80000
+  3 | nitin  | malik   |    3 | pune    | 7680567889 | m      |  45000
+  4 | geeta  | rao     |    2 | Delhi   | 7680567343 | f      |  60000
+  5 | aish   | gaur    |    3 | Jammu   | 9880565423 | f      |  50000
+  6 | gun    | gaur    |    1 | Gujarat | 9887895423 | f      | 100000
+  7 | Varun  | soni    |    3 | Goa     | 9567895499 | m      |  40000
+  8 | vikas  | Kaushik |    3 | Delhi   | 9567895489 | m      |  42000
+(8 rows)
+
+
+events=# select mod(42000,5000) as rem;
+ rem  
+------
+ 2000
+(1 row)
 

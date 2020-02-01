@@ -80,5 +80,14 @@ Install Git
  	$ git config --global user.email "gunjangaur04@gmail.com"
 -------------------------------------------
  * git log - Shows all history of commits and q to return.	
+   
+   git log -n 4 - shows last 4 commits
 
+--------------------------------------------
+* To delete commit Remotely:
+   
+git rebase -i  3e1c4037901d108960c8d05627be6a1e67b98143
+
+git push -f origin master
+	             
 	                      

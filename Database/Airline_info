@@ -215,6 +215,8 @@ Airline Flight Information
 	 Boeing 300 |  1500 |   6 |  70000 |   1
 	(9 rows)
 
+	
+
 	With View:-
 	select ename from employees where eid in(select eid from detail where range>1000 and aname like 'Boeing%');
 

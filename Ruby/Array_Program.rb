@@ -162,3 +162,15 @@ print check_string("javascript"),"\n"
 2.7.0 :019 > n.group_by(&:itself).transform_values(&:sum).values
  => [1, 2, 3, 4, 10] 
 
+#Chunk Method
+2.7.0 :008 > m = [5,1,2,3,4,5,5]
+
+2.7.0 :012 > m.chunk(&:itself).to_a
+ => [[5, [5]], [1, [1]], [2, [2]], [3, [3]], [4, [4]], [5, [5, 5]]] 
+
+2.7.0 :013 > m.chunk(&:itself).map(&:last)
+ => [[5], [1], [2], [3], [4], [5, 5]] 
+
+2.7.0 :014 > m.chunk(&:itself).map(&:last).map(&:sum)
+ => [5, 1, 2, 3, 4, 10] 
+

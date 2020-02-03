@@ -149,3 +149,16 @@ def check_string(str)
 end
 print check_string("javascript"),"\n"
 
+#Group_by Method
+2.7.0 :015 > n 
+ => [1, 2, 3, 4, 5, 5] 
+
+2.7.0 :017 > n.group_by(&:itself)
+ => {1=>[1], 2=>[2], 3=>[3], 4=>[4], 5=>[5, 5]} 
+
+2.7.0 :018 > n.group_by(&:itself).transform_values(&:sum)
+ => {1=>1, 2=>2, 3=>3, 4=>4, 5=>10} 
+
+2.7.0 :019 > n.group_by(&:itself).transform_values(&:sum).values
+ => [1, 2, 3, 4, 10] 
+

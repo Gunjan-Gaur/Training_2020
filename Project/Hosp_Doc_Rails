@@ -24,6 +24,9 @@ RAILS REMOVE COLUMN
 RAILS CHANGE DATA TYPE
 -------------------------------------------
 *	rails g migration change_data_type_for_problem
-	rails db-migrate
+	rails db:migrate
 
-
+RAILS REMOVE COLUMN FROM DATABASE
+--------------------------------------------
+*	rails g migration remove_division_from_patients delete:string
+	rails db:migrate

@@ -13,8 +13,6 @@ CREATE TABLE
 
 ADD COLUMN
 ------------------------------------------
-	add_column :patients, :Extra, :string
-
 *	rails g migration add_Gender_to_patients Gender:string
 	rake db:migrate
 
@@ -27,7 +25,7 @@ CHANGE DATA TYPE
 
 REMOVE COLUMN FROM DATABASE
 --------------------------------------------
-*	rails g migration remove_division_from_patients delete:string
+*	rails g migration remove_delete_from_patients delete:string
 	rake db:migrate
 
 DROP TABLE IN RAILS

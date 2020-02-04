@@ -2,37 +2,44 @@ RAILS NEW PROJECT
 ----------------------------------------
 rails new Hosital_Management -d postgres
 
-RAILS CREATE DATABASE(config ->database.yml)
+CREATE DATABASE(config ->database.yml)
 -----------------------------------------
 rake db:create
 
-RAILS CREATE TABLE
+CREATE TABLE
 ------------------------------------------
 *	rails generate model patient
 	rake db:migrate
 
-RAILS ADD COLUMN
+ADD COLUMN
 ------------------------------------------
+	add_column :patients, :Extra, :string
+
 *	rails g migration add_Gender_to_patients Gender:string
 	rake db:migrate
 
-RAILS REMOVE COLUMN
+CHANGE DATA TYPE
 -------------------------------------------
-*	rails g migration remove_Gender_from_patients Gender:string
-	rake db:migrate
+	change_column :medical_records, :Problem, :string
 
-RAILS CHANGE DATA TYPE
--------------------------------------------
 *	rails g migration change_data_type_for_problem
 	rake db:migrate
 
-RAILS REMOVE COLUMN FROM DATABASE
+REMOVE COLUMN FROM DATABASE
 --------------------------------------------
 *	rails g migration remove_division_from_patients delete:string
 	rake db:migrate
 
 DROP TABLE IN RAILS
 ---------------------------------------------
+	drop_table :doctors
+
 *	rails g migration DropDoctors
 	rake db:migrate
-	
+
+RENAME COLUMN 
+----------------------------------------------
+	rename_column :patients, :Extra, :New_Name
+
+*	rails g migration rename_column_extra_from_patient
+	rails db:migrate	

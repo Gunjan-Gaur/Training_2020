@@ -42,9 +42,16 @@ RENAME COLUMN
 *	rails g migration rename_column_extra_from_patient
 	rake db:migrate	
 
-FOREIGN KEY
+ADD FOREIGN KEY
 ----------------------------------------------
 	add_reference :patients, :hospital, null: false, foreign_key: true
-	
+
 *	rails g migration add_hospital_to_patient hospital:references
+	rake db:migrate	
+
+REMOVE FOREIGN KEY
+----------------------------------------------
+	remove_foreign_key :hospitals, :patients
+
+*	rails g migration reove_foreign_key_from_hospitals 
 	rake db:migrate	

@@ -20,4 +20,10 @@ RAILS REMOVE COLUMN
 -------------------------------------------
 *	rails g migration remove_Gender_from_patients Gender:string
 	rake db:migrate
-	
+
+RAILS CHANGE DATA TYPE
+-------------------------------------------
+*	rails g migration change_data_type_for_problem
+	rails db-migrate
+
+

@@ -1,0 +1,23 @@
+RAILS NEW PROJECT
+----------------------------------------
+rails new Hosital_Management -d postgres
+
+RAILS CREATE DATABASE(config ->database.yml)
+-----------------------------------------
+rake db:create
+
+RAILS CREATE TABLE
+------------------------------------------
+*	rails generate model patient
+	rake db:migrate
+
+RAILS ADD COLUMN
+------------------------------------------
+*	rails g migration add_Gender_to_patients Gender:string
+	rake db:migrate
+
+RAILS REMOVE COLUMN
+-------------------------------------------
+*	rails g migration remove_Gender_from_patients Gender:string
+	rake db:migrate
+	

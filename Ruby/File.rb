@@ -31,3 +31,21 @@ syswrite
 8
  => nil 
 
+2.7.0 :008 > sym=File.new("Main_File","r+")
+2.7.0 :009 > if sym
+2.7.0 :010 >   sym.syswrite("Gunjan_Gaur")
+2.7.0 :011 >   sym.each_byte{|ch| putc ch;}
+2.7.0 :012 > else
+2.7.0 :013 >   puts "Unable to open file"
+2.7.0 :014 > end  
+f new semester
+hey another line
+
+2.7.0 :015 > 
+beryl@beryl-ThinkPad-L412:~$ cat Main_File 
+Gunjan_Gaurf new semester
+hey another line
+
+------------------------------------------------
+
+

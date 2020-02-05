@@ -44,10 +44,14 @@ RENAME COLUMN
 
 ADD FOREIGN KEY
 ----------------------------------------------
+	You can simply write referencing_table_name:references to terminal-
 	add_reference :patients, :hospital, null: false, foreign_key: true
 
 *	rails g migration add_hospital_to_patient hospital:references
 	rake db:migrate	
+
+	When we want to add foreign key at the time table creation-
+	t.references :referencing_table_name
 
 REMOVE FOREIGN KEY
 ----------------------------------------------

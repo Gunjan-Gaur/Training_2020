@@ -68,4 +68,57 @@ hey another line
 ABCDEFABCDEFABCDEF
  => nil 
 
---------------------------------------------------
+---------------------------------------------------
+Rename and Delete File
+
+2.7.0 :001 > File.rename("item4","Item")
+ => 0 
+
+2.7.0 :001 > File.delete("Item")
+ => 1 
+
+---------------------------------------------------
+File.open("Main_File") if File::exists?("Main_File")
+ => #<File:Main_File> 
+
+2.7.0 :005 > File.file?("Main_File")
+ => true 
+
+2.7.0 :006 > File::directory?("Main_File")
+ => false 
+
+2.7.0 :001 > File::directory?("Desktop/Training")
+ => true 
+
+2.7.0 :002 > File.readable?("Main_File")
+ => true 
+
+2.7.0 :003 > File.writable?("Main_File")
+ => true 
+
+2.7.0 :004 > File.executable?("Main_File")
+ => false 
+
+2.7.0 :005 > File.zero?("Main_File")
+ => false 
+
+2.7.0 :006 > File.size?("Main_File")
+ => 61 
+
+2.7.0 :008 > File::ctime("Main_File")
+ => 2020-02-05 10:56:53.305506865 +0530 
+ 
+2.7.0 :009 > File::mtime("Main_File")
+ => 2020-02-05 10:56:53.305506865 +0530 
+
+2.7.0 :010 > File::atime("Main_File")
+ => 2020-02-05 10:57:08.61724608 +0530 
+
+---------------------------------------------------
+Direcories In Ruby
+
+ Dir.mkdir("zzzzzzzz")
+ => 0 
+
+ Dir.delete("zzzzzzzz")
+ => 0 

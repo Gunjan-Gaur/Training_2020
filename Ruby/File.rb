@@ -1,6 +1,7 @@
 File
 -------------------------------------------
 sysread
+
 2.7.0 :001 > aFile = File.new("new.txt","r")
 2.7.0 :002 > if aFile
 2.7.0 :003 >   content = aFile.sysread(20)
@@ -13,6 +14,7 @@ unix jijjijiij.UNIX
 
 -------------------------------------------
 syswrite
+
 2.7.0 :009 > aFile = File.new("Palindrome.rb","r+")
 2.7.0 :010 > if aFile
 2.7.0 :011 >   content = aFile.syswrite(20)
@@ -46,6 +48,24 @@ beryl@beryl-ThinkPad-L412:~$ cat Main_File
 Gunjan_Gaurf new semester
 hey another line
 
-------------------------------------------------
+-------------------------------------------------
+IO Readlines
 
+2.7.0 :001 > arr = IO.readlines("Main_File")
+2.7.0 :002 > puts arr[0]
+Gunjan_Gaurf new semester
+ => nil 
 
+2.7.0 :003 > puts arr[1]
+hey another line
+ => nil 
+
+--------------------------------------------------
+IO.foreach
+2.7.0 :004 > IO.foreach("Main_File"){|block| puts block}
+Gunjan_Gaurf new semester
+hey another line
+ABCDEFABCDEFABCDEF
+ => nil 
+
+--------------------------------------------------

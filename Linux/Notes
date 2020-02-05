@@ -411,3 +411,31 @@ LINUX COMMANDS
 		-~ - Change case of individual character
 
 -------------------------------------------		
+19. Nano Editor
+		-ctrl + x = Exit 
+		
+		-ctrl + g = help 
+		
+		-ctrl + o = Write the current file to disk.(save file)
+		
+		-ctrl + r = insert another file into current file.
+		
+		-ctrl + w = search forward for a string.
+		
+		-ctrl + \ = replace string
+		
+		-ctrl + k = cut the current line and strore into buffer.
+		
+		-ctrl + u = uncut the line from buffer.
+		
+		-ctrl + j = justify the current paragraph.
+
+		-ctrl + space = move forward.
+		
+		-alt + \ = first line of the file
+		
+		-alt + / = last line of the file.
+		
+		-alt + a = mark text.
+		
+		-alt + 6 = copy the current text.

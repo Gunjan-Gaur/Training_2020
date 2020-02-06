@@ -58,4 +58,29 @@ nil
 2.7.0 :035 > sy.match?("[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]+")
  => false 
 
- 	
+https://www.example.com
+
+http://www.example.com
+
+http://blog.example.com
+
+http://www.example.com/product
+
+http://www.example.com/products?id=1&page=2
+
+http://www.example.com&up
+
+http://255.255.255.255
+
+www.example.com
+
+example.com
+
+255.255.255.255
+
+http://invalid.com/perl.cgi?key= | http://web-site.com/cgi-bin/perl.cgi?key1=value1&key2
+
+http://www.site.com:8008 	
+
+
+Common Regexp:-(https?://|\w+)+(\w+.{1}|:\w+|&\w+|/|[0-9])+

@@ -1,0 +1,2 @@
+class ExtraTable < ApplicationRecord
+end

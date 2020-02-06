@@ -65,3 +65,10 @@ ROLLBACK
 * 	rake db:rollback STEP=2
 
 *   rake db:migrate:up VERSION=-------------(reversible method)
+
+RENAME TABLE
+----------------------------------------
+*	rename_table:extra_tables, :extras
+	
+	rails g migration change_table_extra_table_to_extra
+	rake db:migrate

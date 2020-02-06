@@ -59,3 +59,9 @@ REMOVE FOREIGN KEY
 
 *	rails g migration reove_foreign_key_from_hospitals 
 	rake db:migrate	
+
+ROLLBACK
+---------------------------------------
+* 	rake db:rollback STEP=2
+
+*   rake db:migrate:up VERSION=-------------(reversible method)

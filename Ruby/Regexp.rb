@@ -36,6 +36,26 @@ nil
  => [#<MatchData "20">, 
 
 2.7.0 :024 > str = "123-234-5678"
+
 2.7.0 :026 > str.match?(/\d\d\d.\d\d\d.\d\d\d\d/)
  => true 
+
+2.7.0 :027 > str.match?(/\d{3}.\d{3}.\d{4}/)
+ => true 
+
+2.7.0 :028 > spy = "gunjangaur04@gmail.com"
+2.7.0 :029 > spy.match?("[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]+")
+ => true 
+
+2.7.0 :030 > sy = "gunjan.gaur04@berylsystems.com"
+2.7.0 :031 > sy.match?("[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]+")
+ => true 
+
+2.7.0 :032 > sy = "gunjan_gaur.gaur_@gmail.com"
+2.7.0 :033 > sy.match?("[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]+")
+ => true 
+2.7.0 :034 > sy = "gunjan_gaur.gaur"
+2.7.0 :035 > sy.match?("[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]+")
+ => false 
+
  	

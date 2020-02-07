@@ -104,3 +104,101 @@ INSERTING DATA INTO TABLES
         :updated_at => Fri, 07 Feb 2020 11:20:26 UTC +00:00
     }
 ]
+
+*	ap Role.last
+	 	  :id => 3,
+          :name => "Employee",
+    :created_at => Fri, 07 Feb 2020 11:20:26 UTC +00:00,
+    :updated_at => Fri, 07 Feb 2020 11:20:26 UTC +00:00
+
+*	ap Role.first
+		  :id => 1,
+          :name => "Manager",
+    :created_at => Fri, 07 Feb 2020 10:54:27 UTC +00:00,
+    :updated_at => Fri, 07 Feb 2020 10:54:27 UTC +00:00
+
+*	 User.create(first_name:"Mayank",last_name:"singhla",email:"mayank@gmail.com",age:28,gender:"Male",salar
+		y:80000,address:"Gujarat",phone:2884567678,roles_id:1)
+
+		User.all
+
+		[
+    [0] #<User:0x00005583b4b8cdc8> {
+                :id => 1,
+        :first_name => "Ritu",
+         :last_name => "Aggarwal",
+             :email => "ritu09@gmail.com",
+               :age => 32,
+            :gender => "Female",
+            :salary => 100000.0,
+          :roles_id => 1,
+        :created_at => Fri, 07 Feb 2020 12:09:22 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:09:22 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9887567896
+    },
+    [1] #<User:0x00005583b4b8cb70> {
+                :id => 2,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [2] #<User:0x00005583b4b8c9b8> {
+                :id => 3,
+        :first_name => "Rakesh",
+         :last_name => "thakur",
+             :email => "rakesh@gmail.com",
+               :age => 25,
+            :gender => "Male",
+            :salary => 20000.0,
+          :roles_id => 3,
+        :created_at => Fri, 07 Feb 2020 12:11:49 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:11:49 UTC +00:00,
+           :address => "Pune",
+             :phone => 9884567678
+    },
+    [3] #<User:0x00005583b4b8c5f8> {
+                :id => 4,
+        :first_name => "Mayank",
+         :last_name => "singhla",
+             :email => "mayank@gmail.com",
+               :age => 28,
+            :gender => "Male",
+            :salary => 80000.0,
+          :roles_id => 1,
+        :created_at => Fri, 07 Feb 2020 12:13:04 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:13:04 UTC +00:00,
+           :address => "Gujarat",
+             :phone => 2884567678
+    }
+]
+
+*	User.last.update(age:25)
+  User Load (0.7ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+   (0.4ms)  BEGIN
+  User Update (37.2ms)  UPDATE "users" SET "age" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["age", 25], ["updated_at", "2020-02-07 12:23:49.943167"], ["id", 4]]
+   (26.2ms)  COMMIT
+true
+
+*	2.7.0 :019 > Role.last.delete
+  Role Load (1.0ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  Role Destroy (30.5ms)  DELETE FROM "roles" WHERE "roles"."id" = $1  [["id", 3]]
+
+	#<Role:0x00005583b6a48690> 
+	{
+	            :id => 3,
+	          :name => "Employee",
+	    :created_at => Fri, 07 Feb 2020 11:20:26 UTC +00:00,
+	    :updated_at => Fri, 07 Feb 2020 11:20:26 UTC +00:00
+	}
+
+*	2.7.0 :021 > User.count
+   (1.1ms)  SELECT COUNT(*) FROM "users"
+	4

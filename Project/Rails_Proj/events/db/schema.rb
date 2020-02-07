@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_100925) do
+ActiveRecord::Schema.define(version: 2020_02_07_130608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2020_02_07_100925) do
   create_table "events", force: :cascade do |t|
     t.text "name"
     t.date "date"
-    t.bigint "users_id"
     t.bigint "event_types_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["event_types_id"], name: "index_events_on_event_types_id"
-    t.index ["users_id"], name: "index_events_on_users_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -46,12 +46,13 @@ ActiveRecord::Schema.define(version: 2020_02_07_100925) do
     t.integer "age"
     t.string "gender"
     t.decimal "salary"
-    t.bigint "roles_id"
+    t.bigint "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "address"
     t.bigint "phone"
-    t.index ["roles_id"], name: "index_users_on_roles_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "events", "users"
 end

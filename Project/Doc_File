@@ -202,3 +202,15 @@ true
 *	2.7.0 :021 > User.count
    (1.1ms)  SELECT COUNT(*) FROM "users"
 	4
+
+*	 Event.where(id:2).update(user_id:3)
+	
+* 	 User.where(age:25)
+
+*	Belongs_to
+	
+	class User < ApplicationRecord
+	  belongs_to :role
+	end  
+
+	

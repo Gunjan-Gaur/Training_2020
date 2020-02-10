@@ -203,7 +203,9 @@ true
    (1.1ms)  SELECT COUNT(*) FROM "users"
 	4
 
-*	 Event.where(id:2).update(user_id:3)
+*	Event.where(id:2).update(user_id:3)
+		or
+	Event.second.update(user_id:3)	
 	
 * 	 User.where(age:25)
 
@@ -247,6 +249,29 @@ true
         :updated_at => Fri, 07 Feb 2020 12:23:49 UTC +00:00,
            :address => "Gujarat",
              :phone => 2884567678
+    }
+]
+
+*	 User.find(2).events
+
+	[
+    [0] #<Event:0x00005638dcd46be0> {
+                    :id => 4,
+                  :name => "Priya's Wedding",
+                  :date => Sun, 10 May 2020,
+        :event_types_id => 1,
+            :created_at => Mon, 10 Feb 2020 05:28:30 UTC +00:00,
+            :updated_at => Mon, 10 Feb 2020 05:28:30 UTC +00:00,
+               :user_id => 2
+    },
+    [1] #<Event:0x00005638dcd46a78> {
+                    :id => 6,
+                  :name => "Priya's Party",
+                  :date => Mon, 10 Feb 2020,
+        :event_types_id => 2,
+            :created_at => Mon, 10 Feb 2020 05:40:12 UTC +00:00,
+            :updated_at => Mon, 10 Feb 2020 10:52:03 UTC +00:00,
+               :user_id => 2
     }
 ]
  	

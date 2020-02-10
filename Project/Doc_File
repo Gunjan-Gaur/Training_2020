@@ -213,4 +213,40 @@ true
 	  belongs_to :role
 	end  
 
-	
+*	class Role < ApplicationRecord
+	  has_many :users
+	end
+
+	Role.first.users
+	 
+	[
+    [0] #<User:0x00007f4d44296c40> {
+                :id => 1,
+        :first_name => "Ritu",
+         :last_name => "Aggarwal",
+             :email => "ritu09@gmail.com",
+               :age => 32,
+            :gender => "Female",
+            :salary => 100000.0,
+           :role_id => 1,
+        :created_at => Fri, 07 Feb 2020 12:09:22 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:09:22 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9887567896
+    },
+    [1] #<User:0x00007f4d442969e8> {
+                :id => 4,
+        :first_name => "Mayank",
+         :last_name => "singhla",
+             :email => "mayank@gmail.com",
+               :age => 25,
+            :gender => "Male",
+            :salary => 80000.0,
+           :role_id => 1,
+        :created_at => Fri, 07 Feb 2020 12:13:04 UTC +00:00,
+        :updated_at => Fri, 07 Feb 2020 12:23:49 UTC +00:00,
+           :address => "Gujarat",
+             :phone => 2884567678
+    }
+]
+ 	

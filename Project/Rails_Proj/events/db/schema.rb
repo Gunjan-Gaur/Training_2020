@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_051239) do
+ActiveRecord::Schema.define(version: 2020_02_11_084052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 2020_02_10_051239) do
   create_table "events", force: :cascade do |t|
     t.text "name"
     t.date "date"
-    t.bigint "event_types_id"
+    t.bigint "event_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
-    t.index ["event_types_id"], name: "index_events_on_event_types_id"
+    t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2020_02_10_051239) do
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.text "name"
+    t.bigint "event_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_type_id"], name: "index_tests_on_event_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +63,5 @@ ActiveRecord::Schema.define(version: 2020_02_10_051239) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "tests", "event_types"
 end

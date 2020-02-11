@@ -295,3 +295,57 @@ true
 	  has_many :events, dependent: :destroy
 	  has_many :event_types, through: :events
 	end
+
+*	Event.create(name: User.last.first_name, user_id: User.last.id, date: Date.today, event_type_id: 	EventType.last.id) 
+	
+[
+    [0] #<Event:0x000055c860560bc0>
+    {
+                   :id => 7,
+                 :name => "Akansha",
+                 :date => Tue, 11 Feb 2020,
+        :event_type_id => 5,
+           :created_at => Tue, 11 Feb 2020 09:07:21 UTC +00:00,
+           :updated_at => Tue, 11 Feb 2020 09:07:21 UTC +00:00,
+              :user_id => 8
+    }
+]
+
+*	Event.create(name: User.find_by(id:2).first_name + " " + EventType.find_by(id:2).type_, user_id:User.find_by(id:2).id, date:"13/4/2019", event_type_id: EventType.find_by(id:2).id)
+
+	      :id => 12,
+             :name => "Rahul Birthday",
+             :date => Sat, 13 Apr 2019,
+    :event_type_id => 2,
+       :created_at => Tue, 11 Feb 2020 09:31:54 UTC +00:00,
+       :updated_at => Tue, 11 Feb 2020 09:31:54 UTC +00:00,
+          :user_id => 2
+}
+
+*	Event.create(name: User.find_by(id:7).first_name + " " + EventType.find_by(id:1).type_, user_id: User.find_by(id:7).id, date:"13/4/2020", event_type_id: EventType.find_by(id:1).id) 
+
+	  :id => 14,
+             :name => "Ritu Wedding",
+             :date => Mon, 13 Apr 2020,
+    :event_type_id => 1,
+       :created_at => Tue, 11 Feb 2020 09:36:05 UTC +00:00,
+       :updated_at => Tue, 11 Feb 2020 09:36:05 UTC +00:00,
+          :user_id => 7
+
+*	User.create(first_name:"Ritika",last_name:"Verma", email:"ritika@gmail.com", age:31, gender:"female", salary:71000 , role_id: Role.first.id)
+
+	         :id => 9,
+    :first_name => "Ritika",
+     :last_name => "Verma",
+         :email => "ritika@gmail.com",
+           :age => 31,
+        :gender => "female",
+        :salary => 71000.0,
+       :role_id => 1,
+    :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+       :address => nil,
+         :phone => nil
+}
+
+*	User.find_by(id:9).update(address:"Punjab",phone:7865787098)

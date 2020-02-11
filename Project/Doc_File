@@ -567,3 +567,23 @@ true
        :address => :string,
          :phone => :integer
 	}
+
+*	User.where('first_name ilike ? AND age = ?', '%r%' , 31)
+	OR
+	ser.where('first_name like ? AND age > ?', '%R%' , 30)
+
+	 [0] #<User:0x000055c860927678> {
+                :id => 9,
+        :first_name => "Ritika",
+         :last_name => "Verma",
+             :email => "ritika@gmail.com",
+               :age => 31,
+            :gender => "female",
+            :salary => 71000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+           :address => "Punjab",
+             :phone => 7865787098
+    }
+

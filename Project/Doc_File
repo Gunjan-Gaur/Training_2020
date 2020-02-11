@@ -469,3 +469,31 @@ true
              :phone => 4576553345
     }
 ]
+
+*	Event.where(user_id:User.find_by(role_id:Role.find_by(id:3)))
+	
+	[
+    [0] #<Event:0x000055c85e8bb5b0> {
+                   :id => 7,
+                 :name => "Akansha Family Function",
+                 :date => Tue, 11 Feb 2020,
+        :event_type_id => 5,
+           :created_at => Tue, 11 Feb 2020 09:07:21 UTC +00:00,
+           :updated_at => Tue, 11 Feb 2020 09:40:04 UTC +00:00,
+              :user_id => 8
+    },
+    [1] #<Event:0x000055c85e8bb470> {
+                   :id => 15,
+                 :name => "Akansha Bachelors",
+                 :date => Fri, 08 May 2020,
+        :event_type_id => 3,
+           :created_at => Tue, 11 Feb 2020 09:38:54 UTC +00:00,
+           :updated_at => Tue, 11 Feb 2020 09:38:54 UTC +00:00,
+              :user_id => 8
+    }
+]
+
+*	a = Event.where(user_id:User.find_by(role_id:Role.find_by(id:3)))
+	 a.first.date
+ 	 
+ 	 Tue, 11 Feb 2020

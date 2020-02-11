@@ -407,3 +407,65 @@ true
 *	a = User.find_by(role_id:Role.find_by(id:1) , age:31)
 	a.first_name + " " + a.last_name
 	"Ritika Verma"
+
+*	 User.find_by(id:8).events.count
+	
+	User Load (0.9ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+    (1.0ms)  SELECT COUNT(*) FROM "events" WHERE "events"."user_id" = $1  [["user_id", 8]]
+	
+	2
+
+*	User.find_by(role_id:Role.find_by(id:3)).events.count
+	 
+	Role Load (0.6ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  	User Load (0.5ms)  SELECT "users".* FROM "users" WHERE "users"."role_id" = $1 LIMIT $2  [["role_id", 3], ["LIMIT", 1]]
+    (0.8ms)  SELECT COUNT(*) FROM "events" WHERE "events"."user_id" = $1  [["user_id", 8]]	
+	
+	2
+	
+*	 User.find([1,2,7])
+
+[
+    [0] #<User:0x00007fdaa80df5e0> {
+                :id => 1,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+           :role_id => 2,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:06:22 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [1] #<User:0x00007fdaa80df400> {
+                :id => 2,
+        :first_name => "Rahul",
+         :last_name => "jain",
+             :email => "Rahul@gamil.com",
+               :age => 23,
+            :gender => "male",
+            :salary => 25000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9811786234
+    },
+    [2] #<User:0x00007fdaa80df248> {
+                :id => 7,
+        :first_name => "Ritu",
+         :last_name => "Rao",
+             :email => "ritu@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+           :address => "Fbd",
+             :phone => 4576553345
+    }
+]

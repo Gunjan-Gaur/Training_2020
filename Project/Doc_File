@@ -623,3 +623,155 @@ true
              :phone => 9811786234
     }
 
+
+*	User.where(:age => 25..31).sum(:salary)
+   	
+   	(0.9ms)  SELECT SUM("users"."salary") FROM "users" WHERE "users"."age" BETWEEN $1 AND $2  [["age", 25], ["age", 31]]
+	271000.0
+
+*	 User.where(:age => 20..31).order(:first_name)
+	    [0] #<User:0x000055c86059a280> {
+                :id => 8,
+        :first_name => "Akansha",
+         :last_name => "Rao",
+             :email => "akansha@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 07:12:51 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:12:51 UTC +00:00,
+           :address => "Mumbai",
+             :phone => 4576559345
+    },
+    [1] #<User:0x000055c86059a1b8> {
+                :id => 1,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+           :role_id => 2,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:06:22 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [2] #<User:0x000055c86059a0f0> {
+                :id => 2,
+        :first_name => "Rahul",
+         :last_name => "jain",
+             :email => "Rahul@gamil.com",
+               :age => 23,
+            :gender => "male",
+            :salary => 25000.0,
+        :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9811786234
+    },
+    [3] #<User:0x000055c860599fd8> {
+                :id => 9,
+        :first_name => "Ritika",
+         :last_name => "Verma",
+             :email => "ritika@gmail.com",
+               :age => 31,
+            :gender => "female",
+            :salary => 71000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+           :address => "Punjab",
+             :phone => 7865787098
+    },
+    [4] #<User:0x000055c860599ee8> {
+                :id => 7,
+        :first_name => "Ritu",
+         :last_name => "Rao",
+             :email => "ritu@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+           :address => "Fbd",
+             :phone => 4576553345
+    }
+
+*	 User.where(:age => 20..31).order(:first_name).reverse_order
+	User Exists? (1.6ms)  SELECT 1 AS one FROM "users" WHERE "users"."age" BETWEEN $1 AND $2 LIMIT $3  [["age", 20], ["age", 31], ["LIMIT", 1]]
+	
+	User Load (0.7ms)  SELECT "users".* FROM "users" WHERE "users"."age" BETWEEN $1 AND $2 ORDER BY "users"."first_name" DESC  [["age", 20], ["age", 31]]
+
+	[0] #<User:0x000055c8608f1640> {
+                :id => 7,
+        :first_name => "Ritu",
+         :last_name => "Rao",
+             :email => "ritu@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+           :address => "Fbd",
+             :phone => 4576553345
+    },
+    [1] #<User:0x000055c8608b8340> {
+                :id => 9,
+        :first_name => "Ritika",
+         :last_name => "Verma",
+             :email => "ritika@gmail.com",
+               :age => 31,
+            :gender => "female",
+            :salary => 71000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+           :address => "Punjab",
+             :phone => 7865787098
+    },
+    [2] #<User:0x000055c8608b8278> {
+                :id => 2,
+        :first_name => "Rahul",
+         :last_name => "jain",
+             :email => "Rahul@gamil.com",
+               :age => 23,
+            :gender => "male",
+            :salary => 25000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9811786234
+    },
+    [3] #<User:0x000055c8608b81b0> {
+                :id => 1,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+           :role_id => 2,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:06:22 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [4] #<User:0x000055c8608b80e8> {
+                :id => 8,
+        :first_name => "Akansha",
+         :last_name => "Rao",
+             :email => "akansha@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 07:12:51 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:12:51 UTC +00:00,
+           :address => "Mumbai",
+             :phone => 4576559345
+    }

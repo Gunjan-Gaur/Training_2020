@@ -274,4 +274,24 @@ true
                :user_id => 2
     }
 ]
+ 
+*	 User.third.destroy
+
+	  User Load (1.1ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2  [["LIMIT", 1], ["OFFSET", 2]]
+
+	   (0.4ms)  BEGIN
+	  Event Load (0.5ms)  SELECT "events".* FROM "events" WHERE "events"."user_id" = $1  [["user_id", 3]]
+	  Event Destroy (20.3ms)  DELETE FROM "events" WHERE "events"."id" = $1  [["id", 5]]
+	  Event Destroy (1.1ms)  DELETE FROM "events" WHERE "events"."id" = $1  [["id", 2]]
+	  User Destroy (1.1ms)  DELETE FROM "users" WHERE "users"."id" = $1  [["id", 3]]
+	   (16.6ms)  COMMIT
  	
+ 	class Role < ApplicationRecord
+	  has_many :users, dependent: :destroy
+	end
+
+	class User < ApplicationRecord
+	  belongs_to :role
+	  has_many :events, dependent: :destroy
+	  has_many :event_types, through: :events
+	end

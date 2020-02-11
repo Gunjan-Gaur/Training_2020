@@ -367,3 +367,24 @@ true
 	    has_many :events
 	    has_many :user, through: :events
 	end
+
+*	User.first.event_types
+
+	[0] #<EventType:0x00007fdaa8559170> 
+	{
+                :id => 2,
+             :type_ => "Birthday",
+        :created_at => Mon, 10 Feb 2020 05:17:16 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 05:17:16 UTC +00:00,
+              :cost => 20000
+    }
+
+*	User.find_by(id:7).event_types
+
+	 [0] #<EventType:0x000055c860de4620> {
+                :id => 1,
+             :type_ => "Wedding",
+        :created_at => Mon, 10 Feb 2020 05:16:51 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 05:16:51 UTC +00:00,
+              :cost => 1000000
+    }

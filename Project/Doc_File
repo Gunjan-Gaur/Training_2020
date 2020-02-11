@@ -349,3 +349,21 @@ true
 }
 
 *	User.find_by(id:9).update(address:"Punjab",phone:7865787098)
+
+*	Has_many : through
+	
+	class User < ApplicationRecord
+	  belongs_to :role
+	  has_many :events, dependent: :destroy
+	  has_many :event_types, through: :events
+	end
+
+	class Event < ApplicationRecord
+	   belongs_to :user
+	   belongs_to :event_type
+	end
+
+	class EventType < ApplicationRecord
+	    has_many :events
+	    has_many :user, through: :events
+	end

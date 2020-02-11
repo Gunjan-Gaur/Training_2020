@@ -587,3 +587,39 @@ true
              :phone => 7865787098
     }
 
+*	string = "r"
+	User.where('first_name ilike ?',"%#{string}%").count
+   (1.2ms)  SELECT COUNT(*) FROM "users" WHERE (first_name ilike '%r%')
+	4
+
+*	User.where('first_name ilike ?',"%#{string}%").first(2)
+	
+	[0] #<User:0x000055c8608e3d88> {
+                :id => 1,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+           :role_id => 2,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:06:22 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [1] #<User:0x000055c8608e3cc0> {
+                :id => 2,
+        :first_name => "Rahul",
+         :last_name => "jain",
+             :email => "Rahul@gamil.com",
+               :age => 23,
+            :gender => "male",
+            :salary => 25000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9811786234
+    }
+

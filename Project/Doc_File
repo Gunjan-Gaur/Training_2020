@@ -497,3 +497,73 @@ true
 	 a.first.date
  	 
  	 Tue, 11 Feb 2020
+
+*	User.where(age:25..32)
+
+	[
+    [0] #<User:0x000055c85e94fb48> {
+                :id => 1,
+        :first_name => "Priya",
+         :last_name => "Sharma",
+             :email => "priya@gmail.com",
+               :age => 28,
+            :gender => "Female",
+            :salary => 200000.0,
+           :role_id => 2,
+        :created_at => Fri, 07 Feb 2020 12:10:26 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:06:22 UTC +00:00,
+           :address => "Goa",
+             :phone => 9884567896
+    },
+    [1] #<User:0x000055c85e94f940> {
+                :id => 9,
+        :first_name => "Ritika",
+         :last_name => "Verma",
+             :email => "ritika@gmail.com",
+               :age => 31,
+            :gender => "female",
+            :salary => 71000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+           :address => "Punjab",
+             :phone => 7865787098
+    }
+]
+
+*	User.where(age:25..32, role_id:Role.find_by(id:1))
+
+	[
+    [0] #<User:0x00007fdaa83243c8> {
+                :id => 9,
+        :first_name => "Ritika",
+         :last_name => "Verma",
+             :email => "ritika@gmail.com",
+               :age => 31,
+            :gender => "female",
+            :salary => 71000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+           :address => "Punjab",
+             :phone => 7865787098
+    }
+]
+
+*	User.where(age:25..32, role_id:Role.find_by(id:1)).first.class
+
+	class User < ApplicationRecord 
+	{
+            :id => :integer,
+    :first_name => :text,
+     :last_name => :text,
+         :email => :string,
+           :age => :integer,
+        :gender => :string,
+        :salary => :decimal,
+       :role_id => :integer,
+    :created_at => :datetime,
+    :updated_at => :datetime,
+       :address => :string,
+         :phone => :integer
+	}

@@ -388,3 +388,22 @@ true
         :updated_at => Mon, 10 Feb 2020 05:16:51 UTC +00:00,
               :cost => 1000000
     }
+
+*	User.find_by(role_id:Role.find_by(id:1) , age:31)
+	
+            :id => 9,
+    :first_name => "Ritika",
+     :last_name => "Verma",
+         :email => "ritika@gmail.com",
+           :age => 31,
+        :gender => "female",
+        :salary => 71000.0,
+       :role_id => 1,
+    :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+       :address => "Punjab",
+         :phone => 7865787098
+
+*	a = User.find_by(role_id:Role.find_by(id:1) , age:31)
+	a.first_name + " " + a.last_name
+	"Ritika Verma"

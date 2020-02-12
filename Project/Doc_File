@@ -869,4 +869,31 @@ true
     :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
 	}
 
+*	User.group(:first_name).sum(:salary)
+
+	{
+      "Rahul" => 25000.0,
+    "Akansha" => 30000.0,
+     "Ritika" => 71000.0,
+       "Ritu" => 30000.0,
+      "Priya" => 200000.0
+	}
+
+*	User.select("sum(salary)").group(:role_id)
+
+	[
+    [0] #<User:0x000055acee47b5f8> {
+         "id" => nil,
+        "sum" => 55000.0
+    },
+    [1] #<User:0x000055acee47b530> {
+         "id" => nil,
+        "sum" => 200000.0
+    },
+    [2] #<User:0x000055acee47b468> {
+         "id" => nil,
+        "sum" => 101000.0
+    }
+	]
+	
 	

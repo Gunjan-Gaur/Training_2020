@@ -829,5 +829,4 @@ true
 	User.find_by!(id:30)
   	User Load (1.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
 	Traceback (most recent call last):
-        1: from (irb):29
-	ActiveRecord::RecordNotFound (Couldn't find User)
+    ActiveRecord::RecordNotFound (Couldn't find User)

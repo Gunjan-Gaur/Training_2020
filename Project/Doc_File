@@ -775,3 +775,17 @@ true
            :address => "Mumbai",
              :phone => 4576559345
     }
+
+*	Event.where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Manager"))
+
+[
+    [0] #<Event:0x00005646ac4e3bc8> {
+                   :id => 12,
+                 :name => "Rahul Birthday",
+                 :date => Sat, 13 Apr 2019,
+        :event_type_id => 2,
+           :created_at => Tue, 11 Feb 2020 09:31:54 UTC +00:00,
+           :updated_at => Tue, 11 Feb 2020 09:31:54 UTC +00:00,
+              :user_id => 2
+    }
+]

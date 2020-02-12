@@ -835,6 +835,38 @@ true
 	Traceback (most recent call last):
     ActiveRecord::RecordNotFound (Couldn't find User)
 
+*	a = Role.take(2)
+	  	Role Load (0.9ms)  SELECT "roles".* FROM "roles" LIMIT $1  [["LIMIT", 2]]
+	a.class
+		Array < Object
 
+[
+    [0] #<Role:0x00005646ac66a1b8> 
+    {
+                :id => 3,
+              :name => "Employee",
+        :created_at => Mon, 10 Feb 2020 06:53:56 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 06:55:03 UTC +00:00
+    },
+    
+    [1] #<Role:0x00005646ac66a0f0> 
+    {
+                :id => 1,
+              :name => "Admin",
+        :created_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
+    }
+]
+
+*	Role.order(:name).first
+	Role Load (0.8ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."name" ASC LIMIT $1  [["LIMIT", 1]]
+
+	#<Role:0x00005646ac1cb4e0> 
+	{
+            :id => 1,
+          :name => "Admin",
+    :created_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
+	}
 
 	

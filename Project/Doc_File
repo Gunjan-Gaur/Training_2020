@@ -60,6 +60,10 @@ REMOVE FOREIGN KEY
 *	rails g migration reove_foreign_key_from_hospitals 
 	rake db:migrate	
 
+*	rails g migration remove_hospital_from_hosps hospital:references
+	
+	remove_reference :hosps, :hospital, null: false, foreign_key: true
+
 ROLLBACK
 -----------------------------------------------
 * 	rake db:rollback STEP=2
@@ -789,3 +793,41 @@ true
               :user_id => 2
     }
 ]
+
+*	User.select([:id,:first_name])
+	
+	[
+    [0] #<User:0x00005646ac029718> {
+                "id" => 1,
+        "first_name" => "Priya"
+    },
+    [1] #<User:0x00005646ac029650> {
+                "id" => 2,
+        "first_name" => "Rahul"
+    },
+    [2] #<User:0x00005646ac029588> {
+                "id" => 7,
+        "first_name" => "Ritu"
+    },
+    [3] #<User:0x00005646ac0294c0> {
+                "id" => 8,
+        "first_name" => "Akansha"
+    },
+    [4] #<User:0x00005646ac0293f8> {
+                "id" => 9,
+        "first_name" => "Ritika"
+    }
+]
+
+*	Difference between find_by and find_by!
+
+	User.find_by(id:30)
+	
+	User Load (0.8ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
+	nil
+
+	User.find_by!(id:30)
+  	User Load (1.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
+	Traceback (most recent call last):
+        1: from (irb):29
+	ActiveRecord::RecordNotFound (Couldn't find User)

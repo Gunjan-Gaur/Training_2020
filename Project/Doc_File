@@ -83,6 +83,10 @@ ADD INDEX
 
 	rails g migration add_index_to_extras
 
+--------------------------------------------------
+DESTROY MODEL
+*	rails destroy model test
+
 ---------------------------------------------------------------
 INSERTING DATA INTO TABLES
 *	Role.create(name:Manager)
@@ -830,3 +834,7 @@ true
   	User Load (1.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2  [["id", 30], ["LIMIT", 1]]
 	Traceback (most recent call last):
     ActiveRecord::RecordNotFound (Couldn't find User)
+
+
+
+	

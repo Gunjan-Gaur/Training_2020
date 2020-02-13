@@ -1226,3 +1226,47 @@ true
 
 	ActiveRecord::ReadOnlyRecord (Role is marked as readonly)	
 
+* EventType.joins(:events).select(:name,:type_)
+  
+  [
+    [0] #<EventType:0x00007f38ec99ad00> {
+           "id" => nil,
+        "type_" => "Birthday",
+         "name" => "Priya Birthday"
+    },
+    [1] #<EventType:0x00007f38ec99ac10> {
+           "id" => nil,
+        "type_" => "Birthday",
+         "name" => "Rahul Birthday"
+    },
+    [2] #<EventType:0x00007f38ec99aaf8> {
+           "id" => nil,
+        "type_" => "Wedding",
+         "name" => "Ritu Wedding"
+    },
+    [3] #<EventType:0x00007f38ec99aa08> {
+           "id" => nil,
+        "type_" => "Bachelors",
+         "name" => "Akansha Bachelors"
+    },
+    [4] #<EventType:0x00007f38ec99a918> {
+           "id" => nil,
+        "type_" => "Family Function",
+         "name" => "Akansha Family Function"
+    }
+]
+
+* Role.joins(:users).select("name,first_name").limit(2)
+
+  [
+    [0] #<Role:0x00005568c69cd3b0> {
+                "id" => nil,
+              "name" => "Manager",
+        "first_name" => "Priya"
+    },
+    [1] #<Role:0x00005568c69ccd70> {
+                "id" => nil,
+              "name" => "Employee",
+        "first_name" => "Rahul"
+    }
+]

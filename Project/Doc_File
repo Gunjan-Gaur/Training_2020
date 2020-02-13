@@ -1165,5 +1165,64 @@ true
     }
 	]
 	
+*	Role.select(:id,:name).order(:name).reverse_order
 
+	[
+    [0] #<Role:0x00005568c8d53320> {
+          "id" => 2,
+        "name" => "Manager"
+    },
+    [1] #<Role:0x00005568c8d53208> {
+          "id" => 3,
+        "name" => "Employee"
+    },
+    [2] #<Role:0x00005568c8d53140> {
+          "id" => 6,
+        "name" => "Assistant"
+    },
+    [3] #<Role:0x00005568c8d53078> {
+          "id" => 8,
+        "name" => "Assistant"
+    },
+    [4] #<Role:0x00005568c8d52fb0> {
+          "id" => 1,
+        "name" => "Admin"
+    }
+]
+
+*	2.7.0 :354 > User.where("id>2").where("id<8")
+	
+	User Exists? (1.2ms)  SELECT 1 AS one FROM "users" WHERE (id>2) AND (id<8) LIMIT $1  [["LIMIT", 1]]
+  	User Load (0.8ms)  SELECT "users".* FROM "users" WHERE (id>2) AND (id<8)
+
+[
+    [0] #<User:0x00005568c8ef7f00> 
+    {
+                :id => 7,
+        :first_name => "Ritu",
+         :last_name => "Rao",
+             :email => "ritu@gmail.com",
+               :age => 21,
+            :gender => "Female",
+            :salary => 30000.0,
+           :role_id => 1,
+        :created_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+           :address => "Fbd",
+             :phone => 4576553345
+    }
+]
+
+*	2.7.0 :362 > a = Role.last
+	Role Load (1.0ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+	2.7.0 :363 > a.name = "Organizer"
+	2.7.0 :364 > a.save
+	True
+
+*	2.7.0 :032 > a = Role.readonly.last
+	Role Load (0.9ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+	2.7.0 :033 > a.name = "Worker"
+	2.7.0 :034 > a.save
+
+	ActiveRecord::ReadOnlyRecord (Role is marked as readonly)	
 

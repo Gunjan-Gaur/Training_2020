@@ -947,3 +947,60 @@ true
 	Employee
 	Assistant
 	nil
+
+*	Role.where("id in (?)",[1,2])
+	
+	[
+    [0] #<Role:0x00005568c8a7a6d0> {
+                :id => 2,
+              :name => "Manager",
+        :created_at => Fri, 07 Feb 2020 10:55:19 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 11:05:52 UTC +00:00
+    },
+    [1] #<Role:0x00005568c8a7a608> {
+                :id => 1,
+              :name => "Admin",
+        :created_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
+    }
+	]
+
+*	2.7.0 :272 > User.where("id in (?)",[Role.find_by(name:"Admin"),Role.find_by(name:"Manager")]).select(:id,:first_name)
+
+	[
+    [0] #<User:0x00005568c8da86b8> {
+                "id" => 1,
+        "first_name" => "Priya"
+    },
+    [1] #<User:0x00005568c8da85c8> {
+                "id" => 2,
+        "first_name" => "Rahul"
+    }
+	]
+
+*	 Role.where(created_at:(Time.now.midnight-3.day)..Time.now.midnight)  
+	
+	[
+    [0] #<Role:0x00007f38ec4daae0>
+    {
+                :id => 3,
+              :name => "Employee",
+        :created_at => Mon, 10 Feb 2020 06:53:56 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 06:55:03 UTC +00:00
+    },
+    [1] #<Role:0x00007f38ec4da6a8>
+    {
+                :id => 1,
+              :name => "Admin",
+        :created_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
+    },
+    [2] #<Role:0x00007f38ec4da518> 
+    {
+                :id => 6,
+              :name => "Assistant",
+        :created_at => Wed, 12 Feb 2020 09:32:56 UTC +00:00,
+        :updated_at => Wed, 12 Feb 2020 09:32:56 UTC +00:00
+    }
+	]
+

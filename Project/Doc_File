@@ -1039,3 +1039,36 @@ true
              :phone => 7865787098
     }
 	]
+
+
+*	 Role.select("name").distinct
+
+	[
+    [0] #<Role:0x00005568c8efcf00> {
+          "id" => nil,
+        "name" => "Manager"
+    },
+    [1] #<Role:0x00005568c8efce10> {
+          "id" => nil,
+        "name" => "Employee"
+    },
+    [2] #<Role:0x00005568c8efcd48> {
+          "id" => nil,
+        "name" => "Admin"
+    },
+    [3] #<Role:0x00005568c8efcc80> {
+          "id" => nil,
+        "name" => "Assistant"
+    }
+	]
+	
+*	Role.group(:name).count
+
+	{
+      "Manager" => 1,
+     "Employee" => 1,
+        "Admin" => 1,
+    "Assistant" => 2
+	}
+	
+	

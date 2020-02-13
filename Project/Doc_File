@@ -1283,3 +1283,34 @@ true
            "name" => "Ritu Wedding"
     }
 ]
+
+*	2.7.0 :040 > Role.joins(users: :events).select(:name,:first_name,:name)
+
+	[
+    [0] #<Role:0x00005568c86fe9e8> {
+                "id" => nil,
+              "name" => "Manager",
+        "first_name" => "Priya"
+    },
+    [1] #<Role:0x00005568c86fe880> {
+                "id" => nil,
+              "name" => "Employee",
+        "first_name" => "Rahul"
+    },
+    [2] #<Role:0x00005568c86fe740> {
+                "id" => nil,
+              "name" => "Admin",
+        "first_name" => "Ritu"
+    },
+    [3] #<Role:0x00005568c86fe628> {
+                "id" => nil,
+              "name" => "Employee",
+        "first_name" => "Akansha"
+    },
+    [4] #<Role:0x00005568c86fe538> {
+                "id" => nil,
+              "name" => "Employee",
+        "first_name" => "Akansha"
+    }
+]
+

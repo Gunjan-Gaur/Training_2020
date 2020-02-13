@@ -896,4 +896,54 @@ true
     }
 	]
 	
+*	find_each
 	
+	2.7.0 :126 > Role.where("id > 2").find_each do |r|
+	2.7.0 :127 >   puts r.id
+	2.7.0 :128 >   puts r.name
+	2.7.0 :129 > end
+	  Role Load (1.1ms)  SELECT "roles".* FROM "roles" WHERE (id > 2) ORDER BY "roles"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+	3
+	Employee
+	6
+	Assistant
+	nil
+	
+	2.7.0 :130 >Role.find_each(batch_size: 5000) do |r|
+	2.7.0 :131 >   puts r.id
+	2.7.0 :132 >   puts r.name
+	2.7.0 :133 > end
+
+	Role Load (0.8ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" ASC LIMIT $1  [["LIMIT", 5000]]
+	1
+	Admin
+	2
+	Manager
+	3
+	Employee
+	6
+	Assistant
+
+	2.7.0 :158 > Role.find_each(start: 2 , finish:3 ) do |r|
+	2.7.0 :159 >   puts r.id
+	2.7.0 :160 >   puts r.name
+	2.7.0 :161 > end
+	  Role Load (0.8ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" >= $1 AND "roles"."id" <= $2 ORDER BY "roles"."id" ASC LIMIT $3  [["id", 2], ["id", 3], ["LIMIT", 1000]]
+	2
+	Manager
+	3
+	Employee
+	nil
+
+*	Find_in_batches
+
+	2.7.0 :224 > Role.find_in_batches do |r|
+	2.7.0 :225 >   sleep(5)
+	2.7.0 :226 >   r.each {|ro| puts ro.name} 
+	2.7.0 :227 > end
+	  Role Load (0.8ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+	Admin
+	Manager
+	Employee
+	Assistant
+	nil

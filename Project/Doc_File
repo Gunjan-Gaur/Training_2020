@@ -1071,4 +1071,99 @@ true
     "Assistant" => 2
 	}
 	
+*	User.select("date(created_at) as ordered_date,sum(salary) as total_salary").group("date(created_at)")
+
+	[
+    [0] #<User:0x00005568c8e60498> {
+                  "id" => nil,
+        "ordered_date" => Fri, 07 Feb 2020,
+        "total_salary" => 200000.0
+    },
+    [1] #<User:0x00005568c8e603d0> {
+                  "id" => nil,
+        "ordered_date" => Tue, 11 Feb 2020,
+        "total_salary" => 156000.0
+    }
+	]
+
+*	User.select("date(created_at) as ordered_date,sum(salary) as total_salary").group("date(created_at)").having("sum
+	(salary) > ?",156000)
+
+	[
+    [0] #<User:0x00005568c8ea08b8> 
+    {
+                  "id" => nil,
+        "ordered_date" => Fri, 07 Feb 2020,
+        "total_salary" => 200000.0
+    }
+	]
+
+*	Role.where(id:[1,2]).order('id asc').unscope(:order)
 	
+	[
+    [0] #<Role:0x00007f38ec2941f0> {
+                :id => 2,
+              :name => "Manager",
+        :created_at => Fri, 07 Feb 2020 10:55:19 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 11:05:52 UTC +00:00
+    },
+    [1] #<Role:0x00007f38ec294088> {
+                :id => 1,
+              :name => "Admin",
+        :created_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 06:51:18 UTC +00:00
+    }
+	]
+
+*	Role.where(id:[1,2]).order('id asc').unscope(where: :id).select(:id)
+
+	[
+    [0] #<Role:0x00005568c8c538f8> {
+        "id" => 1
+    },
+    [1] #<Role:0x00005568c8c537b8> {
+        "id" => 2
+    },
+    [2] #<Role:0x00005568c8c536a0> {
+        "id" => 3
+    },
+    [3] #<Role:0x00005568c8c535b0> {
+        "id" => 6
+    },
+    [4] #<Role:0x00005568c8c53420> {
+        "id" => 8
+    }
+	]
+
+*	Role.where('id>5').limit(1).order('id asc').only(:order,:where)
+
+	[
+    [0] #<Role:0x00005568c7f4be08> {
+                :id => 6,
+              :name => "Assistant",
+        :created_at => Wed, 12 Feb 2020 09:32:56 UTC +00:00,
+        :updated_at => Wed, 12 Feb 2020 09:32:56 UTC +00:00
+    },
+    [1] #<Role:0x00005568c7f4bc00> {
+                :id => 8,
+              :name => "Assistant",
+        :created_at => Thu, 13 Feb 2020 06:32:53 UTC +00:00,
+        :updated_at => Thu, 13 Feb 2020 06:32:53 UTC +00:00
+    }
+]
+
+*	Role.select(:id,:name).reselect(:name).limit(2)
+
+	[
+    [0] #<Role:0x00005568c8489bb8> {
+          "id" => nil,
+        "name" => "Employee"
+    },
+    [1] #<Role:0x00005568c8489ac8> {
+          "id" => nil,
+        "name" => "Admin"
+    }
+	]
+	
+
+

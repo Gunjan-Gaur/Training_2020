@@ -1270,3 +1270,16 @@ true
         "first_name" => "Rahul"
     }
 ]
+
+*	User.joins(:events,:event_types).select(:address,:type_,"events.name").where(role_id:Role.find_by(
+  	name:"Admin")).limit(2)
+
+[
+    [0] #<User:0x00007f38eca1bb08> 
+    {
+             "id" => nil,
+        "address" => "Fbd",
+          "type_" => "Wedding",
+           "name" => "Ritu Wedding"
+    }
+]

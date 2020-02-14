@@ -1314,3 +1314,47 @@ true
     }
 ]
 
+*	User.left_outer_joins(:role).select("name,first_name").limit(1)
+
+	[
+    [0] #<User:0x00005598da3092b0> {
+                "id" => nil,
+        "first_name" => "Rahul",
+              "name" => "Employee"
+    }
+	]
+
+	User.left_outer_joins(:event_types).select("name,type_,first_name").limit(1)
+
+	[
+    [0] #<User:0x00005598db42a490> {
+                "id" => nil,
+        "first_name" => "Rahul",
+              "name" => "Rahul Birthday",
+             "type_" => "Birthday"
+    }
+]
+
+*	User.includes(:role).limit(1)
+	User Exists? (1.2ms)  SELECT 1 AS one FROM "users" LIMIT $1  [["LIMIT", 1]]
+	User Load (0.7ms)  SELECT "users".* FROM "users" LIMIT $1  [["LIMIT", 1]]
+	Role Load (0.8ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1  [["id", 3]]
+
+	[
+    [0] #<User:0x00005598dac479f8> {
+                :id => 2,
+        :first_name => "Rahul",
+         :last_name => "jain",
+             :email => "Rahul@gamil.com",
+               :age => 23,
+            :gender => "male",
+            :salary => 25000.0,
+           :role_id => 3,
+        :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+        :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+           :address => "Delhi",
+             :phone => 9811786234
+    }
+]
+
+

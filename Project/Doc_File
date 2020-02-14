@@ -1357,4 +1357,18 @@ true
     }
 ]
 
+*	 Role.find_or_create_by(name:"Publisher")
+
+	            :id => 9,
+          :name => "Publisher",
+    :created_at => Fri, 14 Feb 2020 10:38:16 UTC +00:00,
+    :updated_at => Fri, 14 Feb 2020 10:38:16 UTC +00:00
+
+*	2.7.0 :069 > r = Role.find_or_initialize_by(name:"Publisher")
+  	Role Load (1.1ms)  SELECT "roles".* FROM "roles" WHERE "roles"."name" = $1 LIMIT $2  [["name", "Publisher"], ["LIMIT", 1]]
+	2.7.0 :070 > r.persisted?
+	true
+	2.7.0 :071 > r.new_record?
+	false
+
 

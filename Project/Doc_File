@@ -1401,4 +1401,23 @@ true
 	]
 	
 
+*	Role.distinct.pluck(:name)
+
+	[
+    [0] "Manager",
+    [1] "Employee",
+    [2] "Publisher",
+    [3] "Organizer",
+    [4] "Admin",
+    [5] "Assistant"
+	]
+
+*	2.7.0 :086 > Role.where(name:"Admin").exists?
+	Role Exists? (1.1ms)  SELECT 1 AS one FROM "roles" WHERE "roles"."name" = $1 LIMIT $2  [["name", "Admin"], ["LIMIT", 1]]
+	true
+
+	2.7.0 :087 > Role.where(name:"admin").exists?
+  	Role Exists? (1.1ms)  SELECT 1 AS one FROM "roles" WHERE "roles"."name" = $1 LIMIT $2  [["name", "admin"], ["LIMIT", 1]]
+	false
+	
 

@@ -1420,4 +1420,28 @@ true
   	Role Exists? (1.1ms)  SELECT 1 AS one FROM "roles" WHERE "roles"."name" = $1 LIMIT $2  [["name", "admin"], ["LIMIT", 1]]
 	false
 	
+*	2.7.0 :090 > Role.where(id:1).joins(:users).explain
+  	Role Load (0.8ms)  SELECT "roles".* FROM "roles" INNER JOIN "users" ON "users"."role_id" = "roles"."id" WHERE "roles"."id" = $1  [["id", 1]]
+	
+	EXPLAIN for: SELECT "roles".* FROM "roles" INNER JOIN "users" ON "users"."role_id" = "roles"."id" WHERE "roles"."id" = $1 [["id", 1]]
+	                                        QUERY PLAN
+	-------------------------------------------------------------------------------------------
+	 Nested Loop  (cost=4.31..17.69 rows=2 width=56)
+	   ->  Index Scan using roles_pkey on roles  (cost=0.15..8.17 rows=1 width=56)
+	         Index Cond: (id = '1'::bigint)
+	   ->  Bitmap Heap Scan on users  (cost=4.16..9.50 rows=2 width=8)
+	         Recheck Cond: (role_id = '1'::bigint)
+	         ->  Bitmap Index Scan on index_users_on_role_id  (cost=0.00..4.16 rows=2 width=0)
+	               Index Cond: (role_id = '1'::bigint)
+	(7 rows)
 
+*	Role.ids
+
+	[
+	    [0] 3,
+	    [1] 1,
+	    [2] 2,
+	    [3] 6,
+	    [4] 8,
+	    [5] 9
+	]

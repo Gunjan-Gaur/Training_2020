@@ -1,2 +1,0 @@
-class Appoint < ApplicationRecord
-end

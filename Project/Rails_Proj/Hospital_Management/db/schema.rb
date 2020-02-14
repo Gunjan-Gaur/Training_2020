@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_063114) do
+ActiveRecord::Schema.define(version: 2020_02_14_092549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "appoint_ments", force: :cascade do |t|
+  create_table "appointments", force: :cascade do |t|
     t.date "Start_date"
     t.date "End_date"
     t.bigint "patients_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "doc_tors_id", null: false
-    t.index ["doc_tors_id"], name: "index_appoint_ments_on_doc_tors_id"
-    t.index ["patients_id"], name: "index_appoint_ments_on_patients_id"
+    t.bigint "doctors_id", null: false
+    t.index ["doctors_id"], name: "index_appointments_on_doctors_id"
+    t.index ["patients_id"], name: "index_appointments_on_patients_id"
   end
 
-  create_table "doc_tors", force: :cascade do |t|
+  create_table "doctors", force: :cascade do |t|
     t.string "First_name"
     t.string "Last_name"
     t.text "Qualifications"
@@ -38,15 +38,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_063114) do
     t.bigint "hospitals_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["hospitals_id"], name: "index_doc_tors_on_hospitals_id"
-  end
-
-  create_table "extras", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_extras_on_name"
+    t.index ["hospitals_id"], name: "index_doctors_on_hospitals_id"
   end
 
   create_table "hospitals", force: :cascade do |t|
@@ -58,21 +50,13 @@ ActiveRecord::Schema.define(version: 2020_02_12_063114) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "hosps", force: :cascade do |t|
-    t.string "name"
-    t.decimal "salary"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "gender"
-  end
-
   create_table "medical_records", force: :cascade do |t|
     t.string "Problem"
     t.date "Date_of_examination"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "doc_tors_id", null: false
-    t.index ["doc_tors_id"], name: "index_medical_records_on_doc_tors_id"
+    t.bigint "doctors_id", null: false
+    t.index ["doctors_id"], name: "index_medical_records_on_doctors_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -92,22 +76,8 @@ ActiveRecord::Schema.define(version: 2020_02_12_063114) do
     t.index ["medical_records_id"], name: "index_patients_on_medical_records_id"
   end
 
-  create_table "practices", force: :cascade do |t|
-    t.text "name"
-    t.integer "age"
-    t.bigint "hospitals_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "date"
-    t.bigint "patients_id", null: false
-    t.bigint "doc_tors_id", null: false
-    t.index ["doc_tors_id"], name: "index_practices_on_doc_tors_id"
-    t.index ["hospitals_id"], name: "index_practices_on_hospitals_id"
-    t.index ["patients_id"], name: "index_practices_on_patients_id"
-  end
-
-  add_foreign_key "appoint_ments", "doc_tors", column: "doc_tors_id"
-  add_foreign_key "medical_records", "doc_tors", column: "doc_tors_id"
+  add_foreign_key "appointments", "doctors", column: "doctors_id"
+  add_foreign_key "medical_records", "doctors", column: "doctors_id"
   add_foreign_key "patients", "hospitals"
   add_foreign_key "patients", "medical_records", column: "medical_records_id"
 end

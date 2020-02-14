@@ -1,2 +1,0 @@
-class ExtraTable < ApplicationRecord
-end

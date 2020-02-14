@@ -1,2 +1,0 @@
-class Hosp < ApplicationRecord
-end

@@ -1371,4 +1371,34 @@ true
 	2.7.0 :071 > r.new_record?
 	false
 
+*	Role.find_by_sql("select * from roles inner join users on roles.id = users.role_id order by roles.created_at desc limit 	1")
+
+	[
+    [0] #<Role:0x00005598d938b9a0> {
+                "id" => 7,
+              "name" => "Admin",
+        "created_at" => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        "updated_at" => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+        "first_name" => "Ritu",
+         "last_name" => "Rao",
+             "email" => "ritu@gmail.com",
+               "age" => 21,
+            "gender" => "Female",
+            "salary" => 30000.0,
+           "role_id" => 1,
+           "address" => "Fbd",
+             "phone" => 4576553345
+    }
+]
+
+*	 Role.connection.select_all("select name from roles where id = '1'").to_a
+
+	[
+    	[0] 
+    	{
+        	"name" => "Admin"
+    	}
+	]
+	
+
 

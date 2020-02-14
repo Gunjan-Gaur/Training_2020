@@ -1445,3 +1445,46 @@ true
 	    [4] 8,
 	    [5] 9
 	]
+
+*	class Employee < ApplicationRecord
+  		has_many :pictures ,:as => :combine
+	end
+
+	class Picture < ApplicationRecord
+	  belongs_to :combine, :polymorphic =>true
+	end
+
+	class Product < ApplicationRecord
+	    has_many :pictures ,:as => :combine
+	end
+
+	*Product.find(5).pictures
+
+	[
+    [0] #<Picture:0x0000560202407f90> 
+    {
+                  :id => 2,
+                :name => "Phone pic",
+          :combine_id => 5,
+        :combine_type => "Product",
+          :created_at => Fri, 14 Feb 2020 12:30:34 UTC +00:00,
+          :updated_at => Fri, 14 Feb 2020 12:30:34 UTC +00:00
+    }
+	]
+
+	* Employee.find(1).pictures
+
+	[
+    [0] #<Picture:0x00007f62bc3af248> 
+    {
+                  :id => 3,
+                :name => "Vir's pic",
+          :combine_id => 1,
+        :combine_type => "Employee",
+          :created_at => Fri, 14 Feb 2020 12:37:24 UTC +00:00,
+          :updated_at => Fri, 14 Feb 2020 12:37:24 UTC +00:00
+    }
+]
+
+
+

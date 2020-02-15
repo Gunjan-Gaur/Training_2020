@@ -1534,3 +1534,19 @@ VALIDATIONS
 	2.7.0 :032 > p.new_record?
 	true
 
+*	Errors[:attributes]-only check for errors if any
+
+	2.7.0 :036 > Role.new.errors[:name].any?
+	false
+	
+	2.7.0 :037 > Role.create.errors[:name].any?
+	true
+	
+* 	Errors.details[:attribute]
+
+	2.7.0 :038 > p = Role.new
+	
+	2.7.0 :039 > p.valid?
+	false
+	
+	2.7.0 :040 > p.errors.details[:name]

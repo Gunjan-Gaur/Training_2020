@@ -1587,3 +1587,44 @@ VALIDATIONS
 	        1: from (irb):9
 	ActiveRecord::RecordInvalid (Validation failed: Email confirmation doesn't match Email)
 
+* class Role < ApplicationRecord
+    has_many :users, dependent: :destroy
+    validates :name , acceptance:true ,exclusion: {in: %w(worker), message:"%{value} is reserved"}
+  end
+ 
+  2.7.0 :010 > r = Role.new
+  2.7.0 :011 > r.name = "woker"
+  2.7.0 :012 > r.save!
+  /home/beryl/.rvm/gems/ruby-2.7.0/gems/activemodel-6.0.2.1/lib/active_model/errors.rb:500: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+  /home/beryl/.rvm/gems/ruby-2.7.0/gems/i18n-1.8.2/lib/i18n.rb:195: warning: The called method `translate' is defined here
+  Traceback (most recent call last):
+          1: from (irb):12
+  ActiveRecord::RecordInvalid (Validation failed: Name must be accepted)
+  2.7.0 :013 > 
+    
+* class User < ApplicationRecord
+    belongs_to :role
+    has_many :events, dependent: :destroy
+    has_many :event_types, through: :events
+    validates :email , confirmation:true 
+    validates :email_confirmation, presence:true
+    validates :first_name ,format: { with: /\A[a-zA-Z]+\z/ ,message: "only allows letters"}
+  end
+
+  2.7.0 :019 > f = User.last
+  User Load (1.1ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ 
+  2.7.0 :020 > f.first_name = "Rupa2"
+  2.7.0 :021 > f.email = "rupa@gmail.com"
+  2.7.0 :022 > f.email_confirmation = "rupa@gmail.com"
+ 
+  2.7.0 :023 > f.save!
+     (0.5ms)  BEGIN
+    Role Load (0.7ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+     (0.4ms)  ROLLBACK
+  Traceback (most recent call last):
+          1: from (irb):23
+ 
+  ActiveRecord::RecordInvalid (Validation failed: First name only allows letters)
+
+    

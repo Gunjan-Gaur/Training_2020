@@ -1627,4 +1627,27 @@ VALIDATIONS
  
   ActiveRecord::RecordInvalid (Validation failed: First name only allows letters)
 
-    
+* validates :gender ,inclusion: { in: %w(male female others), message: "%{value} is not valid"}
+
+  2.7.0 :002 > f.gender = "othersss"
+  2.7.0 :003 > f.save!
+  ActiveRecord::RecordInvalid (Validation failed: Gender othersss is not valid)
+
+* validates :name ,exclusion: {in: %w(worker), message:"%{value} is reserved"} , length: { minimum: 2 }
+
+  2.7.0 :001 > r = Role.last
+  Role Load (0.7ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  
+  2.7.0 :002 > r.name = "P"
+  
+  2.7.0 :003 > r.save!
+  ActiveRecord::RecordInvalid (Validation failed: Name is too short (minimum is 2 characters))
+
+* validates :salary, numericality: true
+  validates :age, numericality: { only_integer: true}
+
+  2.7.0 :004 > u = User.last
+  2.7.0 :005 > u.age = 34.9
+  2.7.0 :006 > u.salary = 35000.0
+  2.7.0 :007 > u.save!
+  ActiveRecord::RecordInvalid (Validation failed: Age must be an integer)

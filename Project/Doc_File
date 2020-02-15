@@ -1550,3 +1550,40 @@ VALIDATIONS
 	false
 	
 	2.7.0 :040 > p.errors.details[:name]
+
+*	class Role < ApplicationRecord
+	  has_many :users, dependent: :destroy
+	  validates :name , acceptance:true
+	end
+
+	2.7.0 :041 > s = Role.new
+	2.7.0 :042 > s.valid?
+	false
+	
+	2.7.0 :043 > s = Role.new(name:"Producer")
+	2.7.0 :044 > s.valid?
+	true
+
+*	class User < ApplicationRecord
+	  belongs_to :role
+	  has_many :events, dependent: :destroy
+	  has_many :event_types, through: :events
+	  validates :email , confirmation:true
+	  validates :email_confirmation, presence:true
+	end
+
+	2.7.0 :004 > p.email = "mahi@gmail.com"
+	2.7.0 :005 > p.email_confirmation = "m@gmail.com"
+	
+	2.7.0 :007 > p.save!
+	Traceback (most recent call last):
+	        1: from (irb):7
+	ActiveRecord::RecordInvalid (Validation failed: Email confirmation doesn't match Email)
+	
+	2.7.0 :008 > p.email_confirmation = "Mahi@gmail.com"
+	
+	2.7.0 :009 > p.save!
+	Traceback (most recent call last):
+	        1: from (irb):9
+	ActiveRecord::RecordInvalid (Validation failed: Email confirmation doesn't match Email)
+

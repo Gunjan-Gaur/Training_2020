@@ -1689,3 +1689,26 @@ VALIDATIONS
   
   ActiveRecord::RecordInvalid (Validation failed: Email confirmation can't be blank, Last name must start with upper case)
   
+* validates :name ,exclusion: {in: %w(worker), message:"%{value} is reserved"} , length: { minimum: 2 } , allow_blank: true
+
+  validates :gender ,inclusion: { in: %w(male female others), message: "%{value} is not valid"} ,allow_nil: true
+
+  2.7.0 :001 > u = Role.new
+  
+  2.7.0 :002 > u.name = " "
+  
+  2.7.0 :003 > u.save!
+     (0.6ms)  BEGIN
+    Role Create (19.9ms)  INSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", " "], ["created_at", "2020-02-15 11:24:00.034749"], ["updated_at", "2020-02-15 11:24:00.034749"]]
+     (17.3ms)  COMMIT
+  true
+  
+  2.7.0 :004 > Role.last
+    Role Load (0.8ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+
+  #<Role:0x00005623b4caa458> {
+              :id => 10,
+            :name => " ",
+      :created_at => Sat, 15 Feb 2020 11:24:00 UTC +00:00,
+      :updated_at => Sat, 15 Feb 2020 11:24:00 UTC +00:00
+  }

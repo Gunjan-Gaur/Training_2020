@@ -1486,5 +1486,51 @@ true
     }
 ]
 
+------------------------------------------------------------------------
+VALIDATIONS
 
+*	class Role < ApplicationRecord
+	  has_many :users, dependent: :destroy
+	  validates :name , presence:true
+	end
+	
+	2.7.0 :018 > p = Role.new
+	
+	2.7.0 :019 > p.errors.messages
+	{}
+	
+	2.7.0 :020 > p.valid?
+	false
+	
+	2.7.0 :021 > p.errors.messages
+	{
+	    :name => 
+	    [
+	        [0] "can't be blank"
+	    ]
+	}
+	
+	2.7.0 :022 > p = Role.create
+	
+	2.7.0 :023 > p.errors.messages
+	{
+	    :name => [
+	        [0] "can't be blank"
+	    ]
+	}
+	
+	2.7.0 :024 > p.save
+	false
+	
+	2.7.0 :025 > p.save!
+	Traceback (most recent call last):
+	ActiveRecord::RecordInvalid (Validation failed: Name can't be blank)
+
+	2.7.0 :029 > p = Role.new
+	
+	2.7.0 :030 > p.invalid?
+	true
+
+	2.7.0 :032 > p.new_record?
+	true
 

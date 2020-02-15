@@ -1651,3 +1651,41 @@ VALIDATIONS
   2.7.0 :006 > u.salary = 35000.0
   2.7.0 :007 > u.save!
   ActiveRecord::RecordInvalid (Validation failed: Age must be an integer)
+
+* validates :email , confirmation:true ,uniqueness: true 
+
+  2.7.0 :002 > u = User.last
+  User Load (1.2ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  
+  2.7.0 :003 > u.email = "rupa@gmail.com"
+  
+  2.7.0 :004 > u.email_confirmation = "rupa@gmail.com"
+  
+  2.7.0 :005 > u.save!
+     (0.5ms)  BEGIN
+    Role Load (0.8ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+    User Exists? (2.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3  [["email", "rupa@gmail.com"], ["id", 15], ["LIMIT", 1]]
+  
+  ActiveRecord::RecordInvalid (Validation failed: Email has already been taken)
+
+* validates_each :first_name, :last_name do |record ,attr,value|
+    record.errors.add(attr, 'must start with upper case') if value =~ /\A[[:lower:]]/
+  end
+
+  2.7.0 :012 > a = User.last
+  User Load (0.8ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  
+  2.7.0 :013 > a.first_name = "Pryanshi"
+  
+  2.7.0 :014 > a.last_name = "nagpal"
+  
+  2.7.0 :015 > a.save!
+     (0.6ms)  BEGIN
+    Role Load (0.8ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+    User Exists? (0.9ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3  [["email", "pryanshi@gmail.com"], ["id", 16], ["LIMIT", 1]]
+     (0.6ms)  ROLLBACK
+  Traceback (most recent call last):
+          1: from (irb):15
+  
+  ActiveRecord::RecordInvalid (Validation failed: Email confirmation can't be blank, Last name must start with upper case)
+  

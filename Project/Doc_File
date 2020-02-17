@@ -1755,3 +1755,19 @@ VALIDATIONS
              "count" => 2
     }
 ]
+
+---------------------------------------------------------------
+Hosital Management Database
+
+* Inserted data
+  
+  Hospital.create(Name:"Lilavati Hospital",Address:"Lilavati Hospital, A-791 Bandra Reclamation rd",State:"Mumbai",Beds:500)
+
+  Appointment.create(Start_date:"20/12/2019",End_date:"1/1/2020",patient_id:3,doctor_id:1)
+
+  MedicalRecord.create(Problem:"Skin allergy",Date_of_examination:"17/2/1999",doctor_id:2,patient_id:3)
+
+  Doctor.create(First_name:"Dr.Meena",Last_name:"Kapoor",Qualifications:"Cardiologist",Gender:"female",salary:420000,email:"meena@gmail.com",mobile:9689264677,age:22,hospital_id:1)
+
+  Patient.create(First_Name:"Priya",Last_Name:"Sharma",age:23,Address:"New Delhi",Mobile:9866756890,hospital_id:1,Gender:"female")
+

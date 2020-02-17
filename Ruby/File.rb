@@ -122,3 +122,29 @@ Direcories In Ruby
 
  Dir.delete("zzzzzzzz")
  => 0 
+
+---------------------------------------------------
+Exception
+
+2.7.0 :001 > begin
+2.7.0 :002 >   file = open("/item2")
+2.7.0 :003 >   if file
+2.7.0 :004 >     puts "File opened successfully"
+2.7.0 :005 >   end
+2.7.0 :006 > rescue
+2.7.0 :007 >   file = STDIN
+2.7.0 :008 > end
+#<IO:<STDIN>>
+2.7.0 :009 > print file, "==" ,STDIN , "\n"
+#<IO:0x000055fac1feba70>==#<IO:0x000055fac1feba70>
+nil
+
+2.7.0 :011 > begin
+2.7.0 :012 >   file = open("/item2")
+2.7.0 :013 >   if file
+2.7.0 :014 >     puts "File opened successfully"
+2.7.0 :015 >   end
+2.7.0 :016 > rescue
+2.7.0 :017 >   fname = "item3"
+2.7.0 :018 >   retry
+2.7.0 :019 > end

@@ -1771,3 +1771,35 @@ Hosital Management Database
 
   Patient.create(First_Name:"Priya",Last_Name:"Sharma",age:23,Address:"New Delhi",Mobile:9866756890,hospital_id:1,Gender:"female")
 
+* Associations
+
+  class Hospital < ApplicationRecord
+    has_many :patients
+    has_many :doctors
+  end
+
+  class Patient < ApplicationRecord
+    belongs_to :hospital
+    has_many :appointments
+    has_many :doctors , through: :appointments
+    has_many :medical_records
+  end
+
+  class Doctor < ApplicationRecord
+    has_many :appointments
+    has_many :patients , through: :appointments
+    belongs_to :hospital
+    has_many :medical_records
+  end
+
+  class MedicalRecord < ApplicationRecord
+    belongs_to :doctor
+    belongs_to :patient
+  end
+
+  //One patient can have examination done by different doctor and have appointment done by different doctor of same problem 
+  class Appointment < ApplicationRecord
+    belongs_to :doctor
+    belongs_to :patient
+  end
+

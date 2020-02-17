@@ -1,2 +1,0 @@
-class DocTor < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class AppointMent < ApplicationRecord
-end

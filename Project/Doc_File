@@ -1712,3 +1712,46 @@ VALIDATIONS
       :created_at => Sat, 15 Feb 2020 11:24:00 UTC +00:00,
       :updated_at => Sat, 15 Feb 2020 11:24:00 UTC +00:00
   }
+
+*  Event.where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Admin")).select(:name,:id)
+
+  With join:-
+  Event.joins(:user,:event_type).where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Admin"))
+
+  [
+    [0] #<Event:0x00007f488046ef40> 
+    {
+                   :id => 10,
+                 :name => "Priya Birthday",
+                 :date => Sat, 23 Mar 2019,
+        :event_type_id => 2,
+           :created_at => Tue, 11 Feb 2020 09:29:45 UTC +00:00,
+           :updated_at => Tue, 11 Feb 2020 09:29:45 UTC +00:00,
+              :user_id => 1
+    }
+  ]
+
+* User.joins(:events).select("id","first_name,count(user_id)").group(:first_name,:id)
+  
+  [
+    [0] #<User:0x000055fdbc053ec0> {
+                "id" => 2,
+        "first_name" => "Rahul",
+             "count" => 1
+    },
+    [1] #<User:0x000055fdbc053cb8> {
+                "id" => 7,
+        "first_name" => "Ritu",
+             "count" => 1
+    },
+    [2] #<User:0x000055fdbc053ba0> {
+                "id" => 1,
+        "first_name" => "Priya",
+             "count" => 1
+    },
+    [3] #<User:0x000055fdbc053948> {
+                "id" => 8,
+        "first_name" => "Akansha",
+             "count" => 2
+    }
+]

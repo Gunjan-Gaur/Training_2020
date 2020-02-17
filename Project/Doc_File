@@ -1803,3 +1803,70 @@ Hosital Management Database
     belongs_to :patient
   end
 
+* Join Queries
+
+1.  Patient.joins(:medical_records).select("First_Name",:Problem)
+
+  [
+    [0] #<Patient:0x00007f352c343678> {
+                "id" => nil,
+        "First_Name" => "Priya",
+           "Problem" => "skin allergy"
+    },
+    [1] #<Patient:0x00007f352c343560> {
+                "id" => nil,
+        "First_Name" => "Ritesh",
+           "Problem" => "heart problem"
+    },
+    [2] #<Patient:0x00007f352c343498> {
+                "id" => nil,
+        "First_Name" => "Priya",
+           "Problem" => "Tooth ache"
+    },
+    [3] #<Patient:0x00007f352c343330> {
+                "id" => nil,
+        "First_Name" => "Ravi",
+           "Problem" => "Skin allergy"
+    }
+]
+
+2.  Patient.joins(:medical_records).select("First_Name","count(patient_id)").group(:First_Name)
+
+  [
+    [0] #<Patient:0x0000557b00ad0810> {
+                "id" => nil,
+        "First_Name" => "Ravi",
+             "count" => 1
+    },
+    [1] #<Patient:0x0000557b00ad0720> {
+                "id" => nil,
+        "First_Name" => "Priya",
+             "count" => 2
+    },
+    [2] #<Patient:0x0000557b00ad0658> {
+                "id" => nil,
+        "First_Name" => "Ritesh",
+             "count" => 1
+    }
+]
+
+3.  Doctor.joins(:medical_records).select("First_name","count(doctor_id)").group(:First_name)
+
+[
+    [0] #<Doctor:0x0000557b0046c578> {
+                "id" => nil,
+        "First_name" => "Dr.Palak",
+             "count" => 2
+    },
+    [1] #<Doctor:0x0000557b0046c2f8> {
+                "id" => nil,
+        "First_name" => "Dr.Rakesh",
+             "count" => 1
+    },
+    [2] #<Doctor:0x0000557b0046c0f0> {
+                "id" => nil,
+        "First_name" => "Dr.Meena",
+             "count" => 1
+    }
+]
+

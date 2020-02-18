@@ -1713,6 +1713,27 @@ VALIDATIONS
       :updated_at => Sat, 15 Feb 2020 11:24:00 UTC +00:00
   }
 
+* on 
+
+   u = User.new(email:"rupa@gmail.com",role_id:1,age:23)
+   
+  - u.valid?
+   Role Load (1.0ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+    true
+   
+  - u.valid?(:account_setup) 
+   User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "rupa@gmail.com"], ["LIMIT", 1]]
+   false
+
+  - 
+  {
+      :email => [
+          [0] "has already been taken"
+      ]
+  }
+
+-----------------------------------------------------------------------------------
+Queries on Event Table
 *  Event.where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Admin")).select(:name,:id)
 
   With join:-

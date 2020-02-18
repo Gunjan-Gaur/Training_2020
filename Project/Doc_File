@@ -1732,6 +1732,49 @@ VALIDATIONS
       ]
   }
 
+* validates :first_name ,format: { with: /\A[a-zA-Z]+\z/ ,message: "only allows letters"} , presence:
+  {strict: true}
+
+  User.new.valid?  
+
+  ActiveModel::StrictValidationFailed (First name can't be blank) 
+
+* validates :age, presence: true, if: :age_greater_than_30?
+
+ def age_greater_than_30?
+   if age > 30
+     return true
+   else
+     return false
+   end
+ end
+
+* Custom Validators
+  
+  class MyValidator < ActiveModel::Validator
+  def validate(role)
+    unless role.name.starts_with? 'A'
+      role.errors[:name] << 'name should start with A'
+  end
+ end
+end
+
+class Role < ApplicationRecord
+  has_many :users, dependent: :destroy
+  validates :name ,exclusion: {in: %w(worker), message:"%{value} is reserved"} , length: { minimum: 2 } , allow_blank: true
+  #validates_associated:users
+  include ActiveModel::Validations
+  validates_with MyValidator
+end
+
+a = Role.new(name:'Learner')
+
+{
+    :name => [
+        [0] "name should start with A"
+    ]
+}
+
 -----------------------------------------------------------------------------------
 Queries on Event Table
 *  Event.where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Admin")).select(:name,:id)

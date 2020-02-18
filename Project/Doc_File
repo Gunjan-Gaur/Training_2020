@@ -1775,6 +1775,27 @@ a = Role.new(name:'Learner')
     ]
 }
 
+* class User < ApplicationRecord
+  belongs_to :role
+  has_many :events, dependent: :destroy
+  has_many :event_types, through: :events
+  validate :age_greater_than_21
+  
+  def age_greater_than_21
+    if age.present? && age < 21
+      errors.add(:age, "can't be less than 21")
+    end
+  end 
+  end
+
+  a = User.new(role_id:1,age:11,first_name:"Ritika")
+
+  {
+    :age => [
+        [0] "can't be less than 21"
+    ]
+  }
+
 -----------------------------------------------------------------------------------
 Queries on Event Table
 *  Event.where(event_type_id:EventType.find_by(type_:"Birthday"),user_id:Role.find_by(name:"Admin")).select(:name,:id)

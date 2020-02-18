@@ -1870,3 +1870,32 @@ Hosital Management Database
     }
 ]
 
+4.  Patient.joins(:medical_records ,:doctors).where("patients.age>28",doctor_id:Doctor.find_by(Qualifications:"Determatologist")).select("patients.id",:Problem,"First_Name")
+  
+  [
+    [0] #<Patient:0x0000557b00db7768> {
+                "id" => 3,
+        "First_Name" => "Ravi",
+           "Problem" => "Skin allergy"
+    }
+]
+
+5. Hospital.joins(:doctors).select(:Name,"count(hospital_id)").group(:Name)
+
+  [
+    [0] #<Hospital:0x0000557b00a12338> {
+           "id" => nil,
+         "Name" => "Fortis Hospital",
+        "count" => 1
+    },
+    [1] #<Hospital:0x0000557b00a12270> {
+           "id" => nil,
+         "Name" => "AIIMS,All India Institue of Medical Sciences",
+        "count" => 2
+    },
+    [2] #<Hospital:0x0000557b00a12158> {
+           "id" => nil,
+         "Name" => "Lilavati Hospital",
+        "count" => 1
+    }
+  ]

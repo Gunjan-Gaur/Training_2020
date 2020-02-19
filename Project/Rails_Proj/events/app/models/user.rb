@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   belongs_to :role
-  belongs_to :Admin , class_name :role
   has_many :events, dependent: :destroy
   has_many :event_types, through: :events
   validate :age_greater_than_21

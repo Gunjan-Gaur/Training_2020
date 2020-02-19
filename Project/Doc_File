@@ -1596,6 +1596,32 @@ Practice Query Interface
     Admin
     Employee  
 
+*  1. Array of multiple associations - Eager loading Multiple Association
+
+    2.7.0 :070 > event = Event.includes(:user , :event_type)
+    2.7.0 :071 > event.each do |e|
+    2.7.0 :072 >   puts e.user.first_name
+    2.7.0 :073 > end
+      Event Load (1.1ms)  SELECT "events".* FROM "events"
+      User Load (0.9ms)  SELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3, $4)  [["id", 1], ["id", 2], ["id", 7], ["id", 8]]
+      EventType Load (1.0ms)  SELECT "event_types".* FROM "event_types" WHERE "event_types"."id" IN ($1, $2, $3, $4)  [["id", 2], ["id", 1], ["id", 3], ["id", 5]]
+    Priya
+    Rahul
+    Ritu
+    Akansha
+    Akansha
+
+  2. Nested associations Hash
+  
+    2.7.0 :080 > event = Event.includes({ users: :role } , :event_type)
+    2.7.0 :088 > event.each do |e|
+    2.7.0 :089 >   puts e.user.role.name
+    2.7.0 :090 > end
+    Manager
+    Employee
+    Admin
+    Employee
+    Employee
 
 ------------------------------------------------------------------------
 VALIDATIONS

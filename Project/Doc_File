@@ -1552,8 +1552,50 @@ Practice Query Interface
     }
     ]
 
+6. Dependent: :destroy
 
+   Role.last.destroy
   
+  Role Load (0.7ms)  SELECT "roles".* FROM "roles" ORDER BY "roles"."id" DESC LIMIT $1  [["LIMIT", 1]]
+   (0.5ms)  BEGIN
+  User Load (0.7ms)  SELECT "users".* FROM "users" WHERE "users"."role_id" = $1  [["role_id", 9]]
+  Event Load (1.0ms)  SELECT "events".* FROM "events" WHERE "events"."user_id" = $1  [["user_id", 21]]
+  Event Destroy (1.0ms)  DELETE FROM "events" WHERE "events"."id" = $1  [["id", 16]]
+  User Destroy (1.2ms)  DELETE FROM "users" WHERE "users"."id" = $1  [["id", 21]]
+  Role Destroy (0.6ms)  DELETE FROM "roles" WHERE "roles"."id" = $1  [["id", 9]]
+   (12.7ms)  COMMIT
+  #<Role:0x0000561a1c1f0f18> {
+              :id => 9,
+            :name => "Accountant",
+      :created_at => Wed, 19 Feb 2020 06:46:57 UTC +00:00,
+      :updated_at => Wed, 19 Feb 2020 06:46:57 UTC +00:00
+  }
+
+7. Eager Loading
+
+    2.7.0 :041 > user = User.limit(3)
+    2.7.0 :042 > user.each do |u|
+    2.7.0 :043 >   puts u.role.name
+    2.7.0 :044 > end
+      User Load (0.9ms)  SELECT "users".* FROM "users" LIMIT $1  [["LIMIT", 3]]
+      Role Load (0.7ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+    Employee
+      Role Load (0.5ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+    Admin
+      Role Load (0.7ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+    Employee
+
+    Solution to N+1 Queries problem
+    2.7.0 :045 > y = User.includes(:role).limit(3)
+    2.7.0 :046 > y.each do |u|
+    2.7.0 :047 >   puts u.role.name
+    2.7.0 :048 > end
+      User Load (0.9ms)  SELECT "users".* FROM "users" LIMIT $1  [["LIMIT", 3]]
+      Role Load (1.2ms)  SELECT "roles".* FROM "roles" WHERE "roles"."id" IN ($1, $2)  [["id", 3], ["id", 1]]
+    Employee
+    Admin
+    Employee  
+
 
 ------------------------------------------------------------------------
 VALIDATIONS
@@ -1831,7 +1873,6 @@ end
 class Role < ApplicationRecord
   has_many :users, dependent: :destroy
   validates :name ,exclusion: {in: %w(worker), message:"%{value} is reserved"} , length: { minimum: 2 } , allow_blank: true
-  #validates_associated:users
   include ActiveModel::Validations
   validates_with MyValidator
 end

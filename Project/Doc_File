@@ -1728,6 +1728,45 @@ Practice Query Interface
     }
     ]
 
+    6. Default scope
+
+     default_scope { where("email_confirmation is null") }  
+
+     User.last
+    User Load (1.9ms)  SELECT "users".* FROM "users" WHERE (email_confirmation is null) ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+
+    7. Merging scopes
+
+      * User.all
+
+      User Exists? (0.9ms)  SELECT 1 AS one FROM "users" WHERE (email_confirmation is null) LIMIT $1  [["LIMIT", 1]]
+      
+      User Load (0.6ms)  SELECT "users".* FROM "users" WHERE (email_confirmation is null)
+
+      
+      * User.address_delhi("Delhi")
+      
+      User Exists? (1.6ms)  SELECT 1 AS one FROM "users" WHERE (email_confirmation is null) AND (address like 'Delhi') LIMIT $1  [["LIMIT", 1]]
+      
+      User Load (1.0ms)  SELECT "users".* FROM "users" WHERE (email_confirmation is null) AND (address like 'Delhi')
+
+      
+      * User.age_greater_than_21.address_delhi("Delhi")
+        
+        User Exists? (18.0ms)  SELECT 1 AS one FROM "users" WHERE (email_confirmation is null) AND (age > 21) AND (address like 'Delhi') LIMIT $1  [["LIMIT", 1]]
+        
+        User Load (0.8ms)  SELECT "users".* FROM "users" WHERE (email_confirmation is null) AND (age > 21) AND (address like 'Delhi')
+
+      * User.address_delhi("Delhi").merge(User.created_before("14 Feb 2020"))
+
+        User Exists? (1.2ms)  SELECT 1 AS one FROM "users" WHERE (email_confirmation is null) AND (address like 'Delhi') AND (email_confirmation is null) AND (created_at < '14 Feb 2020') LIMIT $1  [["LIMIT", 1]]
+        
+        User Load (1.0ms)  SELECT "users"."id" FROM "users" WHERE (email_confirmation is null) AND (address like 'Delhi') AND (email_confirmation is null) AND (created_at < '14 Feb 2020')
+      [
+          [0] #<User:0x00007f7c1c559750> {
+              "id" => 2
+          }
+      ]
 
 ------------------------------------------------------------------------
 VALIDATIONS

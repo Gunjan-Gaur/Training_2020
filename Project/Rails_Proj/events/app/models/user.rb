@@ -31,4 +31,5 @@ end
  scope :age_and_address,  ->{age_greater_than_21.where("address like ?", "Goa")}
  scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
  scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
+ default_scope { where("email_confirmation is null") }
 end

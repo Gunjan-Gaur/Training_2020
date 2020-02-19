@@ -1680,6 +1680,53 @@ Practice Query Interface
     }
 ]
 
+    4. Passing in arguments
+
+    scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
+
+    User.created_before("14 Feb 2020")
+
+    [
+    [0] #<User:0x00007f511c4a1b30> {
+        "id" => 2
+    },
+    [1] #<User:0x000055ec29786ca0> {
+        "id" => 7
+    },
+    [2] #<User:0x000055ec29786bd8> {
+        "id" => 8
+    },
+    [3] #<User:0x000055ec29786b10> {
+        "id" => 9
+    },
+    [4] #<User:0x000055ec29786a48> {
+        "id" => 1
+    }
+    ]
+
+    5. Conditional Scopes
+
+      scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
+
+      User.address_delhi
+
+      [
+    [0] #<User:0x0000557e88bd07c0> {
+                        :id => 2,
+                :first_name => "Rahul",
+                 :last_name => "jain",
+                     :email => "Rahul@gamil.com",
+                       :age => 23,
+                    :gender => "male",
+                    :salary => 25000.0,
+                   :role_id => 3,
+                :created_at => Tue, 11 Feb 2020 05:32:56 UTC +00:00,
+                :updated_at => Tue, 11 Feb 2020 07:08:40 UTC +00:00,
+                   :address => "Delhi",
+                     :phone => 9811786234,
+        :email_confirmation => nil
+    }
+    ]
 
 
 ------------------------------------------------------------------------

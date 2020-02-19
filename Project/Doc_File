@@ -1485,6 +1485,75 @@ true
           :updated_at => Fri, 14 Feb 2020 12:37:24 UTC +00:00
     }
 ]
+------------------------------------------------------------------------
+Practice Query Interface
+
+1.  2.7.0 :055 > User.find_each(batch_size:2) do |u|
+    2.7.0 :056 >   puts u.first_name
+    2.7.0 :057 > end
+
+      User Load (0.8ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1  [["LIMIT", 2]]
+    Priya
+    Rahul
+
+      User Load (0.8ms)  SELECT "users".* FROM "users" WHERE "users"."id" > $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 2], ["LIMIT", 2]]
+    Ritu
+    Akansha
+
+      User Load (1.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" > $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 8], ["LIMIT", 2]]
+    Ritika
+    gunjan
+
+      User Load (0.9ms)  SELECT "users".* FROM "users" WHERE "users"."id" > $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 10], ["LIMIT", 2]]
+    kush
+    g
+
+      User Load (0.7ms)  SELECT "users".* FROM "users" WHERE "users"."id" > $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 14], ["LIMIT", 2]]
+    rupa
+    pryanshi
+
+      User Load (1.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" > $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 16], ["LIMIT", 2]]
+    nil
+
+2.  2.7.0 :061 > User.find_each(start: 7) do |u|
+    2.7.0 :062 >   puts u.first_name
+    2.7.0 :063 > end
+      User Load (1.0ms)  SELECT "users".* FROM "users" WHERE "users"."id" >= $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 7], ["LIMIT", 1000]]
+    Ritu
+    Akansha
+    Ritika
+    gunjan
+    kush
+    g
+    rupa
+    pryanshi
+    nil
+
+3.  User.where(created_at:"10/2/2020".."15/2/2020")
+
+4.  2.7.0 :095 > User.where(address:nil).delete_all
+    User Destroy (132.6ms)  DELETE FROM "users" WHERE "users"."address" IS NULL
+    3
+
+5.  User.where(role_id:[2,3]).select :first_name
+
+    [
+    [0] #<User:0x0000561a1ae86900> {
+                "id" => nil,
+        "first_name" => "Rahul"
+    },
+    [1] #<User:0x0000561a1ae864f0> {
+                "id" => nil,
+        "first_name" => "Akansha"
+    },
+    [2] #<User:0x0000561a1ae86388> {
+                "id" => nil,
+        "first_name" => "Priya"
+    }
+    ]
+
+
+  
 
 ------------------------------------------------------------------------
 VALIDATIONS

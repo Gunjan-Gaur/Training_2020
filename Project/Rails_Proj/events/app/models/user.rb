@@ -26,4 +26,7 @@ end
      return false
    end
  end
+
+ scope :age_greater_than_21,  ->{where("age > 21")}
+ scope :age_and_address,  ->{age_greater_than_21.where("address like ?", "Goa")}
 end

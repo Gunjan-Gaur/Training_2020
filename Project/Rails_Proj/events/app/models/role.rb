@@ -10,4 +10,6 @@ class Role < ApplicationRecord
   validates :name ,exclusion: {in: %w(worker), message:"%{value} is reserved"} , length: { minimum: 2 } , allow_blank: true
   include ActiveModel::Validations
   validates_with MyValidator
+  scope :name_like_A,  -> {where("name like ? ","A%").select(:name)}
+  
 end

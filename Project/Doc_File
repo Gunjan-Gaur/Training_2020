@@ -2360,3 +2360,12 @@ end
   </html>
 
 * get 'department/patient' 
+
+* @array = [1,2,3,4,5] 
+
+  <body bgcolor="wheat">
+    <%@arr%>
+    <%@array.each do |arr| %>
+         <%=arr%>
+    <%end%>
+  </body>

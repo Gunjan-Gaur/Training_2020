@@ -2337,3 +2337,26 @@ Hosital Management Database
         "count" => 1
     }
   ]
+
+--------------------------------------------------------------------------------------------------------
+CONTROLLER
+
+* rake g controller department
+
+* class DepartmentController < ApplicationController
+  def patient
+    @patient = Patient.all
+  end
+end
+
+* <html>
+    <head>
+      <meta charset="utf-8">
+      <title>patient</title>
+    </head>
+    <body bgcolor="wheat">
+        Gunjan Gaur
+    </body>
+  </html>
+
+* get 'department/patient' 

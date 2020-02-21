@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  belongs_to :role
+  belongs_to :role, class_name: "User"
+  has_many :employees ,class_name: "User", foreign_key: "role_id"
+
   has_many :events, dependent: :destroy
   has_many :event_types, through: :events
   validate :age_greater_than_21
@@ -9,7 +11,7 @@ class User < ApplicationRecord
     end
   end
   validates :email ,confirmation: true, uniqueness: true
-  validates :email_confirmation, presence:true
+  #validates :email_confirmation, presence:true
   validates :first_name ,format: { with: /\A[a-zA-Z]+\z/ ,message: "only allows letters"} , presence: {strict: true}
   validates :gender ,inclusion: { in: %w(male female others), message: "%{value} is not valid"} ,allow_nil: true
   validates :salary, numericality: true
@@ -31,5 +33,5 @@ end
  scope :age_and_address,  ->{age_greater_than_21.where("address like ?", "Goa")}
  scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
  scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
- default_scope { where("email_confirmation is null") }
+ #default_scope { where("email_confirmation is null") }
 end

@@ -1768,6 +1768,78 @@ Practice Query Interface
           }
       ]
 
+      8. Self Join
+        class User < ApplicationRecord
+          belongs_to :role, class_name: "User"
+          has_many :employees ,class_name: "User", foreign_key: "role_id"
+        end 
+        
+      1.  User.first.employees
+        [
+      [0] #<User:0x00007f1b848aaad8> {
+                        :id => 9,
+                :first_name => "Ritika",
+                 :last_name => "Verma",
+                     :email => "ritika@gmail.com",
+                       :age => 31,
+                    :gender => "female",
+                    :salary => 71000.0,
+                   :role_id => 1,
+                :created_at => Tue, 11 Feb 2020 09:43:21 UTC +00:00,
+                :updated_at => Tue, 11 Feb 2020 09:44:27 UTC +00:00,
+                   :address => "Punjab",
+                     :phone => 7865787098,
+        :email_confirmation => nil
+      },
+      [1] #<User:0x00007f1b848aa9e8> {
+                        :id => 7,
+                :first_name => "Ritu",
+                 :last_name => "Rao",
+                     :email => "ritu@gmail.com",
+                       :age => 21,
+                    :gender => "Female",
+                    :salary => 30000.0,
+                   :role_id => 1,
+                :created_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+                :updated_at => Tue, 11 Feb 2020 07:11:35 UTC +00:00,
+                   :address => "Fbd",
+                     :phone => 4576553345,
+        :email_confirmation => nil
+    }
+]
+       2. User.find_by(id:Role.find_by(name:"Admin")).employees.select(:first_name,:role_id)
+
+       [
+          [0] #<User:0x0000561bc13fab28> {
+                      "id" => nil,
+              "first_name" => "Ritika",
+                 "role_id" => 1
+          },
+          [1] #<User:0x0000561bc13f7b58> {
+                      "id" => nil,
+              "first_name" => "Ritu",
+                 "role_id" => 1
+          }
+        ]
+
+        5. User.joins(:employees_users).select(:first_name,:role_id).where(address:"Delhi")
+
+          [
+            [0] #<User:0x0000561bc3a5cf00> {
+                        "id" => nil,
+                "first_name" => "Rahul",
+                   "role_id" => 3
+            },
+            [1] #<User:0x0000561bc3a5c708> {
+                        "id" => nil,
+                "first_name" => "Rahul",
+                   "role_id" => 3
+            }
+          ]
+
+  
+
+  
 ------------------------------------------------------------------------
 VALIDATIONS
 

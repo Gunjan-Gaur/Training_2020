@@ -17,6 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -82,5 +83,4 @@ development:
 #production:
 #  <<: *default
 #  database: Hospital_Management_production
-#  username: Hospital_Management
 #  password: <%= ENV['HOSPITAL_MANAGEMENT_DATABASE_PASSWORD'] %>

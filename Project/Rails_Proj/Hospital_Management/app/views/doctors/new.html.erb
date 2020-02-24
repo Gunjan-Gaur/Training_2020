@@ -1,25 +1,51 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Doctor's Page</title>
-  </head>
-  <body bgcolor = "wheat">
+
     <h1><center>Doctor Information</center></h1>
       <%= form_for :doctors, url: doctors_path do |d| %>
       <p>
-        <%= d.label :title %><br>
-        <%= d.text_field :title %>
+        <%= d.label :First_name %><br>
+        <%= d.text_field :First_name %>
       </p>
 
       <p>
-        <%= d.label :text %><br>
-        <%= d.text_area :text %>
+        <%= d.label :Last_name %><br>
+        <%= d.text_field :Last_name %>
       </p>
 
+      <p>
+        <%= d.label :Qualifications %><br>
+        <%= d.text_field :Qualifications %>
+      </p>
+
+      <p>
+        <%= d.label :Gender %><br>
+        <%= d.text_field :Gender %>
+      </p>
+
+      <p>
+        <%= d.label :Salary %><br>
+        <%= d.text_field :salary %>
+      </p>
+
+      <p>
+        <%= d.label :Email %><br>
+        <%= d.text_field :email %>
+      </p>
+
+      <p>
+        <%= d.label :Mobile %><br>
+        <%= d.text_field :mobile %>
+      </p>
+
+      <p>
+        <%= d.label :Age %><br>
+        <%= d.text_field :age %>
+      </p>
+
+      <p>
+        <%= d.label :Hospital_id %><br>
+        <%= d.text_field :hospital_id %>
+      </p>
       <p>
         <%= d.submit%>
       </p>
     <% end %>
-  </body>
-</html>

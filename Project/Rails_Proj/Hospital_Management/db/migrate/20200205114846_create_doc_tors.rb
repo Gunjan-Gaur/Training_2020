@@ -1,4 +1,4 @@
-class CreateDocTors < ActiveRecord::Migration[6.0]
+class CreateDoctors < ActiveRecord::Migration[6.0]
   def change
     create_table :doc_tors do |t|
       t.string :First_name

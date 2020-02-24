@@ -1,6 +1,7 @@
 
     <h1><strong><center>List of Doctors</center></strong></h1>
     <table>
+      <td><%= link_to 'New' ,'doctors/new' %></td>
       <tr>
       <th>First Name</th>
       <th>Last Name</th>
@@ -22,6 +23,10 @@
           <td><%= d.age %></td>
           <td><%= d.hospital_id %></td>
           <td><%= link_to 'Show' ,doctor_path(d) %></td>
+          <td><%= link_to 'Edit' ,edit_doctor_path(d) %></td>
+          <td><%= link_to 'Delete' ,doctor_path(d) ,
+             method: :Delete ,
+             data: {confirm: 'Are you certain?'}%></td>
         </tr>
       <% end %>
     </table>

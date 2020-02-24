@@ -1,6 +1,6 @@
 
     <h1><center>Doctor Information</center></h1>
-      <%= form_for :doctors, url: doctors_path do |d| %>
+      <%= form_for @doctor, url: doctors_path do |d| %>
       <p>
         <%= d.label :First_name %><br>
         <%= d.text_field :First_name %>

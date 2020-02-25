@@ -18,10 +18,6 @@ class HospitalController < ApplicationController
       redirect_to hospital_index_path
   end
 
-  def doc_hosp
-    
-  end
-
   def edit
       @hospital = Hospital.find_by(id: params[:id])
   end

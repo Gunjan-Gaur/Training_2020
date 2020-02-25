@@ -1,0 +1,57 @@
+
+    <h1><center>Edit Patient Information</center></h1>
+      <%= form_for @patient do |h| %>
+      <p>
+        <%= h.label :First_Name %><br>
+        <%= h.text_field :First_Name %>
+      </p>
+
+      <p>
+        <%= h.label :Last_Name %><br>
+        <%= h.text_field :Last_Name %>
+      </p>
+
+      <p>
+        <%= h.label :Age %><br>
+        <%= h.text_field :age %>
+      </p>
+
+      <p>
+        <%= h.label :Address %><br>
+        <%= h.text_field :Address %>
+      </p>
+
+      <p>
+        <%= h.label :Mobile %><br>
+        <%= h.text_field :Mobile %>
+      </p>
+
+      <p>
+        <%= h.label :Gender %><br>
+        <%= h.text_field :Gender %>
+      </p>
+
+      <p>
+        <%= h.label :Password %><br>
+        <%= h.text_field :password %>
+      </p>
+
+      <p>
+        <%= h.label :Confirm_Password %><br>
+        <%= h.text_field :confirm_password %>
+      </p>
+
+      <p>
+        <%= h.label :Comments %><br>
+        <%= h.text_field :comments %>
+      </p>
+
+      <p>
+        <%= h.label :Hospital_id %><br>
+        <%= h.text_field :hospital_id %>
+      </p>
+
+      <p>
+        <%= h.submit%>
+      </p>
+    <% end %>

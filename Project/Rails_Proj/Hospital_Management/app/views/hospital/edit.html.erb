@@ -1,0 +1,27 @@
+
+    <h1><center>Update Hospital Information</center></h1>
+      <%= form_for @hospital do |h| %>
+      <p>
+        <%= h.label :Hospital_Name %><br>
+        <%= h.text_field :Name %>
+      </p>
+
+      <p>
+        <%= h.label :Address %><br>
+        <%= h.text_field :Address %>
+      </p>
+
+      <p>
+        <%= h.label :State %><br>
+        <%= h.text_field :State %>
+      </p>
+
+      <p>
+        <%= h.label :Beds %><br>
+        <%= h.text_field :Beds %>
+      </p>
+
+      <p>
+        <%= h.submit%>
+      </p>
+    <% end %>

@@ -17,7 +17,7 @@
       <td><%= h.State %></td>
       <td><%= h.Beds %></td>
       <td><%= link_to 'show' , hospital_path(h) %></td>
-      <td><%= link_to 'edit' ,hospital_path(h) %></td>
+      <td><%= link_to 'edit' ,edit_hospital_path(h) %></td>
       <td><%= link_to 'delete' ,hospital_path(h) ,method: :delete ,data: {confirm: 'Are you certain?'} %></td>
   </tr>
   <% end %>

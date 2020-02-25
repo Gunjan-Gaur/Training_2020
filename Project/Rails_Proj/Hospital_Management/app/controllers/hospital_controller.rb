@@ -19,6 +19,18 @@ class HospitalController < ApplicationController
   end
 
 
+  def edit
+      @hospital = Hospital.find_by(id: params[:id])
+  end
+
+  def update
+    @hospital = Hospital.find_by(id: params[:id])
+    if @hospital.update hospital_params
+      redirect_to hospital_index_path
+    end
+  end
+
+
   def hospital_params
     params.require(:hospital).permit(:Name , :Address , :State , :Beds)
   end

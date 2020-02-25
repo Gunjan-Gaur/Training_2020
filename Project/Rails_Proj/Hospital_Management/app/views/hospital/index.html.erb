@@ -1,0 +1,24 @@
+<table>
+  <h1><strong><center>Hospital Details</center></strong></h1>
+    <tr><%= link_to 'new' , new_hospital_path %></tr>
+    <tr>
+  <th>Name</th>
+  <th>Address</th>
+  <th>State</th>
+  <th>Beds</th>
+  <th>show</th>
+  <th>Edit</th>
+  <th>Delete</th>
+  </tr>
+  <% @hospital.each do |h| %>
+  <tr>
+      <td><%= h.Name %></td>
+      <td><%= h.Address %></td>
+      <td><%= h.State %></td>
+      <td><%= h.Beds %></td>
+      <td><%= link_to 'show' , hospital_path(h) %></td>
+      <td><%= link_to 'edit' ,hospital_path(h) %></td>
+      <td><%= link_to 'delete' ,hospital_path(h) ,method: :delete ,data: {confirm: 'Are you certain?'} %></td>
+  </tr>
+  <% end %>
+</table>

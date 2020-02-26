@@ -1,11 +1,13 @@
 
+
     <h1><center>Doctor Information</center></h1>
     <div class="container w-50 bg-light">
 
-    <%= form_for @doctor, url: doctors_path do |d|  %>
+    <%= form_for @doctor, url: doctors_path  do |d|  %>
     <div class ="form-group">
       <%= d.label :fname , 'First Name' %><br>
-      <%= d.text_field :First_name ,class: 'form-control', placeholder: 'Enter First Name',id:'fname'%>
+      <%= d.text_field :First_name ,class: 'form-control', placeholder: 'Enter First Name',id: 'fname' %>
+      <small><p id = 'firstname' class= "text-danger" >*Please enter first name and Only Alphabets allowed</p></small>
     </div>
 
     <div class ="form-group">
@@ -30,7 +32,8 @@
 
     <div class ="form-group">
       <%= d.label :email , 'Email' %><br>
-      <%= d.email_field :email ,class:'form-control', placeholder:'Enter Email' ,id:'email'%>
+      <%= d.text_field :email ,class:'form-control', placeholder:'Enter Email' ,id:'email'%>
+      <small><p id = 'mail' class= "text-danger" >*Please enter valid email</p></small>
     </div>
 
     <div class ="form-group">
@@ -51,6 +54,11 @@
     <div class ="form-group">
       <%= d.label :pwd , 'Password' %><br>
       <%= d.password_field :password ,class:'form-control', placeholder:'Enter Password' ,id:'pwd'%>
+      <small><p id = 'pass' class= "text-danger" >*Please enter password</p></small>
+      <small><p id = 'p1' class= "text-danger" >*Please enter capital Alphabet</p></small>
+      <small><p id = 'p2' class= "text-danger" >*Please enter small Alphabet</p></small>
+      <small><p id = 'p3' class= "text-danger" >*Please enter numeric constant</p></small>
+      <small><p id = 'p4' class= "text-danger" >*Please enter @ and .</p></small>
     </div>
 
     <div class ="form-group">
@@ -64,7 +72,7 @@
     </div>
 
     <div class = "form-group ml-500">
-      <%= d.submit class: "btn btn-primary"%>
+      <%= d.submit class: "btn btn-primary" , onclick: 'return myfun();'%>
     </div>
   <% end %>
 </div>

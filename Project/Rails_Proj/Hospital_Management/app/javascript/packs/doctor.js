@@ -15,4 +15,9 @@ function myfun()
       f.match(/^[a-zA-Z]+$/)? firstname.style.display="none" : firstname.style.display="block";
     });
 
-  
+    //Validation for email
+    email.addEventListener('keyup',()=>{
+      m = mail.value
+      m.match(/^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]+$/)? mail.style.display="none" : mail.style.display="block";});
+
+}

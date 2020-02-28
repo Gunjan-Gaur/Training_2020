@@ -1,59 +1,59 @@
     <h1><center>Doctor Information</center></h1>
     <div class="container w-50 bg-light">
 
-    <%= form_for @doctor, id: 'myform', url: doctors_path   do |d|  %>
+    <%= form_for @doctor ,html: {id:'myform'}, url: doctors_path   do |d|  %>
     <div class ="form-group">
       <%= d.label :fname , 'First Name' %><br>
-      <%= d.text_field :First_name ,class: 'form-control', placeholder: 'Enter First Name',id:'fname' %>
+      <%= d.text_field :First_name ,class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>
       <small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :lname , 'Last Name' %><br>
-      <%= d.text_field :Last_name ,class:'form-control', placeholder:'Enter Last Name' ,id:'lname'%>
+      <%= d.text_field :Last_name ,class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%>
       <small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :quali , 'Qualifications' %><br>
-      <%= d.text_field :Qualifications ,class:'form-control', placeholder:'Enter Qualifications' ,id:'quali'%>
+      <%= d.text_field :Qualifications ,class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%>
     </div>
 
     <div class ="form-group">
       <%= d.label :gender , 'Gender' %><br>
-      <%= d.text_field :Gender ,class:'form-control', placeholder:'Enter Gender' ,id:'gender'%>
+      <%= d.text_field :Gender ,class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%>
     </div>
 
     <div class ="form-group">
       <%= d.label :salary , 'Salary' %><br>
-      <%= d.text_field :salary ,class:'form-control', placeholder:'Enter Salary' ,id:'salary'%>
+      <%= d.text_field :salary ,class:'form-control input', placeholder:'Enter Salary' ,id:'salary'%>
     </div>
 
     <div class ="form-group">
       <%= d.label :email , 'Email' %><br>
-      <%= d.text_field :email ,class:'form-control', placeholder:'Enter Email' ,id:'email'%>
+      <%= d.text_field :email ,class:'form-control input', placeholder:'Enter Email' ,id:'email'%>
       <small><p id = 'mail' class= "text-danger" >*Email must contain @,.(xyz@gmail.com)</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :mobile , 'Mobile' %><br>
-      <%= d.text_field :mobile ,class:'form-control', placeholder:'Enter Mobile Number' ,id:'mobile',maxlength: 10%>
+      <%= d.text_field :mobile ,class:'form-control input', placeholder:'Enter Mobile Number' ,id:'mobile',maxlength: 10%>
       <small><p id = "phone" class= "text-danger">*Only numeric digit 0-9 allowed</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :age , 'Age' %><br>
-      <%= d.text_field :age ,class:'form-control', placeholder:'Enter Age' ,id:'age'%>
+      <%= d.text_field :age ,class:'form-control input', placeholder:'Enter Age' ,id:'age'%>
     </div>
 
     <div class ="form-group">
       <%= d.label :hid , 'Hospital Id' %><br>
-      <%= d.text_field :hospital_id ,class:'form-control', placeholder:'Enter Hospital Id' ,id:'hid'%>
+      <%= d.text_field :hospital_id ,class:'form-control input', placeholder:'Enter Hospital Id' ,id:'hid'%>
     </div>
 
       <div class="form-group">
         <%= d.label :password , 'Password' %><br>
-        <%= d.password_field :password ,class:'form-control', placeholder:'Enter Password' ,id:'password'%>
+        <%= d.password_field :password ,class:'form-control input', placeholder:'Enter Password' ,id:'password'%>
         <div id = "mixid">
         <small><p id = 'p1' class= "text-danger" >*Please enter one uppercase Alphabet</p></small>
         <small><p id = 'p2' class= "text-danger" >*Please enter one lowercase Alphabet</p></small>
@@ -64,13 +64,13 @@
 
       <div class="form-group">
       <%= d.label :confirm_pwd , 'Confirm Password' %><br>
-      <%= d.password_field :password ,class:'form-control', placeholder:'Confirm Password' ,id:'confirm_pwd'%>
+      <%= d.password_field :password ,class:'form-control input', placeholder:'Confirm Password' ,id:'confirm_pwd'%>
       <small><p id = "p5" class= "text-danger">*Password didn't match</p></small>
       </div>
 
     <div class ="form-group">
       <%= d.label :comments , 'Comments' %><br>
-      <%= d.text_area :comments ,class:'form-control', placeholder:'Write Comments...' ,id:'comments'%>
+      <%= d.text_area :comments ,class:'form-control input', placeholder:'Write Comments...' ,id:'comments'%>
     </div>
 
     <div class = "form-group ml-500">

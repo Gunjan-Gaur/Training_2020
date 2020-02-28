@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const confirm_pwd = document.querySelector('#confirm_pwd');
 
     //password validation
-    password.addEventListener('focus',()=>{mixid.style.display = "block";});
-    password.addEventListener('focusout',()=>{mixid.style.display = "none";});
+     password.addEventListener('focus',()=>{mixid.style.display = "block";});
+     password.addEventListener('focusout',()=>{mixid.style.display = "none";});
     password.addEventListener('keyup',()=>{
       val = password.value
       val.match(/[A-Z]+/)? p1.style.display="none" :p1.style.display="block"
@@ -66,4 +66,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
 
 
+       const all_inputs = document.querySelectorAll('.input');
+       const myform = document.querySelector('#myform');
+       //console.log(myform);
+       myform.addEventListener('click',(e)=>{
+         count=0;
+         for(var i=0;i<all_inputs.length;i++)
+         {
+           if(all_inputs[i].value=='')
+           {
+             count++;
+           }
+         }
+         console.log(count)
+         return false;
+         e.preventDefault();
+         if(count>0)
+         {
+
+           alert("Please enter field");
+         }
+      });
 });

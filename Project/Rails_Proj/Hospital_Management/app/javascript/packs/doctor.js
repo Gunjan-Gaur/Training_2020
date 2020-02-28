@@ -1,36 +1,30 @@
-function myfun()
-{
-    var valid;
-    const firstname = document.querySelector('#firstname');
-    const fname = document.querySelector('#fname');
-    const email = document.querySelector('#email');
-    const mail = document.querySelector('#mail');
-    const pwd = document.querySelector('#pwd');
-    const pass = document.querySelector('#pass');
-    //Validation for firstname
-    fname.addEventListener('focus',() =>{firstname.style.display = "block";});
-    fname.addEventListener('focusout',() => {firstname.style.display = "none";});
-    fname.addEventListener('keyup',()=>{
-      f = fname.value
-      f.match(/^[a-zA-Z]+$/)? firstname.style.display="none" : firstname.style.display="block";
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    const password = document.querySelector('#password');
+    const mixid = document.querySelector('#mixid');
+    const p1 = document.querySelector('#p1');
+    const p2 = document.querySelector('#p2');
+    const p3 = document.querySelector('#p3');
+    const p4 = document.querySelector('#p4');
+    const confirm_pwd = document.querySelector('#confirm_pwd');
+
+    //password validation
+    password.addEventListener('focus',()=>{mixid.style.display = "block";});
+    password.addEventListener('focusout',()=>{mixid.style.display = "none";});
+    password.addEventListener('keyup',()=>{
+      val = password.value
+      val.match(/[A-Z]+/)? p1.style.display="none" :p1.style.display="block"
+      val.match(/[a-z]+/)? p2.style.display="none" :p2.style.display="block"
+      val.match(/[0-9]+/)? p3.style.display="none" :p3.style.display="block"
+      val.match(/.{8}/)? p4.style.display="none" :p4.style.display="block"
+    });
+    // confirm_pwd.addEventListener('focus',()=>{p5.style.display="block";});
+    // confirm_pwd.addEventListener('focusout',()=>{p5.style.display="none";});
+    confirm_pwd.addEventListener('keyup',()=>{
+      x = password.value
+      password.value == confirm_pwd.value? p5.style.display="none":p5.style.display="block";
     });
 
-    //Validation for email
-    email.addEventListener('keyup',()=>{
-      m = mail.value
-      m.match(/^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]+$/)? mail.style.display="none" : mail.style.display="block";});
-
-      //Validation for password
-      pwd.addEventListener('focus',()=>{pass.style.display = "block";});
-
-      pwd.addEventListener('keyup',()=>{
-            p = pwd.value
-            p.match(/^[A-Z]+$/)?  p1.style.display="none" :p1.style.display="block";
-            p.match(/^[a-z]+$/)?  p2.style.display="none" :p2.style.display="block";
-            p.match(/^[0-9]+$/)?  p3.style.display="none" :p3.style.display="block";
-            p.match(/.{8}/)?      p4.style.display="none" :p4.style.display="block";});
-
-      pwd.addEventListener('focusout',()=>{pass.style.display = "none";});
-
-
-}
+  
+});

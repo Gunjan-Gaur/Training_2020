@@ -26,5 +26,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
       password.value == confirm_pwd.value? p5.style.display="none":p5.style.display="block";
     });
 
-  
+    //Validate firstname
+    const firstname = document.querySelector('#firstname');
+    const fname = document.querySelector('#fname');
+    //fname.addEventListener('focus',()=>{firstname.style.display = "block";});
+    //fname.addEventListener('focusout',()=>{firstname.style.display = "none";});
+    fname.addEventListener('keyup',()=>{
+      v = fname.value
+      v.match(/^[a-zA-Z]+$/) && !v == " "? firstname.style.display="none":firstname.style.display="block"});
+
+    //Validate lastname
+    const lastname = document.querySelector('#lastname');
+    const lname = document.querySelector('#lname');
+    //lname.addEventListener('focus',()=>{firstname.style.display = "block";});
+    //lname.addEventListener('focusout',()=>{firstname.style.display = "none";});
+    lname.addEventListener('keyup',()=>{
+      v = lname.value
+      v.match(/^[a-zA-Z]+$/)? lastname.style.display="none":lastname.style.display="block"});
+
 });

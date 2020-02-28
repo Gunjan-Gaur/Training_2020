@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       v.match(/^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]{3}$/)? mail.style.display='none':mail.style.display='block';
       });
 
+      //validate phone Number
+      const mobile = document.querySelector('#mobile');
+      const phone = document.querySelector('#phone');
+      // mobile.addEventListener('focus',()=>{phone.style.display='block';})
+      // mobile.addEventListener('focusout',()=>{phone.style.display='none';})
+      mobile.addEventListener('keyup',()=>{
+        v = mobile.value
+        isNaN(v)? phone.style.display='block':phone.style.display='none'
+      });
 
 
 });

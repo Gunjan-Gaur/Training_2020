@@ -44,4 +44,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
       v = lname.value
       v.match(/^[a-zA-Z]+$/)? lastname.style.display="none":lastname.style.display="block"});
 
+
+      //validate email
+      const email = document.querySelector('#email');
+      const mail = document.querySelector('#mail');
+      // email.addEventListener('focus',()=>{mail.style.display='block';})
+      // email.addEventListener('focusout',()=>{mail.style.display='none';})
+      email.addEventListener('keyup',()=>{
+      v = email.value
+      v.match(/^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]{3}$/)? mail.style.display='none':mail.style.display='block';
+      });
+
+
+
 });

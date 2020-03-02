@@ -10,6 +10,7 @@ class HospitalController < ApplicationController
 
   def new
     @hospital = Hospital.new
+    2.times {@hospital.doctors.build}
   end
 
   def create
@@ -31,7 +32,7 @@ class HospitalController < ApplicationController
 
 
   def hospital_params
-    params.require(:hospital).permit(:Name , :Address , :State , :Beds)
+    params.require(:hospital).permit(:Name , :Address , :State , :Beds ,doctors_attributes: [:id,:First_name,:Last_name,:hospital_id])
   end
 
 

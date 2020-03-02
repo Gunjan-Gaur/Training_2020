@@ -1,6 +1,7 @@
 
     <h1><center>Hospital Information</center></h1>
-      <%= form_for @hospital, url: hospital_index_url do |h| %>
+    <div class="text-center">
+      <%= form_for @hospital, include_id: false, url: hospital_index_url do |h| %>
       <p>
         <%= h.label :Hospital_Name %><br>
         <%= h.text_field :Name %>
@@ -21,7 +22,25 @@
         <%= h.text_field :Beds %>
       </p>
 
+        <%= h.fields_for :doctors do |d|%>
+          <p>
+            <%= d.label :First_name%>
+            <%= d.text_field :First_name%>
+          </p>
+
+          <p>
+            <%= d.label :Last_name%>
+            <%= d.text_field :Last_name%>
+          </p>
+
+          <p>
+            <%= d.label :hospital_id%>
+            <%= d.text_field :hospital_id%>
+          </p>
+
+          <% end %>
       <p>
         <%= h.submit%>
       </p>
     <% end %>
+</div>

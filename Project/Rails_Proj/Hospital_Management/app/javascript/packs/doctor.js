@@ -73,13 +73,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
          count=0;
          for(var i=0;i<all_inputs.length;i++)
          {
-           if(all_inputs[i].value=='')
+           if(all_inputs[i].value =='')
            {
              count++;
            }
          }
          if(count>0)
          {
+           alert("Please enter all fields");
            event.preventDefault();
          }
 

@@ -2369,3 +2369,24 @@ end
          <%=arr%>
     <%end%>
   </body>
+
+*  Scaffold command
+
+  rails generate scaffold scaffold_command
+
+*  Deleting controller 
+
+  rails d controller scaffold_commands
+  
+      remove  app/controllers/scaffold_commands_controller.rb
+      invoke  erb
+      remove    app/views/scaffold_commands
+      invoke  test_unit
+      remove    test/controllers/scaffold_commands_controller_test.rb
+      invoke  helper
+      remove    app/helpers/scaffold_commands_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    scss
+      remove      app/assets/stylesheets/scaffold_commands.scss
+

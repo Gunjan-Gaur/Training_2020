@@ -3,6 +3,7 @@ class Doctor < ApplicationRecord
   has_many :patients , through: :appointments
   belongs_to :hospital
   has_many :medical_records
+  mount_uploader :avatar , AvatarUploader
   # validates :First_name , :Last_name , format: {with: /\A[a-zA-Z]+\z/ ,message: 'Only alphabets are allowed'}
   # validates :salary ,numericality: true
   # validates :mobile ,numericality: {only_integer: true} ,length: {is: 10}

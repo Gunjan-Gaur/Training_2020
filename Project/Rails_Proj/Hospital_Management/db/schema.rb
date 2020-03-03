@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_091927) do
+ActiveRecord::Schema.define(version: 2020_03_03_112131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_091927) do
     t.string "password"
     t.string "confirm_password"
     t.string "comments"
+    t.string "avatar"
     t.index ["hospital_id"], name: "index_doctors_on_hospital_id"
   end
 

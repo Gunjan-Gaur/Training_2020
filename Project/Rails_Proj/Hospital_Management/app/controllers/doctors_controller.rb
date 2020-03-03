@@ -1,7 +1,11 @@
 class DoctorsController < ApplicationController
   def new
-    @doctor = Doctor.new
+    @doctor = Doctor.new(doctor_params)
+    @doctor.avatar.attach(io: File.open('app/assets/images/Doctor.jpeg', filename: 'Doctor.jpeg' ,content_type: 'image/jpeg'))
   end
+  # File.open('') do |f|
+  #   @doctor.avatar = f
+  # end
 
   def index
     @doctors = Doctor.all
@@ -35,7 +39,7 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:First_name, :Last_name, :Qualifications, :Gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
+    params.require(:doctor).permit(:First_name, :Last_name, :Qualifications, :Gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id, {avatar:[]})
   end
 
 end

@@ -13,5 +13,9 @@ class Role < ApplicationRecord
   validates_with MyValidator
   scope :name_like_A,  -> {where("name like ? ","A%").select(:name)}
 
-  
+  after_destroy :log_destory
+
+  def log_destory
+    puts "Destroyed"
+  end
 end

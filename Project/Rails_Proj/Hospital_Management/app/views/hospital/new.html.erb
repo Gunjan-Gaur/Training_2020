@@ -1,58 +1,61 @@
 
     <h1><center>Hospital Information</center></h1>
-    <div class="text-center">
+    <div class="container w-50 bg-dark text-white pb-1">
       <%= form_for @hospital,  url: hospital_index_url do |h| %>
-      <p>
+      <div class="form-group">
         <%= h.label :Hospital_Name %><br>
-        <%= h.text_field :Name %>
-      </p>
+        <%= h.text_field :Name ,class: "form-control" %>
+      </div>
 
-      <p>
+      <div class="form-group">
         <%= h.label :Address %><br>
-        <%= h.text_field :Address %>
-      </p>
+        <%= h.text_field :Address ,class: "form-control"%>
+      </div>
 
-      <p>
+
+      <div class="form-group">
         <%= h.label :State %><br>
-        <%= h.text_field :State %>
-      </p>
+        <%= h.text_field :State ,class: "form-control" %>
+      </div>
 
-      <p>
+      <div class="form-group">
         <%= h.label :Beds %><br>
-        <%= h.text_field :Beds %>
-      </p>
-
+        <%= h.text_field :Beds ,class: "form-control" %>
+      </div>
+</div>
+  <div class="container w-50 bg-dark text-white mt-5 pb-1">
+      <h6>Create Doctors(Optional)</h6>
       <%= h.fields_for :doctors do |d|%>
         <li>
           <p>
             <%= d.label :First_name%>
-            <%= d.text_field :First_name%>
+            <%= d.text_field :First_name ,class: "form-control"%>
           </p>
 
           <p>
             <%= d.label :Last_name%>
-            <%= d.text_field :Last_name%>
+            <%= d.text_field :Last_name ,class: "form-control"%>
           </p>
 
           <p>
             <%= d.label :hospital_id%>
-            <%= d.text_field :hospital_id%>
+            <%= d.text_field :hospital_id ,class: "form-control"%>
           </p>
 
           <p>
             <%= d.label :Password%>
-            <%= d.password_field :password%>
+            <%= d.password_field :password ,class: "form-control"%>
           </p>
 
           <p>
             <%= d.label :confirm_password%>
-            <%= d.password_field :confirm_password%>
+            <%= d.password_field :confirm_password ,class: "form-control"%>
           </p>
         </li>
         <% end %>
 
       <p>
-        <%= h.submit%>
+        <%= h.submit class: "btn btn-primary"%>
       </p>
     <% end %>
 </div>

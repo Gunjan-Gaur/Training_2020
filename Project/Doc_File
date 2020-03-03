@@ -2390,3 +2390,54 @@ end
       invoke    scss
       remove      app/assets/stylesheets/scaffold_commands.scss
 
+
+----------------------------------------------------------------------------
+CALLBACKS
+
+*   before_validation :last_name_is_empty
+
+    def last_name_is_empty
+      if last_name.nil?
+        self.last_name = first_name unless first_name.blank?
+      end
+    end  
+    
+    User.create(first_name:"Ruby",email:"a@a.com",role_id:2,age:31)
+
+           :id => nil,
+            :first_name => "Ruby",
+             :last_name => "Ruby",
+                 :email => "a@a.com",
+                   :age => 31,
+                :gender => nil,
+                :salary => nil,
+               :role_id => 2,
+            :created_at => nil,
+            :updated_at => nil,
+               :address => nil,
+                 :phone => nil,
+
+*   after_initialize do |u|
+      puts "initialized an object"
+    end
+
+    after_find do |user|
+      puts "You have find an object"
+    end
+
+    User.new
+      initialized an object
+
+    User.first
+      User Load (1.0ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1  [["LIMIT", 1]]
+      You have find an object
+      initialized an object  
+
+
+*   after_touch do
+      puts "Touched an object"
+    end
+  
+    u = User.create(first_name:"rails",email:"a@b.com",role_id:2,age:31)
+    u.touch
+    Touched an object

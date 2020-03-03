@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
   validates :email ,confirmation: true, uniqueness: true
   #validates :email_confirmation, presence:true
-  validates :first_name ,format: { with: /\A[a-zA-Z]+\z/ ,message: "only allows letters"} , presence: {strict: true}
+  validates :first_name , :last_name ,format: { with: /\A[a-zA-Z]+\z/ ,message: "only allows letters"} , presence: {strict: true}
   validates :gender ,inclusion: { in: %w(male female others), message: "%{value} is not valid"} ,allow_nil: true
   validates :salary, numericality: true
   validates :age, numericality: { only_integer: true} ,allow_blank: true , on: :account_setup
@@ -34,4 +34,37 @@ end
  scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
  scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
  #default_scope { where("email_confirmation is null") }
+
+  # Callbacks
+  before_validation :last_name_is_empty
+
+  def last_name_is_empty
+    if last_name.nil?
+      self.last_name = first_name unless first_name.blank?
+    end
+  end
+
+  before_create do
+    self.first_name = gender.capitalize if first_name.blank?
+  end
+
+  after_validation :normalize_name
+  # private
+  def normalize_name
+    self.first_name = first_name.downcase
+  end
+
+  after_initialize do |u|
+    puts "initialized an object"
+  end
+
+  after_find do |user|
+    puts "You have find an object"
+  end
+
+  after_touch do
+    puts "Touched an object"
+  end
+
+
 end

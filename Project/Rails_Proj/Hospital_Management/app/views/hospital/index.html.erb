@@ -9,6 +9,7 @@
   <th>show</th>
   <th>Edit</th>
   <th>Delete</th>
+  <th>Soft Delete</th>
   </tr>
   <% @hospital.each do |h| %>
   <tr>
@@ -19,6 +20,7 @@
       <td><%= link_to 'show' , hospital_path(h) %></td>
       <td><%= link_to 'edit' ,edit_hospital_path(h) %></td>
       <td><%= link_to 'delete' ,hospital_path(h) ,method: :delete ,data: {confirm: 'Are you certain?'} %></td>
+      <td><%= link_to 'soft_delete' ,hospital_path(h) ,method: :soft_delete ,data: {confirm: 'Soft Deleted'} %></td>
   </tr>
   <% end %>
 </table>

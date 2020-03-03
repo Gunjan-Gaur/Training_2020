@@ -68,8 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
        const all_inputs = document.querySelectorAll('.input');
        const myform = document.querySelector('#myform');
-       //console.log(myform);
-       myform.addEventListener('submit',function(event){
+       myform.addEventListener('submit', function make(e) {
          count=0;
          for(var i=0;i<all_inputs.length;i++)
          {
@@ -81,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
          if(count>0)
          {
            alert("Please enter all fields");
-           event.preventDefault();
+           e.preventDefault();
          }
-
-
       });
 });

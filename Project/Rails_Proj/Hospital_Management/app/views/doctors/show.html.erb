@@ -7,5 +7,5 @@
   Email:-<%= @doctor.email %><br>
   Mobile Number:-<%= @doctor.mobile %><br>
   Hospital Id:-<%= @doctor.hospital_id%><br>
-  Image:-<image src = "<%=(url_for(@doctor.avatar))%>">
+  Image:-<%= image_tag @doctor.avatar.url(:thumb) if @doctor.avatar? %>
 </div>

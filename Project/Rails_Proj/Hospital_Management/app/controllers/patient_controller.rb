@@ -33,7 +33,20 @@ class PatientController < ApplicationController
     redirect_to patient_index_path
   end
 
+  def soft_delete
+    @patient = Patient.find_by(id: params[:id])
+
+    if(@patient.deleted)
+      @patient.update(deleted: false)
+    else
+      @patient.update(deleted: true)
+    end
+    
+      redirect_to patient_index_path
+  end
+
   def patient_params
     params.require(:patient).permit(:First_Name,:Last_Name,:age,:Address,:Mobile,:Gender,:hospital_id)
   end
+
 end

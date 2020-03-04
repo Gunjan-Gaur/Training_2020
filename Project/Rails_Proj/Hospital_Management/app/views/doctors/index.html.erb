@@ -1,35 +1,21 @@
 
     <h1><strong><center>List of Doctors</center></strong></h1>
     <table>
-      <td><%= link_to 'New' ,'doctors/new' %></td>
-      <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Qualifications</th>
-      <th>Salary</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>Age</th>
-      <th>Hospital Id</th>
-      <th>Show details</th>
-      <th>Edit details</th>
-      <th>Delete details</th>
-      </tr>
-      <% @doctors.each do |d| %>
+
         <tr>
-          <td><%= d.First_name %></td>
-          <td><%= d.Last_name %></td>
-          <td><%= d.Qualifications %></td>
-          <td><%= d.salary %></td>
-          <td><%= d.email %></td>
-          <td><%= d.mobile %></td>
-          <td><%= d.age %></td>
-          <td><%= d.hospital_id %></td>
-          <td><%= link_to 'Show' ,doctor_path(d) %></td>
-          <td><%= link_to 'Edit' ,edit_doctor_path(d) %></td>
-          <td><%= link_to 'Delete' ,doctor_path(d) ,
-             method: :Delete ,
-             data: {confirm: 'Are you certain?'}%></td>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Qualifications</th>
+          <th>Salary</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Age</th>
+          <th>Hospital Id</th>
+          <th>Show details</th>
+          <th>Edit details</th>
+          <th>Delete details</th>
         </tr>
-      <% end %>
+
+      <tbody id="doctors-list" ><%= render partial: 'doctors' %></tbody>
+
     </table>

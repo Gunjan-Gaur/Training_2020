@@ -1,0 +1,22 @@
+<%# <td><%= link_to 'New' ,'doctors/new' %>
+<% @doctors.each do |d| %>
+  <tr>
+    <td><%= d.First_name %></td>
+    <td><%= d.Last_name %></td>
+    <td><%= d.Qualifications %></td>
+    <td><%= d.salary %></td>
+    <td><%= d.email %></td>
+    <td><%= d.mobile %></td>
+    <td><%= d.age %></td>
+    <td><%= d.hospital_id %></td>
+    <td><%= link_to 'Show' ,doctor_path(d) %></td>
+    <td><%= link_to 'Edit' ,edit_doctor_path(d) %></td>
+    <td><%= link_to 'Delete' ,doctor_path(d) ,
+       method: :Delete ,
+       data: {confirm: 'Are you certain?'}%></td>
+  </tr>
+<% end %>
+<div class="form-group pt-5 text-center">
+  <%= link_to "Previous Page " , doctor_paginate_path(page: @page-1), method: 'patch', remote: true%>|
+  <%= link_to " Next Page" , doctor_paginate_path(page: @page+1), method: 'patch', remote: true%>
+</div>

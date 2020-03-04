@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root 'department#show'
   get 'hospital/soft_delete/:id' =>'hospital#soft_delete'
   get "patient/:id/soft_delete", to:"patient#soft_delete", as: "patient_soft_delete"
+  patch "doctors/paginate", to:"doctors#paginate", as:"doctor_paginate"
   resources :hospital ,:doctors ,:patient
 end

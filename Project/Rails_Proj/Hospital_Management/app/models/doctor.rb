@@ -4,6 +4,20 @@ class Doctor < ApplicationRecord
   belongs_to :hospital
   has_many :medical_records
   mount_uploader :avatar , AvatarUploader
+
+  scope :next_page, ->(id){where("id = ?",id+1)  }
+  # scope :deleted, -> { where(deleted: true) }
+
+  # #create the soft delete method
+  # def soft_delete
+  #   update(deleted: true)
+  # end
+  #
+  # # make an undelete method
+  # def undelete
+  #   update(deleted: false)
+  # end
+
   # validates :First_name , :Last_name , format: {with: /\A[a-zA-Z]+\z/ ,message: 'Only alphabets are allowed'}
   # validates :salary ,numericality: true
   # validates :mobile ,numericality: {only_integer: true} ,length: {is: 10}

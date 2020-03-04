@@ -1,10 +1,20 @@
 class DoctorsController < ApplicationController
+  DOCTOR_PER_PAGE = 5
   def new
     @doctor = Doctor.new
   end
-  
+
+  def paginate
+      # debugger
+      @page = params.fetch(:page,0).to_i
+      # @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE)
+      @doctors = Doctor.first(10).last(5)
+      
+  end
+
   def index
-    @doctors = Doctor.all
+    @doctors = Doctor.all.limit(DOCTOR_PER_PAGE).order(created_at: :desc)
+    @page = 1
   end
 
   def create

@@ -4,7 +4,7 @@ class PatientController < ApplicationController
   end
 
   def index
-       @patient = Patient.all
+    @patient = Patient.all.order(created_at: :desc)
   end
 
   def show
@@ -36,14 +36,12 @@ class PatientController < ApplicationController
 
   def soft_delete
     @patient = Patient.find_by(id: params[:id])
-     if(@patient.deleted = 'false')
-       @patient.update(deleted: true)
-    end
-
-    if(@patient.deleted = 'true')
+    if @patient.deleted
       @patient.update(deleted: false)
-   end
-      redirect_to patient_index_path
+    else
+      @patient.update(deleted: true)
+    end
+    redirect_to patient_index_path
   end
 
   def patient_params

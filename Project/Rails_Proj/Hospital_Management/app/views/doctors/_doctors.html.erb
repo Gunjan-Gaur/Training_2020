@@ -16,6 +16,7 @@
        data: {confirm: 'Are you certain?'}%></td>
   </tr>
 <% end %>
+
 <div class="form-group pt-5 text-center">
   <%= link_to "Previous Page " , doctor_previous_page_path(page1: @page1-1), method: 'patch', remote: true%>|
   <%= link_to " Next Page" , doctor_paginate_path(page: @page+1), method: 'patch', remote: true%>

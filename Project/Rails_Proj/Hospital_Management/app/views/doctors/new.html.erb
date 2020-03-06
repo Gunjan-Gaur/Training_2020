@@ -4,24 +4,24 @@
     <%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %>
     <div class ="form-group">
       <%= d.label :fname , 'First Name' %><br>
-      <%= d.text_field :First_name ,class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>
+      <%= d.text_field :first_name ,class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>
       <small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :lname , 'Last Name' %><br>
-      <%= d.text_field :Last_name ,class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%>
+      <%= d.text_field :last_name ,class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%>
       <small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small>
     </div>
 
     <div class ="form-group">
       <%= d.label :quali , 'Qualifications' %><br>
-      <%= d.text_field :Qualifications ,class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%>
+      <%= d.text_field :qualifications ,class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%>
     </div>
 
     <div class ="form-group">
       <%= d.label :gender , 'Gender' %><br>
-      <%= d.text_field :Gender ,class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%>
+      <%= d.text_field :gender ,class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%>
     </div>
 
     <div class ="form-group">

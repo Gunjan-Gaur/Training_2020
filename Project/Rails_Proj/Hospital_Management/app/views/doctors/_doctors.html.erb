@@ -12,8 +12,9 @@
 </div>
 <table>
   <tr>
-    <th>FirstName</th>
-    <th>Last Name</th>
+    <!-- <th><%= sortable "Id" %></th> -->
+    <th><%= sortable "First_name" %></th>
+    <th><%= sortable "Last_name" %></th>
     <th>Qualifications</th>
     <th><%= sortable "Salary" %></th>
     <th>Email</th>
@@ -26,9 +27,9 @@
   </tr>
 <% @doctors.each do |d| %>
   <tr>
-    <td><%= d.First_name %></td>
-    <td><%= d.Last_name %></td>
-    <td><%= d.Qualifications%></td>
+    <td><%= d.first_name %></td>
+    <td><%= d.last_name %></td>
+    <td><%= d.qualifications%></td>
     <td><%= d.salary %></td>
     <td><%= d.email %></td>
     <td><%= d.mobile %></td>

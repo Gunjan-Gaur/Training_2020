@@ -1,21 +1,17 @@
 class DoctorsController < ApplicationController
-  before_action :paginate ,:previous_page
-  DOCTOR_PER_PAGE = 7
+  before_action :paginate
+  DOCTOR_PER_PAGE = 5
+
   def new
     @doctor = Doctor.new
   end
 
-  def previous_page
-      @page1 = params.fetch(:page1,1).to_i
-      @doctors = Doctor.all.offset(@page1*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(:First_name)
-  end
-
   def paginate
-        # debugger
-        @page = params.fetch(:page,0).to_i
-         # @page = params[:page] ? params[:page].to_i : 0
-       @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(:First_name)
-      # @doctors = Doctor.first(10).last(5)
+    # debugger
+    @page = params.fetch(:page,0).to_i
+    # @page = params[:page] ? (params[:page].to_i) : 0
+    @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(:First_name)
+    # @doctors = Doctor.first(10).last(5)
   end
 
   def index

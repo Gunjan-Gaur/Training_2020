@@ -1,7 +1,28 @@
-<%# <td><%= link_to 'New' ,'doctors/new' %>
+
+<p class="pt-5 text-center">
+  <%= link_to 'New ' ,'doctors/new'%>|
+    <%= @page %>
+    <%= link_to " Previous Page " , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>|
+    <%= @page %>
+    <%= link_to " Next Page" ,  doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
+  </p>
+<div>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Qualifications</th>
+    <th>Salary</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Age</th>
+    <th>Hospital Id</th>
+    <th>Show details</th>
+    <th>Edit details</th>
+    <th>Delete details</th>
+  </tr>
 <% @doctors.each do |d| %>
   <tr>
-    <td><%= d.First_name %></td>
+    <td><%= @page %><%= d.First_name %></td>
     <td><%= d.Last_name %></td>
     <td><%= d.Qualifications %></td>
     <td><%= d.salary %></td>
@@ -16,8 +37,4 @@
        data: {confirm: 'Are you certain?'}%></td>
   </tr>
 <% end %>
-
-<div class="form-group pt-5 text-center">
-  <%= link_to "Previous Page " , doctor_previous_page_path(page1: @page1-1), method: 'patch', remote: true%>|
-  <%= link_to " Next Page" , doctor_paginate_path(page: @page+1), method: 'patch', remote: true%>
 </div>

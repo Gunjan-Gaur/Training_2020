@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root 'department#show'
   get 'hospital/soft_delete/:id' =>'hospital#soft_delete'
   get "patient/:id/soft_delete", to:"patient#soft_delete", as: "patient_soft_delete"
-  patch "doctors/paginate", to:"doctors#paginate", as:"doctor_paginate"
-  patch "doctors/previous_page", to:"doctors#previous_page", as:"doctor_previous_page"
+  get "doctors/paginate", to:"doctors#paginate", as:"doctor_paginate"
+  # patch "doctors/link", to:"doctors#link", as:"doctor_link"
+  # patch "doctors/previous_page", to:"doctors#previous_page", as:"doctor_previous_page"
   resources :hospital ,:doctors ,:patient
 end

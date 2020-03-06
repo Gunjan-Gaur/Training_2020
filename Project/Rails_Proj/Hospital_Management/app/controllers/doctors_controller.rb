@@ -12,6 +12,8 @@ class DoctorsController < ApplicationController
     # @page = params[:page] ? (params[:page].to_i) : 0
     @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(:First_name)
     # @doctors = Doctor.first(10).last(5)
+    @doc = Doctor.all.count
+    @cal = 0
   end
 
   def index

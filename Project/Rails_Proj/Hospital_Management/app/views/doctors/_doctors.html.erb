@@ -1,8 +1,10 @@
+<div>
 
+</div>
 <p class="pt-5 text-center">
-  <%= link_to 'New ' ,'doctors/new'%>|
-    <%= link_to " Previous Page " , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>|
-    <%= link_to " Next Page" ,  doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
+  <%= link_to 'New |' ,'doctors/new'%>
+    <%= link_to   params[:page] ? 'Previous Page | ': ' ' , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>
+    <%= link_to  "Next Page" , doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
   </p>
 <table>
   <tr>

@@ -1,11 +1,15 @@
 <div>
+  <%= form_tag doctor_paginate_path, method: 'get',remote: true do %>
+    <%= text_field_tag :search, params[:search]%>
+    <%= submit_tag "Search"%>
+  <% end %>
 
-</div>
-<p class="pt-5 text-center">
-  <%= link_to 'New |' ,'doctors/new'%>
+  <p class="pt-5 text-center">
+    <%= link_to 'New |' ,'doctors/new'%>
     <%= link_to   params[:page] ? 'Previous Page | ': ' ' , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>
     <%= link_to  "Next Page" , doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
   </p>
+</div>
 <table>
   <tr>
     <th>First Name</th>
@@ -24,7 +28,7 @@
   <tr>
     <td><%= d.First_name %></td>
     <td><%= d.Last_name %></td>
-    <td><%= d.Qualifications %></td>
+    <td><%= d.Qualifications%></td>
     <td><%= d.salary %></td>
     <td><%= d.email %></td>
     <td><%= d.mobile %></td>

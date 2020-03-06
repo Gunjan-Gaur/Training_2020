@@ -12,7 +12,7 @@ class DoctorsController < ApplicationController
     @page = params.fetch(:page,0).to_i
     # @page = params[:page] ? (params[:page].to_i) : 0
     if params[:search]
-      @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).where(["first_name ilike ?","%#{params[:search]}%"]).order(sort_column + " " +sort_direction)
+      @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).where("first_name ilike ? or last_name ilike ? or email ilike ? or qualifications ilike?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order(sort_column + " " +sort_direction)
     else
       @doctors = Doctor.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(sort_column + " " +sort_direction)
     end

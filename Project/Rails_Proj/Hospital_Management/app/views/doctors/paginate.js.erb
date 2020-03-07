@@ -1,1 +1,7 @@
-$('#doctors-list').html('<%= escape_javascript(render partial: "doctors") %>')
+$('#doctors-list').append('<%= escape_javascript(render partial: "doctors") %>')
+
+ // $(window).scroll(function() {
+ //      let windowRelativeBottom = $("#myElement")[0].getBoundingClientRect().bottom;
+ //      if (windowRelativeBottom > $("#myElement")[0].clientHeight + 14) break;
+ //      $('#doctors-list').append('<%= escape_javascript(render partial: "doctors") %>')
+// });

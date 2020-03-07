@@ -1,10 +1,10 @@
-<div>
-  <%= form_tag doctor_paginate_path, method: 'get',remote: true do %>
-    <%= text_field_tag :search, params[:search]%>
-    <%= submit_tag "Search"%>
+<div class="form-group">
+  <%= form_tag doctor_paginate_path, method: 'get', remote: true do %>
+    <%= text_field_tag :search, params[:search], class: "form-control w-25 ml-5"%>
+    <%= submit_tag "Search", class: "btn btn-primary ml-5 mt-2 mix"%>
   <% end %>
 
-  <p class="pt-5 text-center">
+  <p class="text-center">
     <%= link_to 'New |' ,'doctors/new'%>
     <%= link_to   params[:page] ? 'Previous Page | ': ' ' , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>
     <%= link_to  "Next Page" , doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
@@ -13,10 +13,10 @@
 <table>
   <tr>
     <!-- <th><%= sortable "Id" %></th> -->
-    <th><%= sortable "First_name" %></th>
-    <th><%= sortable "Last_name" %></th>
+    <th><%= link_to "First_name", :sort => "First_name", remote: true%></th>
+    <th><%= link_to "Last_name", :sort => "Last_name", remote: true %></th>
     <th>Qualifications</th>
-    <th><%= sortable "Salary" %></th>
+    <th>Salary</th>
     <th>Email</th>
     <th>Mobile</th>
     <th>Age</th>

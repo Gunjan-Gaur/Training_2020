@@ -32,7 +32,7 @@ class HospitalController < ApplicationController
 
 
   def hospital_params
-    params.require(:hospital).permit(:Name , :Address , :State , :Beds ,doctors_attributes: [ :id, :First_name, :Last_name, :hospital_id, :password, :confirm_password])
+    params.require(:hospital).permit(:Name , :Address , :State , :Beds ,doctors_attributes: [:first_name, :last_name, :password, :confirm_password])
   end
 
   def soft_delete

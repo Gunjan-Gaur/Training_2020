@@ -13,6 +13,7 @@
 <table class="rowval">
   <tr>
     <th></th>
+    <th><%= link_to "Id", :sort => "Id",remote: true%></th>
     <th><%= link_to "First_name", :sort => "First_name", remote: true%></th>
     <th><%= link_to "Last_name", :sort => "Last_name", remote: true %></th>
     <th>Qualifications</th>
@@ -28,6 +29,7 @@
 <% @doctors.each do |d| %>
   <tr>
     <th><%= check_box_tag "doctors[]",d.id %></th>
+    <td><%= d.id %></td>
     <td><%= d.first_name %></td>
     <td><%= d.last_name %></td>
     <td><%= d.qualifications%></td>

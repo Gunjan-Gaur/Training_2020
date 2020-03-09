@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   before_action :paginate
   helper_method :sort_column, :sort_direction
-  DOCTOR_PER_PAGE = 17
+  DOCTOR_PER_PAGE = 15
 
   def new
     @doctor = Doctor.new
@@ -20,13 +20,13 @@ class DoctorsController < ApplicationController
     if params[:count]
       @count = params[:count].to_i
       if @count < Doctor.all.count
-        @users = Doctor.limit(@count+2)
+        @doctors = Doctor.limit(@count+2)
       end
     end
   end
 
   def index
-    @doctors = Doctor.limit(DOCTOR_PER_PAGE).order(first_name: :desc).offset(@page*DOCTOR_PER_PAGE).order(params[:sort])
+    @doctors = Doctor.limit(DOCTOR_PER_PAGE).order(id: :desc).offset(@page*DOCTOR_PER_PAGE).order(params[:sort])
   end
 
   def create

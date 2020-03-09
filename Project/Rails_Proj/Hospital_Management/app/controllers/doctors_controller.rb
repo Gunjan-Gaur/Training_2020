@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   before_action :paginate
   helper_method :sort_column, :sort_direction
-  DOCTOR_PER_PAGE = 14
+  DOCTOR_PER_PAGE = 17
 
   def new
     @doctor = Doctor.new
@@ -59,6 +59,11 @@ class DoctorsController < ApplicationController
   def doctor_params
     params.require(:doctor).permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id,:avatar)
   end
+
+  # def destroy_multiple
+  #   Doctor.destroy(params[:doctors])
+  #   flash.alert = "Are you sure want to delete these records"
+  # end
 
   private
   def sort_column

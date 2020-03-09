@@ -16,6 +16,13 @@ class DoctorsController < ApplicationController
     else
       @doctors = Doctor.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(params[:sort])
     end
+
+    if params[:count]
+      @count = params[:count].to_i
+      if @count < Doctor.all.count
+        @users = Doctor.limit(@count+2)
+      end
+    end
   end
 
   def index

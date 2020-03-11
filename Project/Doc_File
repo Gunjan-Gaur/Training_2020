@@ -2441,3 +2441,47 @@ CALLBACKS
     u = User.create(first_name:"rails",email:"a@b.com",role_id:2,age:31)
     u.touch
     Touched an object
+
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+* PostMan
+
+1. CREATE DOCTOR
+
+  {
+    "doctor": {
+        "id": 132,
+        "first_name": "Geeta",
+        "last_name": "Gaur",
+        "qualifications": "Dentist",
+        "gender": "female",
+        "salary": 100000,
+        "email": "geeta@gmail.com",
+        "mobile": 9878787645,
+        "age": 32,
+        "password": "Geeta@123",
+        "confirm_password": "Geeta@123",
+        "comments": "Hey! Postman",
+        "hospital_id": 3
+    }
+}
+
+2. UPDATE DOCTOR
+
+
+  KEY              VALUE                 DESCRIPTION
+  first_name       Lata
+
+  email          lata@gmail.com
+
+  {
+    "message": "User successfully updated."
+  }
+
+3. DESTROY DOCTOR 
+
+    http://localhost:3000/api/v1/doctors/134
+
+    {
+    "message": "User successfully deleted." 
+    } 

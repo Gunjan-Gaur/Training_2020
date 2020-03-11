@@ -1,7 +1,7 @@
 module Api
   module V1
-    class DoctorsController < ApplicationController
-      skip_before_action :verify_authenticity_token
+    class DoctorsController < CustomController
+      # skip_before_action :verify_authenticity_token
       #GET /doctors
       def index
         @doctors = Doctor.all
@@ -23,8 +23,8 @@ module Api
           render json: {error: 'Unable to create User.'}, status: 422
         end
       end
-      def update
 
+      def update
         @doctor = Doctor.find_by(id: params[:id])
         if @doctor
           @doctor.update(doctor_params)

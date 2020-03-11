@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   before_action :paginate
   helper_method :sort_column, :sort_direction
-  DOCTOR_PER_PAGE = 15
+  DOCTOR_PER_PAGE = 17
 
   def new
     @doctor = Doctor.new
@@ -12,9 +12,9 @@ class DoctorsController < ApplicationController
     @page = params.fetch(:page,0).to_i
     # @page = params[:page] ? (params[:page].to_i) : 0
     if params[:search]
-      @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).where("first_name ilike ? or last_name ilike ? or email ilike ? or qualifications ilike?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order(params[:sort])
+      @doctors = Doctor.all.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).where("first_name ilike ? or last_name ilike ? or email ilike ? or qualifications ilike?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order(sort_column + " " +sort_direction) #.order(params[:sort])
     else
-      @doctors = Doctor.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(params[:sort])
+      @doctors = Doctor.offset(@page*DOCTOR_PER_PAGE).limit(DOCTOR_PER_PAGE).order(sort_column + " " +sort_direction)
     end
 
     if params[:count]
@@ -28,7 +28,7 @@ class DoctorsController < ApplicationController
   end
 
   def index
-    @doctors = Doctor.limit(DOCTOR_PER_PAGE).order(id: :asc).offset(@page*DOCTOR_PER_PAGE).order(params[:sort])
+    @doctors = Doctor.limit(DOCTOR_PER_PAGE).offset(@page*DOCTOR_PER_PAGE).order(sort_column + " " +sort_direction)
   end
 
   def create
@@ -69,8 +69,7 @@ class DoctorsController < ApplicationController
 
   private
   def sort_column
-    # params[:sort] || "first_name"
-    params[:sort] || "Salary" || "first_name" ||"last_name"
+    params[:sort] || "Salary"
   end
 
   def sort_direction

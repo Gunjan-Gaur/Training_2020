@@ -6,11 +6,12 @@
 
   <p class="text-center">
     <%= link_to 'New |' ,'doctors/new'%>
-    <%= link_to   params[:page] ? 'Previous Page | ': ' ' , doctor_paginate_path(page: @page-1), method: 'get', remote: true%>
-    <%= link_to  "Next Page" , doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
+     <%= link_to   params[:page] ? 'Previous Page | ': ' ' , doctor_paginate_path(page: @page-1), method: 'get', remote: true%> 
+     <%= link_to  "Next Page" , doctor_paginate_path(page: @page+1), method: 'get', remote: true%>
   </p>
 </div>
-<table class="rowval">
+
+<table>
   <tr>
     <th></th>
     <th><%= link_to "Id", :sort => "Id",remote: true%></th>
@@ -26,8 +27,9 @@
     <th>Edit details</th>
     <th>Delete details</th>
   </tr>
+
 <% @doctors.each do |d| %>
-  <tr>
+  <tr class="row-val">
     <th><%= check_box_tag "doctors[]",d.id %></th>
     <td><%= d.id %></td>
     <td><%= d.first_name %></td>

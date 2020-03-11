@@ -21,12 +21,14 @@ class DoctorsController < ApplicationController
       @count = params[:count].to_i
       if @count < Doctor.all.count
         @doctors = Doctor.limit(@count+2)
+      else
+        @doctors = Doctor.limit(@count)
       end
     end
   end
 
   def index
-    @doctors = Doctor.limit(DOCTOR_PER_PAGE).order(id: :desc).offset(@page*DOCTOR_PER_PAGE).order(params[:sort])
+    @doctors = Doctor.limit(DOCTOR_PER_PAGE).order(id: :asc).offset(@page*DOCTOR_PER_PAGE).order(params[:sort])
   end
 
   def create

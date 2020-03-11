@@ -2,10 +2,11 @@
 document.addEventListener('DOMContentLoaded',() =>{
 
   window.addEventListener('scroll',() =>{
-    console.log("1");
+    console.log("INSIDE");
     let cval = 0
-    let rowval = document.querySelectorAll('.rowval')
+    let rowval = document.querySelectorAll('.row-val')
     cval = rowval.length
+    console.log(cval);
     $.ajax({
           url:  "doctors/paginate",
           type: "get",

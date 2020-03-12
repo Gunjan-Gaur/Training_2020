@@ -2485,3 +2485,105 @@ CALLBACKS
     {
     "message": "User successfully deleted." 
     } 
+
+4. Testing Serializer
+
+    -> hosp = Hospital.joins(:doctors).first
+     Hospital Load (151.8ms)  SELECT "hospitals".* FROM "hospitals" INNER JOIN "doctors" ON "doctors"."hospital_id" = "hospitals"."id" ORDER BY "hospitals"."id" ASC LIMIT $1  [["LIMIT", 1]]
+    
+    -> HospitalSerializer.new(hosp).as_json
+      Doctor Load (0.8ms)  SELECT "doctors".* FROM "doctors" WHERE "doctors"."hospital_id" = $1  [["hospital_id", 1]]
+
+      {
+         :id => 1,
+    :doctors => [
+        [0] {
+                          :id => 1,
+                  :first_name => "Dr.Parul",
+                   :last_name => "Mallik",
+              :qualifications => "Determatologist",
+                      :gender => "female",
+                      :salary => 120000,
+                       :email => "parul@gmail.com",
+                      :mobile => 7689764677,
+                         :age => 32,
+                    :password => nil,
+            :confirm_password => nil,
+                    :comments => nil,
+                    :hospital => {
+                                 :hospital_id => 1,
+                                 :hospital_name => "AIIMS,All India Institue of Medical Sciences"
+            }
+        },
+        [1] {
+                          :id => 3,
+                  :first_name => "Dr.Meena",
+                   :last_name => "Kapoor",
+              :qualifications => "Cardiologist",
+                      :gender => "female",
+                      :salary => 420000,
+                       :email => "meena@gmail.com",
+                      :mobile => 9689264677,
+                         :age => 22,
+                    :password => nil,
+            :confirm_password => nil,
+                    :comments => nil,
+                    :hospital => {
+                                  :hospital_id => 1,
+                                :hospital_name => "AIIMS,All India Institue of Medical Sciences"
+            }
+        },
+        [2] {
+                          :id => 9,
+                  :first_name => "Ritu",
+                   :last_name => "gaur",
+              :qualifications => "dentist",
+                      :gender => "female",
+                      :salary => 23456,
+                       :email => "ritu@gmail.com",
+                      :mobile => 5678977,
+                         :age => 22,
+                    :password => nil,
+            :confirm_password => nil,
+                    :comments => nil,
+                    :hospital => {
+                                  :hospital_id => 1,
+                                :hospital_name => "AIIMS,All India Institue of Medical Sciences"
+            }
+        },
+        [3] {
+                          :id => 83,
+                  :first_name => "Gunjan",
+              :qualifications => "doctor",
+                      :gender => "female",
+                       :email => "gunjan@gmail.com",
+                      :mobile => 9898989898,
+                         :age => 23,
+                    :password => "Gunjangaur@1",
+            :confirm_password => nil,
+                    :comments => "Success!!",
+                    :hospital => {
+                                  :hospital_id => 1,
+                                :hospital_name => "AIIMS,All India Institue of Medical Sciences"
+            }
+        },
+        [4] {
+                          :id => 89,
+                  :first_name => "Jatin",
+                   :last_name => "malik",
+              :qualifications => "dentist",
+                      :gender => "male",
+                      :salary => 25000,
+                       :email => "Jatin@gmail.com",
+                      :mobile => 9876465676,
+                         :age => 34,
+                    :password => "Jatin@123",
+            :confirm_password => nil,
+                    :comments => "Hey , First Image Upload",
+                    :hospital => {
+                                  :hospital_id => 1,
+                                :hospital_name => "AIIMS,All India Institue of Medical Sciences"
+            }
+        }
+    ]
+}

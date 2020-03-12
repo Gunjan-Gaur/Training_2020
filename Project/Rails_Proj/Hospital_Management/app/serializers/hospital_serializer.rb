@@ -1,4 +1,4 @@
 class HospitalSerializer < ActiveModel::Serializer
   has_many :doctors
-  attributes :id
+  attributes :id, :Name, :Beds
 end

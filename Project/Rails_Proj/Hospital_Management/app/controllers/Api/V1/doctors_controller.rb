@@ -10,7 +10,7 @@ module Api
       #GET /doctor/:id
       def show
         @doctor = Doctor.find_by(id: params[:id])
-        render json: @doctor, adapter: :json
+        render json: {status: "SUCCESS", mesage: "Show Doctors", data: DoctorSerializer.new(@doctor)}, adapter: :json
       end
 
       #Post /doctors

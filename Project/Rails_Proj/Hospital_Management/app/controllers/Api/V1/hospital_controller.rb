@@ -3,7 +3,7 @@ module Api
     class HospitalController < CustomController
       def index
         @hospitals = Hospital.all
-        render json: @hospitals ,adapter: :json
+        render json: {status: "Successfull", message: 'Index action is successfull', doctors: ActiveModel::Serializer::CollectionSerializer.new(@hospitals, each_serializer: HospitalSerializer)} ,adapter: :json
       end
 
       def show

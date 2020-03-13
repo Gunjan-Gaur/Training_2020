@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "login", to:"session#new", as: "doctor_login"
+  post "login", to:"session#create"
+  get "logout", to: "session#log_out", as: "doctor_logout"
+
   get 'department/show'
   root 'department#show'
   get 'hospital/soft_delete/:id' =>'hospital#soft_delete'
@@ -10,6 +14,6 @@ Rails.application.routes.draw do
       resources :hospital
     end
   end
-  resources :hospital ,:doctors ,:patient
+  resources :hospital, :doctors, :patient, :department
 
 end

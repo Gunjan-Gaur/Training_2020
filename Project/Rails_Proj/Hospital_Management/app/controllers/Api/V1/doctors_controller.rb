@@ -1,7 +1,6 @@
 module Api
   module V1
     class DoctorsController < CustomController
-      # skip_before_action :verify_authenticity_token
       #GET /doctors
       def index
         @doctors = Doctor.all
@@ -46,7 +45,7 @@ module Api
 
       private
       def doctor_params
-        params.permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
+        params.require(:doctors).permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
       end
 
     end

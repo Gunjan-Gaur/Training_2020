@@ -67,6 +67,7 @@ class DoctorsController < ApplicationController
   #   flash.alert = "Are you sure want to delete these records"
   # end
 
+  
   private
   def sort_column
     params[:sort] || "Salary"

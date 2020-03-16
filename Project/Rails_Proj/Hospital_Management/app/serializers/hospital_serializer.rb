@@ -1,5 +1,4 @@
 class HospitalSerializer < ActiveModel::Serializer
-  has_many :doctors
   def doctors
     object.doctors.where(qualifications: 'dentist',gender: 'female')
   end

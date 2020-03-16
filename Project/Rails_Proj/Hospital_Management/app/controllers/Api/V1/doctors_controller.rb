@@ -5,8 +5,8 @@ module Api
 
       #GET /doctors
       def index
-        @doctors = Doctor.all
-        render json: @doctors, adapter: :json
+        doctors = Doctor.all
+        render json: {status: 'ok', message: 'All doctors', doctors: ActiveModel::Serializer::CollectionSerializer.new(doctors, each_serializer: DoctorSerializer)}
       end
 
       #GET /doctor/:id

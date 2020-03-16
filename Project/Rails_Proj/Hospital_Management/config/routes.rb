@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :doctors
       resources :hospital
+      post 'login', to: 'session#login'
     end
   end
   resources :hospital, :doctors, :patient, :department

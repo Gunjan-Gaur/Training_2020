@@ -18,22 +18,22 @@ class User < ApplicationRecord
   validates :age, numericality: { only_integer: true} ,allow_blank: true , on: :account_setup
   validates_each :first_name, :last_name do |record ,attr,value|
     record.errors.add(attr, 'must start with upper case') if value =~ /\A[[:lower:]]/
-end
- validates :age, presence: true, if: :age_greater_than_30?
+  end
+  validates :age, presence: true, if: :age_greater_than_30?
 
- def age_greater_than_30?
+  def age_greater_than_30?
    if age > 30
      return true
    else
      return false
    end
- end
+  end
 
- scope :age_greater_than_21,  ->{where("age > 21")}
- scope :age_and_address,  ->{age_greater_than_21.where("address like ?", "Goa")}
- scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
- scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
- #default_scope { where("email_confirmation is null") }
+  scope :age_greater_than_21,  ->{where("age > 21")}
+  scope :age_and_address,  ->{age_greater_than_21.where("address like ?", "Goa")}
+  scope :created_before,  ->(date) {where("created_at < ?",date).select(:id)}
+  scope :address_delhi,  ->(address) {where("address like ?",address) if address.present?}
+  #default_scope { where("email_confirmation is null") }
 
   # Callbacks
   before_validation :last_name_is_empty
@@ -65,6 +65,4 @@ end
   after_touch do
     puts "Touched an object"
   end
-
-
 end

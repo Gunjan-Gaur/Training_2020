@@ -33,12 +33,6 @@ ActiveRecord::Schema.define(version: 2020_02_15_071116) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.text "first_name", null: false
     t.text "last_name"
@@ -53,6 +47,12 @@ ActiveRecord::Schema.define(version: 2020_02_15_071116) do
     t.bigint "phone"
     t.string "email_confirmation"
     t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "events", "users"

@@ -1,0 +1,24 @@
+<h1><center>Change Appointments</center></h1>
+
+<%= form_for @appointments do |a|%>
+  <p>
+    <%= a.label :Start_date%>
+    <%= a.text_field :Start_date%>
+  </p>
+  <p>
+    <%= a.label :End_date%>
+    <%= a.text_field :End_date%>
+  </p>
+  <p>
+    <%= a.label :patient_id%>
+    <%= a.text_field :patient_id%>
+  </p>
+  <p>
+    <%= a.label :doctor_id%>
+    <%= a.text_field :doctor_id%>
+  </p>
+  <p>
+    <%= a.submit%>
+  </p>
+
+<% end %>

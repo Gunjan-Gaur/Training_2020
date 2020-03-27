@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'department/show'
   root 'department#show'
-  get 'hospital/soft_delete/:id' =>'hospital#soft_delete'
+  # get 'hospital/soft_delete/:id' =>'hospital#soft_delete'
   get "patient/:id/soft_delete", to:"patient#soft_delete", as: "patient_soft_delete"
   get "doctors/paginate", to:"doctors#paginate", as:"doctor_paginate"
   namespace :api do
@@ -15,6 +15,6 @@ Rails.application.routes.draw do
       post 'doctor/login', to: 'session#login'
     end
   end
-  resources :hospital, :doctors, :patient, :department
+  resources :hospital, :doctors, :patient, :department, :appointments
 
 end

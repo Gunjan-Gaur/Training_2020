@@ -35,12 +35,6 @@ class HospitalController < ApplicationController
     params.require(:hospital).permit(:Name , :Address , :State , :Beds ,doctors_attributes: [:first_name, :last_name, :password, :confirm_password])
   end
 
-  def soft_delete
-    hospital = Hospital.find_by(id: params[:id])
-    hospital.destroy
-    redirect_to hospital_index_path
-  end
-
   def destroy
     hospital = Hospital.find_by(id: params[:id])
     hospital.destroy

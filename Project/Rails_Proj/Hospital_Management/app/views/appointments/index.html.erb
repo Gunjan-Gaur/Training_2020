@@ -1,0 +1,18 @@
+<table><h1><strong><center>Appointment Table</center></strong></h1>
+  <tr>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Patient_id</th>
+    <th>Doctor_id</th>
+  </tr>
+
+  <%= @appointments.each do |a| %>
+  <tr>
+    <td><%= a.Start_date%></td>
+    <td><%= a.End_date%></td>
+    <td><%= a.patient_id%></td>
+    <td><%= a.doctor_id%></td>
+  </tr>
+  <% end %>
+
+</table>

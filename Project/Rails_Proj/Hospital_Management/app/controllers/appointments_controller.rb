@@ -17,7 +17,23 @@ class AppointmentsController < ApplicationController
     redirect_to appointments_path
   end
 
+  def edit
+    @appointments = Appointment.find_by(id: params[:id])
+  end
+
+  def update
+    appointments = Appointment.find_by(id: params[:id])
+    appointments.update appointment_params
+    redirect_to appointments_path
+  end
+
+  def destroy
+    appointments = Appointment.find_by(id: params[:id])
+    appointments.destroy
+    redirect_to appointments_path
+  end
+
   def appointment_params
-    params.require(:appointments).permit(:Start_date,:End_date,:doctor_id,:patient_id)
+    params.require(:appointment).permit(:Start_date,:End_date,:doctor_id,:patient_id)
   end
 end

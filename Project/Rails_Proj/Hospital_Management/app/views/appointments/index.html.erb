@@ -1,9 +1,11 @@
 <table><h1><strong><center>Appointment Table</center></strong></h1>
+<tr><%= link_to 'New' , new_appointment_path %></tr>
   <tr>
     <th>Start_date</th>
     <th>End_date</th>
     <th>Patient_id</th>
     <th>Doctor_id</th>
+    <th>Show</th>
   </tr>
 
   <%= @appointments.each do |a| %>
@@ -12,6 +14,7 @@
     <td><%= a.End_date%></td>
     <td><%= a.patient_id%></td>
     <td><%= a.doctor_id%></td>
+    <td><%= link_to 'Show',appointment_path(a) %></td>
   </tr>
   <% end %>
 

@@ -1,6 +1,6 @@
 <h1><center>Appointments Information</center></h1>
-<div class="container w-50 bg-dark text-white pb-1">
-<% form_for @appointments, url: new_appointment_path do |a| %>
+
+<%= form_for @appointments, url: new_appointment_path do |a| %>
   <p>
     <%= a.label :Start_date%>
     <%= a.text_field :Start_date%>
@@ -22,4 +22,3 @@
   </p>
 
 <% end %>
-</div>

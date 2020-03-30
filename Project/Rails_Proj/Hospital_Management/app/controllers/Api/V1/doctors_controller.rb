@@ -1,7 +1,7 @@
 module Api
   module V1
     class DoctorsController < CustomController
-      before_action :authenticate_user
+      # before_action :authenticate_user
 
       #GET /doctors
       def index

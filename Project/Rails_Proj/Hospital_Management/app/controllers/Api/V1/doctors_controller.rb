@@ -47,7 +47,7 @@ module Api
 
       private
       def doctor_params
-        params.require(:doctors).permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
+        params.permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
       end
 
     end

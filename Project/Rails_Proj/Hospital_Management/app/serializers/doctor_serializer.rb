@@ -14,12 +14,12 @@ class DoctorSerializer < ActiveModel::Serializer
     data[:password] = object.password
     data[:confirm_password] = object.confirm_password
     data[:comments] = object.comments
-    data[:hospital] = hospital
+    data[:hospital_id] = object.hospital_id
     data
   end
-  def hospital
-    {hospital_id: self.object.hospital.id,
-    hospital_name: self.object.hospital.Name}
-  end
+  # def hospital
+  #   {hospital_id: self.object.hospital.id,
+  #   hospital_name: self.object.hospital.Name}
+  # end
 
 end

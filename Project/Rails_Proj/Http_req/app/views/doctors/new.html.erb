@@ -1,0 +1,80 @@
+<h1><center>Doctor Information</center></h1>
+<div class="container w-50 bg-light">
+
+<%= form_tag doctors_path, :id =>'myform', method: "get" do%>
+<div class ="form-group">
+  <%= label_tag :fname , 'First Name' %><br>
+  <%= text_field_tag :first_name ,nil, class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>
+  <small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :lname , 'Last Name' %><br>
+  <%= text_field_tag :last_name ,nil, class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%>
+  <small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :quali , 'Qualifications' %><br>
+  <%= text_field_tag :qualifications ,nil, class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :gender , 'Gender' %><br>
+  <%= text_field_tag :gender ,nil, class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :salary , 'Salary' %><br>
+  <%= text_field_tag :salary ,nil, class:'form-control input', placeholder:'Enter Salary' ,id:'salary'%>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :email , 'Email' %><br>
+  <%= text_field_tag :email ,nil, class:'form-control input', placeholder:'Enter Email' ,id:'email'%>
+  <small><p id = 'mail' class= "text-danger" >*Email must contain @,.(xyz@gmail.com)</p></small>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :mobile , 'Mobile' %><br>
+  <%= text_field_tag :mobile ,nil, class:'form-control input', placeholder:'Enter Mobile Number' ,id:'mobile',maxlength: 10%>
+  <small><p id = "phone" class= "text-danger">*Only numeric digit 0-9 allowed</p></small>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :age , 'Age' %><br>
+  <%= text_field_tag :age ,nil, class:'form-control input', placeholder:'Enter Age' ,id:'age'%>
+</div>
+
+<div class ="form-group">
+  <%= label_tag :hid , 'Hospital Id' %><br>
+  <%= text_field_tag :hospital_id ,nil, class:'form-control input', placeholder:'Enter Hospital Id' ,id:'hid'%>
+</div>
+
+  <div class="form-group">
+    <%= label_tag :password , 'Password' %><br>
+    <%= password_field_tag :password ,nil, class:'form-control input', placeholder:'Enter Password' ,id:'password'%>
+    <div id = "mixid">
+        <small><p id = 'p1' class= "text-danger" >*Please enter one uppercase Alphabet</p></small>
+        <small><p id = 'p2' class= "text-danger" >*Please enter one lowercase Alphabet</p></small>
+        <small><p id = 'p3' class= "text-danger" >*Please enter one numeric constant</p></small>
+        <small><p id = 'p4' class= "text-danger" >*Please enter Miniumn 8 character</p></small>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <%= label_tag :confirm_pwd , 'Confirm Password' %><br>
+  <%= password_field_tag :password ,nil, class:'form-control input', placeholder:'Confirm Password' ,id:'confirm_pwd'%>
+  <small><p id = "p5" class= "text-danger">*Password didn't match</p></small>
+  </div>
+
+<div class ="form-group">
+  <%= label_tag :comments , 'Comments' %><br>
+  <%= text_area_tag :comments ,nil, class:'form-control input', placeholder:'Write Comments...' ,id:'comments'%>
+</div>
+
+<div class = "form-group ml-500">
+  <%= submit_tag "Submit", class: "btn btn-primary" %>
+</div>
+<% end %>
+</div>

@@ -1,6 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("1");
     const password = document.querySelector('#password');
     const mixid = document.querySelector('#mixid');
     const p1 = document.querySelector('#p1');
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       x = password.value
       password.value == confirm_pwd.value? p5.style.display="none":p5.style.display="block";
     });
-    console.log("2");
+
     //Validate firstname
     const firstname = document.querySelector('#firstname');
     const fname = document.querySelector('#fname');
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       v = lname.value
       v.match(/^[a-zA-Z]+$/)? lastname.style.display="none":lastname.style.display="block"});
 
-      console.log("3");
+
       //validate email
       const email = document.querySelector('#email');
       const mail = document.querySelector('#mail');
@@ -54,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       v = email.value
       v.match(/^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z.]{3}$/)? mail.style.display='none':mail.style.display='block';
       });
-      console.log("4");
+
       //validate phone Number
       const mobile = document.querySelector('#mobile');
       const phone = document.querySelector('#phone');
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
        const all_inputs = document.querySelectorAll('.input');
        const myform = document.querySelector('#myform');
-       console.log("5");
+
        myform.addEventListener('submit', function make(e) {
          console.log("6");
          count=0;

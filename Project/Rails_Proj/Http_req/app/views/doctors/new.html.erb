@@ -1,7 +1,7 @@
 <h1><center>Doctor Information</center></h1>
 <div class="container w-50 bg-light">
 
-<%= form_tag doctors_path, :id =>'myform', method: "get" do%>
+<%= form_tag doctors_path, :id =>'myform', method: "post" do%>
 <div class ="form-group">
   <%= label_tag :fname , 'First Name' %><br>
   <%= text_field_tag :first_name ,nil, class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>

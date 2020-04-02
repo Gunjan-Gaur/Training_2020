@@ -1,11 +1,47 @@
 class DoctorsController < ApplicationController
+  include HTTParty
   def index
     @doctor = HTTParty.get('http://localhost:3001/api/v1/doctors', :headers => {'content.type'=>'application/json'})
   end
   def new
-    @doctor = Doctor.new
+    # make = Doctor.new doctor_params
+    # @doctor = HTTParty.post('http://localhost:3001/api/v1/doctors?',
+    #   body: "#{make}",
+    #      # :first_name => "dgb", #    "#{first_name}",
+         # :last_name => "kcjb",
+         # :qualifications => "gckh",
+         # :gender => "dkjb",
+         # :salary => "jkcb",
+         # :email => "jbde",
+         # :mobile => 67666767,
+         # :age => 23,
+         # :password => "ded",
+         # :confirm_password => "djb",
+         # :comments => "kdnc",
+         # :hospital_id => 1,
+      # headers: {'content.type'=>'application/json'})
   end
+
   def create
-    @doctor = HTTParty.get('http://localhost:3001/api/v1/doctors?first_name=&last_name=&qualifications=&gender=&salary=&email=&mobile=&age=&password=&confirm_password=&comments=&hospital_id=', :headers => {'content.type'=>'application/json'})
+    make = Doctor.new doctor_params
+    @doctor = HTTParty.post('http://localhost:3001/api/v1/doctors',
+      body: "#{make}",  headers: {'content.type'=>'application/json'})
   end
+
+  private
+  def doctor_params
+      params.permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
+ end
+  # # # def edit
+  #     @edit_doctor = Doctor.find_by(id: params[:id])
+  # end
+  #
+  # def update
+  #   # @edit_doctor = HTTParty.patch('http://localhost:3001/api/v1/doctors/#{id}', :headers => {'content.type'=>'application/json'})
+  # end
+  #
+  # def destroy
+  #   # @delete = HTTParty.delete('http://localhost:3001/api/v1/doctors/#{id}', :headers => {'content.type'=>'application/json'})
+  # end
+
 end

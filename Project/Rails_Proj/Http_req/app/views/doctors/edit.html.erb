@@ -1,0 +1,66 @@
+<h1><center>Edit Doctor Information</center></h1>
+  <%= form_for @edit_doctor do |d| %>
+  <p>
+    <%= d.label :First_name %><br>
+    <%= d.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= d.label :Last_name %><br>
+    <%= d.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= d.label :Qualifications %><br>
+    <%= d.text_field :qualifications %>
+  </p>
+
+  <p>
+    <%= d.label :Gender %><br>
+    <%= d.text_field :gender %>
+  </p>
+
+  <p>
+    <%= d.label :Salary %><br>
+    <%= d.text_field :salary %>
+  </p>
+
+  <p>
+    <%= d.label :Email %><br>
+    <%= d.text_field :email %>
+  </p>
+
+  <p>
+    <%= d.label :Mobile %><br>
+    <%= d.text_field :mobile %>
+  </p>
+
+  <p>
+    <%= d.label :Age %><br>
+    <%= d.text_field :age %>
+  </p>
+
+  <p>
+    <%= d.label :Hospital_id %><br>
+    <%= d.text_field :hospital_id %>
+  </p>
+
+  <p>
+    <%= d.label :Password %><br>
+    <%= d.text_field :password %>
+  </p>
+
+  <p>
+    <%= d.label :Confirm_Password %><br>
+    <%= d.text_field :confirm_password %>
+  </p>
+
+  <p>
+    <%= d.label :Comments %><br>
+    <%= d.text_field :comments %>
+  </p>
+
+  <p>
+    <%= d.submit%>
+  </p>
+<% end %>

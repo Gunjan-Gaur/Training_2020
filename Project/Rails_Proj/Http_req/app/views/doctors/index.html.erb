@@ -12,6 +12,7 @@
     <th>Mobile</th>
     <th>Age</th>
     <th>Hospital_id</th>
+    <th>Update</th>
   </tr>
   <% @doctor.each do |doc| %>
   <tr>
@@ -25,6 +26,7 @@
     <td><%= doc["mobile"] %></td>
     <td><%= doc["age"] %></td>
     <td><%= doc["hospital_id"] %></td>
+    <td><%= link_to 'Update',edit_doctor_path(doc)%></td>
   </tr>
   <% end %>
 </table>

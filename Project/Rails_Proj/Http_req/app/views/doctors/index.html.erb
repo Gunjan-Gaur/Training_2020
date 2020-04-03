@@ -28,7 +28,7 @@
     <td><%= doc["age"] %></td>
     <td><%= doc["hospital_id"] %></td>
     <td><%= link_to 'Edit',edit_doctor_path(doc['doctor_id'])%></td>
-    <td><%= link_to 'Delete' ,doctors_path(doc) ,
+    <td><%= link_to 'Delete' ,doctor_path(doc['doctor_id']),
        method: :Delete ,
        data: {confirm: 'Are you certain?'}%></td>
   </tr>

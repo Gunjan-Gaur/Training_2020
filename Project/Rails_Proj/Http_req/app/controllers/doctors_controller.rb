@@ -3,11 +3,13 @@ class DoctorsController < ApplicationController
   def index
     @doctor = HTTParty.get('http://localhost:3001/api/v1/doctors', :headers => {'content.type'=>'application/json'})
   end
+
   def new
-    # make = Doctor.new doctor_params
+     @doctor = Doctor.new
+  end
     # @doctor = HTTParty.post('http://localhost:3001/api/v1/doctors?',
     #   body: "#{make}",
-    #      # :first_name => "dgb", #    "#{first_name}",
+    #    # :first_name => "dgb", #    "#{first_name}",
          # :last_name => "kcjb",
          # :qualifications => "gckh",
          # :gender => "dkjb",
@@ -20,28 +22,25 @@ class DoctorsController < ApplicationController
          # :comments => "kdnc",
          # :hospital_id => 1,
       # headers: {'content.type'=>'application/json'})
-  end
 
-  def create
-    make = Doctor.new doctor_params
-    @doctor = HTTParty.post('http://localhost:3001/api/v1/doctors',
-      body: "#{make}",  headers: {'content.type'=>'application/json'})
-  end
+      def create
+        doctor = Doctor.new doctor_params
+        @doctor = HTTParty.post('http://localhost:3001/api/v1/doctors',
+          body: "#{doctor}",  headers: {'content.type'=>'application/json'})
+      end
+
+
+      def edit
+        @edit_doctor = HTTParty.patch('http://localhost:3001/api/v1/doctors/1' , body: {:first_name => "Neha", :hospital_id => 2} , headers: {'content.type'=>'application/json'})
+      end
+
+
+      def update
+      end
 
   private
-  def doctor_params
-      params.permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age , :password, :confirm_password, :comments ,:hospital_id)
- end
-  # # # def edit
-  #     @edit_doctor = Doctor.find_by(id: params[:id])
-  # end
-  #
-  # def update
-  #   # @edit_doctor = HTTParty.patch('http://localhost:3001/api/v1/doctors/#{id}', :headers => {'content.type'=>'application/json'})
-  # end
-  #
-  # def destroy
-  #   # @delete = HTTParty.delete('http://localhost:3001/api/v1/doctors/#{id}', :headers => {'content.type'=>'application/json'})
-  # end
 
+  def doctor_params
+      params.permit(:first_name, :last_name, :qualifications, :gender, :salary, :email , :mobile, :age, :hospital_id, :password, :confirm_password, :comments)
+  end
 end

@@ -1,66 +1,66 @@
 <h1><center>Edit Doctor Information</center></h1>
-  <%= form_for @edit_doctor do |d| %>
+  <%= form_tag ('doctors/1') do %>
   <p>
-    <%= d.label :First_name %><br>
-    <%= d.text_field :first_name %>
+    <%= label_tag :First_name %><br>
+    <%= text_field_tag :first_name %>
   </p>
 
   <p>
-    <%= d.label :Last_name %><br>
-    <%= d.text_field :last_name %>
+    <%= label_tag :Last_name %><br>
+    <%= text_field_tag :last_name %>
   </p>
 
   <p>
-    <%= d.label :Qualifications %><br>
-    <%= d.text_field :qualifications %>
+    <%= label_tag :Qualifications %><br>
+    <%= text_field_tag :qualifications %>
   </p>
 
   <p>
-    <%= d.label :Gender %><br>
-    <%= d.text_field :gender %>
+    <%= label_tag :Gender %><br>
+    <%= text_field_tag :gender %>
   </p>
 
   <p>
-    <%= d.label :Salary %><br>
-    <%= d.text_field :salary %>
+    <%= label_tag :Salary %><br>
+    <%= text_field_tag :salary %>
   </p>
 
   <p>
-    <%= d.label :Email %><br>
-    <%= d.text_field :email %>
+    <%= label_tag :Email %><br>
+    <%= text_field_tag :email %>
   </p>
 
   <p>
-    <%= d.label :Mobile %><br>
-    <%= d.text_field :mobile %>
+    <%= label_tag :Mobile %><br>
+    <%= text_field_tag :mobile %>
   </p>
 
   <p>
-    <%= d.label :Age %><br>
-    <%= d.text_field :age %>
+    <%= label_tag :Age %><br>
+    <%= text_field_tag :age %>
   </p>
 
   <p>
-    <%= d.label :Hospital_id %><br>
-    <%= d.text_field :hospital_id %>
+    <%= label_tag :Hospital_id %><br>
+    <%= text_field_tag :hospital_id %>
   </p>
 
   <p>
-    <%= d.label :Password %><br>
-    <%= d.text_field :password %>
+    <%= label_tag :Password %><br>
+    <%= text_field_tag :password %>
   </p>
 
   <p>
-    <%= d.label :Confirm_Password %><br>
-    <%= d.text_field :confirm_password %>
+    <%= label_tag :Confirm_Password %><br>
+    <%= text_field_tag :confirm_password %>
   </p>
 
   <p>
-    <%= d.label :Comments %><br>
-    <%= d.text_field :comments %>
+    <%= label_tag :Comments %><br>
+    <%= text_field_tag :comments %>
   </p>
 
   <p>
-    <%= d.submit%>
+    <%= submit_tag "Submit"%>
   </p>
 <% end %>

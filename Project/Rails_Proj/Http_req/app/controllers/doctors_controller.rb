@@ -38,6 +38,10 @@ class DoctorsController < ApplicationController
       def update
       end
 
+      def destroy
+        @delete = HTTParty.delete('http://localhost:3001/api/v1/doctors/2', :headers => {'content.type'=>'application/json'})
+      end
+
   private
 
   def doctor_params

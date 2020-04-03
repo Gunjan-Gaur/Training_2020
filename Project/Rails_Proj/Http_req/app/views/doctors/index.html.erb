@@ -26,7 +26,7 @@
     <td><%= doc["mobile"] %></td>
     <td><%= doc["age"] %></td>
     <td><%= doc["hospital_id"] %></td>
-    <td><%= link_to 'Update',edit_doctor_path(doc)%></td>
+    <td><%= link_to 'Edit',edit_doctor_path(doc['doctor_id'])%></td>
   </tr>
   <% end %>
 </table>

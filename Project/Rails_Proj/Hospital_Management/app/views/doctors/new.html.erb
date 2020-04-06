@@ -1,4 +1,5 @@
     <h1><center>Doctor Information</center></h1>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <center>
              <div class="input_field_wrapper">
@@ -10,7 +11,26 @@
                 </div>
               </div>
             </center>
-
+          <script type="text/javascript">
+              $(document).ready(function(){
+              var maxFieldLimit = 10;
+              var add_more_button = $('.add_button');
+              var Fieldwrapper = $('.input_field_wrapper');
+              var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" style="padding:0px 10px;" title="Remove field">Remove</a></div>'; //New input field html
+              var x = 1;
+              $(add_more_button).click(function(){
+                if(x < maxFieldLimit){
+                  x++;
+                  $(Fieldwrapper).append(fieldHTML);
+                }
+            });
+              $(Fieldwrapper).on('click', '.remove_button', function(e){
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+              });
+            });
+          </script>
     <div class="container mt-5w-50 bg-light">
 
     <%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %>

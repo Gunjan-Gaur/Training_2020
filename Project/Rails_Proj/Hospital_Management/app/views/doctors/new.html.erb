@@ -1,5 +1,17 @@
     <h1><center>Doctor Information</center></h1>
-    <div class="container w-50 bg-light">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <center>
+             <div class="input_field_wrapper">
+               <div>
+                 <input type="text" name="field_name[]" value=""/>
+                  <a href="javascript:void(0);" class="add_button" title="Add field">
+                    <button class=" btn btn-primary" style=" margin:5px;">Add More Field</button>
+                  </a>
+                </div>
+              </div>
+            </center>
+
+    <div class="container mt-5w-50 bg-light">
 
     <%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %>
     <div class ="form-group">
@@ -82,4 +94,9 @@
       <%= d.submit class: "btn btn-primary" %>
     </div>
   <% end %>
+  <a class="extra_fields_customer" href="#"> Add More Customer </a>
+</div>
+
+<div class="customer_records_dynamic">
+
 </div>

@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
 
     const password = document.querySelector('#password');
@@ -65,11 +64,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         isNaN(v)? phone.style.display='block':phone.style.display='none'
       });
 
-
        const all_inputs = document.querySelectorAll('.input');
        const myform = document.querySelector('#myform');
-       myform.addEventListener('submit', function make(e) {
          count=0;
+         myform.addEventListener('submit', function make(e) {
          for(var i=0;i<all_inputs.length;i++)
          {
            if(all_inputs[i].value =='')

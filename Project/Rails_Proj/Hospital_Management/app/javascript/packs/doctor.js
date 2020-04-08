@@ -83,21 +83,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
 });
 
-// $(document).ready(function(){
-// var maxFieldLimit = 10;
-// var add_more_button = $('.add_button');
-// var Fieldwrapper = $('.input_field_wrapper');
-// var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" style="padding:0px 10px;" title="Remove field">Remove</a></div>'; //New input field html
-// var x = 1;
-// $(add_more_button).click(function(){
-//   if(x < maxFieldLimit){
-//     x++;
-//     $(Fieldwrapper).append(fieldHTML);
-//   }
-// });
-// $(Fieldwrapper).on('click', '.remove_button', function(e){
-//   e.preventDefault();
-//   $(this).parent('div').remove();
-//   x--;
-// });
-// });
+
+
+  $(document).ready(function(){
+    var add_more_button = $('.add_button');
+    var Fieldwrapper = $('.input_field_wrapper');
+    var fieldHTML = '<div><%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %><%= d.label :fname , 'First Name' %><br><%= d.text_field :first_name ,class:'form-control input', placeholder: 'Enter First Name',id:'fname' %><small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small><%= d.label :lname , 'Last Name' %><br><%= d.text_field :last_name ,class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%><small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small><%= d.label :quali , 'Qualifications' %><br><%= d.text_field :qualifications ,class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%><%= d.label :gender , 'Gender' %><br> <%= d.text_field :gender ,class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%><%= d.label :salary , 'Salary' %><br><%= d.text_field :salary ,class:'form-control input', placeholder:'Enter Salary' ,id:'salary'%><%= d.label :email , 'Email' %><br><%= d.text_field :email ,class:'form-control input', placeholder:'Enter Email' ,id:'email'%><small><p id = 'mail' class= "text-danger" >*Email must contain @,.(xyz@gmail.com)</p></small><%= d.label :hid , 'Hospital Id' %><br><%= d.text_field :hospital_id ,class:'form-control input', placeholder:'Enter Hospital Id' ,id:'hid'%> <%= d.submit class: "btn btn-primary" %><% end %><a href="javascript:void(0);" class="remove_button" style="padding:0px 10px;" title="Remove field">Remove</a></div>';
+
+    $(add_more_button).click(function()
+    {
+      $(Fieldwrapper).append(fieldHTML);
+    });
+
+    $(Fieldwrapper).on('click', '.remove_button', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove();
+    });
+  });

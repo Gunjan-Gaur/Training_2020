@@ -1,93 +1,36 @@
-<h1><center>Doctor Information</center></h1>
-    <div class ="row ml-5">
-      <div class="customer_records">
-        <%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %>
-        <!-- <%= d.label :fname , 'First Name' %><br> -->
-        <%= d.text_field :first_name ,class:'input', placeholder: 'Enter First Name',id:'fname'%>
-        <small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small>
+    <h1><center>Doctor Information</center></h1>
 
-        <!-- <%= d.label :lname , 'Last Name' %><br> -->
-        <%= d.text_field :last_name ,class:'input', placeholder:'Enter Last Name' ,id:'lname'%>
-        <small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small>
+    <div class="input_field_wrapper">
+      <div>
+      <%= form_for @doctor ,html: {id:'myform',multipart: true}, url: doctors_path   do |d|  %>
+          <%= d.label :fname , 'First Name' %><br>
+          <%= d.text_field :first_name ,class:'form-control input', placeholder: 'Enter First Name',id:'fname' %>
+          <small><p id = "firstname" class= "text-danger" >*Please enter valid name</p></small>
 
-        <!-- <%= d.label :quali , 'Qualifications' %><br> -->
-        <%= d.text_field :qualifications ,class:'input', placeholder:'Enter Qualifications' ,id:'quali'%>
+          <%= d.label :lname , 'Last Name' %><br>
+          <%= d.text_field :last_name ,class:'form-control input', placeholder:'Enter Last Name' ,id:'lname'%>
+          <small><p id = "lastname" class= "text-danger" >*Please enter valid name</p></small>
 
-        <!-- <%= d.label :gender , 'Gender' %><br> -->
-        <%= d.text_field :gender ,class:' input', placeholder:'Enter Gender' ,id:'gender'%>
+          <%= d.label :quali , 'Qualifications' %><br>
+          <%= d.text_field :qualifications ,class:'form-control input', placeholder:'Enter Qualifications' ,id:'quali'%>
 
-        <!-- <%= d.label :salary , 'Salary' %><br> -->
-        <%= d.text_field :salary ,class:'input', placeholder:'Enter Salary' ,id:'salary'%>
+          <%= d.label :hid , 'Hospital Id' %><br>
+          <%= d.text_field :hospital_id ,class:'form-control input', placeholder:'Enter Hospital Id' ,id:'hid'%>
 
-        <!-- <%= d.label :email , 'Email' %><br> -->
-        <%= d.text_field :email ,class:'input', placeholder:'Enter Email' ,id:'email'%>
-        <small><p id = 'mail' class= "text-danger" >*Email must contain @,.(xyz@gmail.com)</p></small>
+          <%= d.label :gender , 'Gender' %><br>
+          <%= d.text_field :gender ,class:'form-control input', placeholder:'Enter Gender' ,id:'gender'%>
 
-        <!-- <%= d.label :mobile , 'Mobile' %><br> -->
-        <%= d.text_field :mobile ,class:'input', placeholder:'Enter Mobile Number' ,id:'mobile',maxlength: 10%>
-        <small><p id = "phone" class= "text-danger">*Only numeric digit 0-9 allowed</p></small>
+          <%= d.label :salary , 'Salary' %><br>
+          <%= d.text_field :salary ,class:'form-control input', placeholder:'Enter Salary' ,id:'salary'%>
 
-        <!-- <%= d.label :age , 'Age' %><br> -->
-        <%= d.text_field :age ,class:' input', placeholder:'Enter Age' ,id:'age'%>
+          <%= d.label :email , 'Email' %><br>
+          <%= d.text_field :email ,class:'form-control input', placeholder:'Enter Email' ,id:'email'%>
+          <small><p id = 'mail' class= "text-danger" >*Email must contain @,.(xyz@gmail.com)</p></small>
 
-        <!-- <%= d.label :hid , 'Hospital Id' %><br> -->
-        <%= d.text_field :hospital_id ,class:'input', placeholder:'Enter Hospital Id' ,id:'hid'%>
-
-        <!-- <%= d.label :password , 'Password' %><br> -->
-        <%= d.password_field :password ,class:' input', placeholder:'Enter Password' ,id:'password'%>
-        <div id = "mixid">
-            <small><p id = 'p1' class= "text-danger" >*Please enter one uppercase Alphabet</p></small>
-            <small><p id = 'p2' class= "text-danger" >*Please enter one lowercase Alphabet</p></small>
-            <small><p id = 'p3' class= "text-danger" >*Please enter one numeric constant</p></small>
-            <small><p id = 'p4' class= "text-danger" >*Please enter Miniumn 8 character</p></small>
-        </div>
-
-        <!-- <%= d.label :confirm_pwd , 'Confirm Password' %><br> -->
-        <%= d.password_field :password ,class:' input', placeholder:'Confirm Password' ,id:'confirm_pwd'%>
-        <small><p id = "p5" class= "text-danger">*Password didn't match</p></small>
-
-        <!-- <%= d.label :comments , 'Comments' %><br> -->
-        <%= d.text_area :comments ,class:' input', placeholder:'Write Comments...' ,id:'comments'%>
-
-        <%= d.file_field :avatar%>
-
-        <div class = "form-group ml-500">
-          <%= d.submit class: "btn btn-primary" %>
-        </div>
-  <% end %>
-    <a class="extra-fields-customer" href="#">Add doctors</a>
+           <%= d.submit class: "btn btn-primary" %>
+      <% end %>
+      <a href="javascript:void(0);" class="add_button" title="Add field">
+        <button class=" btn btn-primary" style=" margin:5px;">Add More Field</button>
+      </a>
+    </div>
   </div>
-</div>
-
-  <div class="customer_records_dynamic"></div>
-
-
-
-        <script>
-          $('.extra-fields-customer').click(function() {
-            console.log('hey');
-          var p = $('.customer_records').clone().append('.customer_records_dynamic');
-          console.log(p,"data");
-          var q = $('.customer_records_dynamic .customer_records').addClass('single remove');
-          console.log(q);
-          $('.single .extra-fields-customer').remove();
-          $('.single').append('<a href="#" class="remove-field btn-remove-customer">Remove Fields</a>');
-          $('.customer_records_dynamic > .single').attr("class", "remove");
-
-          console.log("1");
-
-          $('.customer_records_dynamic input').each(function() {
-            console.log('2');
-            var count = 0;
-            var fieldname = $(this).attr("name");
-            $(this).attr('name', fieldname + count);
-            count++;
-          });
-
-          });
-          $(document).on('click', '.remove-field', function(e) {
-            console.log('3');
-          $(this).parent('.remove').remove();
-          e.preventDefault();
-          });
-        </script>

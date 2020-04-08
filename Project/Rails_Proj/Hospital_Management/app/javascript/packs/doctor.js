@@ -82,3 +82,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
          }
       });
 });
+
+// $(document).ready(function(){
+// var maxFieldLimit = 10;
+// var add_more_button = $('.add_button');
+// var Fieldwrapper = $('.input_field_wrapper');
+// var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" style="padding:0px 10px;" title="Remove field">Remove</a></div>'; //New input field html
+// var x = 1;
+// $(add_more_button).click(function(){
+//   if(x < maxFieldLimit){
+//     x++;
+//     $(Fieldwrapper).append(fieldHTML);
+//   }
+// });
+// $(Fieldwrapper).on('click', '.remove_button', function(e){
+//   e.preventDefault();
+//   $(this).parent('div').remove();
+//   x--;
+// });
+// });
